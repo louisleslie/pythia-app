@@ -24,7 +24,6 @@ class CsvFilesController < ApplicationController
   end
 
   def index
-    @csv_files = CsvFile.all
     @csvfiles = current_user.csv_files
   end
 

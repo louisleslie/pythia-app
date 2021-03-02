@@ -1,7 +1,6 @@
 class QueriesController < ApplicationController
   before_action :set_query, only: [:show, :edit, :update, :destroy]
   def index
-    @query = Query.new
   end
 
   def show
