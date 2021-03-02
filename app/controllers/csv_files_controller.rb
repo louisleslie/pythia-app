@@ -1,6 +1,6 @@
 require 'csv'
 class CsvFilesController < ApplicationController
-  after_save :add_file_rows_to_orders, only [:create]
+  after_save :add_file_rows_to_orders, only: [ :create ]
 
   def new
   end
@@ -20,10 +20,10 @@ class CsvFilesController < ApplicationController
   private
 
   def add_file_rows_to_orders(csv_file) # is this the right thing to be parsed?
-    csv_text = File.read('...')
+    csv_text = File.read(csv_file.)
     csv = CSV.parse(csv_text, :headers => true)
     csv.each do |row|
-      Moulding.create!(row.to_hash)
+      Order.create!(row.to_hash)
     end
 
   end
