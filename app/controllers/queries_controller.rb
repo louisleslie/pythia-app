@@ -1,5 +1,6 @@
 class QueriesController < ApplicationController
   def index
+    @queries = Query.all.where("id =?", current_user.id)
   end
 
   def show
