@@ -19,12 +19,13 @@ class CsvFilesController < ApplicationController
   end
 
   def destroy
-    @csv_file = CsvFile.find(params[:id])
     @csv_file.destroy
     redirect_to csv_files_path
   end
 
   def index
+    @csv_files = CsvFile.all
+    @csvfiles = current_user.csv_files
   end
 
   private 
