@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   root to: 'pages#home'
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   resources :csv_files, except: [:edit, :update] do
-    resources :query, only: :create
+    resources :queries, except: :delete
   end
-  resources :query, except: [:new, :create]
+  resources :queries, only: :delete
 end
