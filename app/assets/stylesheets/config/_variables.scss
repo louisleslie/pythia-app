@@ -48,6 +48,14 @@ $yellow-600: #CA8A04;
 $yellow-700: #A16207;
 $yellow-900: #713F12;
 
+// Breakpoint variables
+
+$break-sm: 640px;
+$break-md: 768px;
+$break-lg: 1024px;
+$break-xl: 1280px;
+$break-2xl: 1536px;
+
 // Utility variables
 
 $transition: all .25s ease-in-out;
