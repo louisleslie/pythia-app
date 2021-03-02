@@ -1,6 +1,6 @@
 <h1>Queries#index</h1>
 <p>Find me in app/views/queries/index.html.erb</p>
-<h2>Fields: </h2> 
 <% @queries.each do |query| %>
-  <p><%= query.fields %></p>
+  <p>Name: <%= query.query_name %></p>
+  <p>Fields: <%= query.fields %></p>
 <% end %>
