@@ -15,14 +15,15 @@ class QueriesController < ApplicationController
 
   def new
     @query = Query.new
+    @query.filters.build
   end
 
   def create
     @query = Query.new(query_params)
     @csv_file = CsvFile.find(params[:csv_file_id])
-    @query.csv_file =  @csv_file
+    @query.csv_file = @csv_file
     if @query.save
-      redirect_to csv_file_path(@csv_file)
+      redirect_to csv_file_queries_path(@csv_file)
     else
       flash[:alert] = "Something went wrong."
       render :new
@@ -50,6 +51,6 @@ class QueriesController < ApplicationController
   end
 
   def query_params
-    params.require(:query).permit(:fields, :query_name)
+    params.require(:query).permit(:fields, :query_name, filters_attributes: [:verb, :column_name, :comparison_operator, :value])
   end
 end
