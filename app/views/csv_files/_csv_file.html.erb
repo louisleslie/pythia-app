@@ -5,11 +5,13 @@
       <div class="upload-form-text-container">
         <p class="upload-form-text">CSV up to 10MB</p>
       </div>
+      <div class="upload-form-text-container">
+        <%= f.input :filename, label_input: "Filename (optional)"  %>
+      </div>
       <div class="upload-form-buttons-container">
         <button class="button-utility first-button-row">Cancel</button>
         <%= f.submit label: "upload!", class: "button-primary", value: "Save" %>
       </div>
     <% end %>
   <% end %>
-
 </div>
