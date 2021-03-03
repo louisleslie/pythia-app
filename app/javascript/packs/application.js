@@ -23,8 +23,12 @@ import "bootstrap";
 
 // Internal imports, e.g:
 // import { initSelect2 } from '../components/init_select2';
+import { addFilter } from './addFilter';
 
 document.addEventListener('turbolinks:load', () => {
   // Call your functions here, e.g:
   // initSelect2();
+  if (document.querySelector("#fieldset-container")) {
+    addFilter();
+  }
 });
