@@ -1,0 +1,25 @@
+class AddToOrders < ActiveRecord::Migration[6.1]
+  def change
+    add_column(:orders, :paid_at, :datetime)
+    add_column(:orders, :fulfilled_at, :datetime)
+    add_column(:orders, :accepts_marketing, :boolean)
+    add_column(:orders, :subtotal, :float)
+    add_column(:orders, :shipping, :float)
+    add_column(:orders, :taxes, :float)
+    add_column(:orders, :total, :float)
+    add_column(:orders, :shipping_method, :string)
+    add_column(:orders, :order_created_at, :datetime)
+    add_column(:orders, :billing_street, :string)
+    add_column(:orders, :shipping_street, :string)
+    add_column(:orders, :payment_method, :string)
+    add_column(:orders, :refunded_amount, :float)
+    add_column(:orders, :vendor, :string)
+    add_column(:orders, :order_id, :string)
+    add_column(:orders, :risk_level, :string)
+    add_column(:orders, :source, :string)
+    add_column(:orders, :lineitem_discount, :float)
+    add_column(:orders, :receipt_number, :string)
+    add_column(:orders, :billing_province_name, :string)
+    add_column(:orders, :shipping_province_name, :string)
+  end
+end

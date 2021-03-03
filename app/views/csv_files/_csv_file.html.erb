@@ -1,9 +1,9 @@
 <div class="form-container">
-  <% if @csvfile %>
-    <%= simple_form_for @csvfile do |f| %>
+  <% if @csv_file %>
+    <%= simple_form_for @csv_file do |f| %>
       <%= f.file_field :csv_doc %>
       <%= f.submit label: "upload!", class: "btn btn-primary" %>
     <% end %>
-    <% end %>
+  <% end %>
 
 </div>

@@ -1,3 +1,5 @@
+require 'csv'
+
 class CsvFile < ApplicationRecord
   belongs_to :user
   has_many :queries
