@@ -7,5 +7,8 @@ Rails.application.routes.draw do
   resources :csv_files, except: [:edit, :update] do
     resources :queries, except: :delete
   end
-  resources :queries, only: :delete
+  resources :queries, only: :delete do
+    resources :filters only: :create
+  end
+  resources :filters except: [:create, :new]
 end
