@@ -1,6 +1,11 @@
 class QueriesController < ApplicationController
   def index
-    @queries = Query.all.where("id =?", current_user.id)
+    @authorized = false
+    csv_file = CsvFile.find(params[:csv_file_id])
+    return unless csv_file.user.id == current_user.id
+
+    @authorized = true
+    @queries = csv_file.queries
   end
 
   def show

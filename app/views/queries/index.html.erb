@@ -1,6 +1,14 @@
 <h1>Queries#index</h1>
 <p>Find me in app/views/queries/index.html.erb</p>
-<% @queries.each do |query| %>
-  <p>Name: <%= query.query_name %></p>
-  <p>Fields: <%= query.fields %></p>
+
+<% if @authorized %>
+  <% unless @queries.empty? %>
+    <% @queries.each do |query| %>
+      <p>Name: <%= query.query_name %></p>
+    <% end %>
+  <% else %>
+    <div>You have no queries</div>
+  <% end %>
+<% else %>
+  <div>You dont have access to this file</div>
 <% end %>
