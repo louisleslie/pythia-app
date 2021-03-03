@@ -1,6 +1,8 @@
-<h1>My Files</h1>
-<% @csv_files.each do |csv_file| %>
-  <div class="container">
-    <%= link_to csv_file.filename, csv_file_path(csv_file), class: "btn btn-primary" %>
-  </div>
-<% end %>
+<div class="container">
+  <h1>My Files</h1>
+  <% @csv_files.each do |csv_file| %>
+    <ul style="list-style-type: none;">
+      <li><%= link_to csv_file.filename, csv_file_path(csv_file), class: "btn btn-primary" %></li>
+    </ul>
+  <% end %>
+</div>
