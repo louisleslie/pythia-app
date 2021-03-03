@@ -1,13 +1,13 @@
 .show-page-container {
   display: flex;
   overflow: hidden;
-  max-height: calc(100vh - 40px);
+  height: calc(100vh - 40px);
   overflow-y: none;
   border: 1px solid pink;
 }
 
 .show-page-sidebar-wrapper {
-
+  height: calc(100vh - 40px);
 }
 
 .show-page-content-container {
@@ -39,6 +39,8 @@
 
 .show-page-views-tabs-container {
   border-bottom: 1px solid $gray-200;
+  border: 1px solid chartreuse;
+
 }
 
 .show-page-views-tab-container {
@@ -51,6 +53,7 @@
 
 .show-page-views-tab-content-container {
   height: 100%;
+  border: 1px solid cyan;
 }
 
 .show-page-views-tab-pane {
