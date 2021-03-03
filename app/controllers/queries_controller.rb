@@ -20,7 +20,7 @@ class QueriesController < ApplicationController
   def create
     @query = Query.new(query_params)
     @csv_file = CsvFile.find(params[:csv_file_id])
-    @query.csv_file =  @csv_file
+    @query.csv_file = @csv_file
     if @query.save
       redirect_to csv_file_path(@csv_file)
     else
