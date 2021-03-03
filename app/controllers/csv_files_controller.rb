@@ -1,4 +1,3 @@
-require 'csv'
 class CsvFilesController < ApplicationController
 
   before_action :set_csvfile, only: [:show, :edit, :update, :destroy]
@@ -10,6 +9,7 @@ class CsvFilesController < ApplicationController
     @csvfile = CsvFile.new(csvfile_params)
     @csvfile.user = current_user
     if @csvfile.save
+      generate_orders(@csvfile.csv_doc)
       redirect_to csv_file_path(@csvfile)
     else
       render :new
@@ -39,11 +39,17 @@ class CsvFilesController < ApplicationController
     params.require(:csv_file).permit(:filename, :csv_doc)
   end
 
-  def add_file_rows_to_orders(csv_file) # is this the right thing to be parsed?
-    csv_text = File.read(csv_file.)
-    csv = CSV.parse(csv_text, :headers => true)
+  def generate_orders(csv_doc)
+    csv = CSV.parse(csv_doc.download, :headers => true)
     csv.each do |row|
-      Order.create!(row.to_hash)
+      row = row.to_hash
+      row.transform_keys! do |k| 
+        newk = k.downcase.gsub(" ", "_")
+        k = newk.to_sym
+      end
+      p row
+      Order.create!(row)
     end
   end
+
 end
