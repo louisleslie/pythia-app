@@ -8,7 +8,9 @@ class CsvFilesController < ApplicationController
   def create
     @csv_file = CsvFile.new(csv_file_params)
     @csv_file.user = current_user
-    @csv_file.filename = params[:csv_file]["csv_doc"].original_filename
+    unless @csv_file.filename
+      @csv_file.filename = params[:csv_file]["csv_doc"].original_filename
+    end
     if @csv_file.save
       generate_orders(@csv_file)
       redirect_to csv_file_path(@csv_file)
