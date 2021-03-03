@@ -1,65 +1,112 @@
 <div class="sidebar-container">
   <div class="sidebar-content-container">
     <div class="sidebar-wordmark-container">
-      <img src="https://tailwindui.com/img/logos/workflow-logo-indigo-500-mark-white-text.svg" alt="" class="sidebar-wordmark-image">
+      <img src="" alt="" class="sidebar-wordmark-image">
     </div>
 
     <div class="sidebar-files-container">
 
+
       <div class="sidebar-file-container">
-        <div class="sidebar-file-icon-container">
-          <%= image_tag 'database.svg', class: 'sidebar-file-icon'%>
-        </div>
         <div class="sidebar-file-item">
-          Products
-          <div class="sidebar-queries-container">
-            <div class="sidebar-query-container">
-              <div class="sidebar-query-icon-container"></div>
-              <div class="sidebar-query-item"></div>
-            </div>
+          <div class="sidebar-file-icon-container">
+            <%= image_tag 'database.svg', class: 'sidebar-file-icon'%>
+          </div>
+          <div class="sidebar-file-name">
+            Products
+          </div>
+          <div class="sidebar-file-dropdown-toggle-container">
+            <%= image_tag 'chevron-down.svg', class: 'sidebar-dropdown-toggle-icon'%>
           </div>
         </div>
-        <div class="sidebar-dropdown-toggle-container">
-          <%= image_tag 'chevron-down.svg', class: 'sidebar-dropdown-toggle-icon'%>
+
+
+        <div class="sidebar-queries-container hidden">
+          <div class="sidebar-query-item">
+
+
+              <div class="sidebar-query-icon-container">
+                <%= image_tag 'sparkles.svg', class: 'sidebar-query-icon'%>
+              </div>
+              <div class="sidebar-query-name">
+               Summer'69 Sales
+              </div>
+              <div class="sidebar-query-edit-icon-container">
+                <%= image_tag 'pencil.svg', class: 'sidebar-query-edit-icon'%>
+              </div>
+
+          </div>
         </div>
       </div>
 
-    </div>
 
-    <div class="sidebar-files-container">
-      <div class="sidebar-file-container">
-        <div class="sidebar-file-icon-container">
-          <%= image_tag 'database.svg', class: 'sidebar-file-icon'%>
-        </div>
+      <div class="sidebar-file-container-current">
+
         <div class="sidebar-file-item">
-          Products
-          <div class="sidebar-queries-container">
-            <div class="sidebar-query-container">
-              <div class="sidebar-query-icon-container"></div>
-              <div class="sidebar-query-item"></div>
-            </div>
+          <div class="sidebar-file-icon-container">
+            <%= image_tag 'database.svg', class: 'sidebar-file-icon'%>
           </div>
+          <div class="sidebar-file-name">
+            Orders
+          </div>
+          <div class="sidebar-file-dropdown-toggle-container">
+            <%= image_tag 'chevron-up.svg', class: 'sidebar-dropdown-toggle-icon'%>
+          </div>
+        </div>
 
+
+        <div class="sidebar-queries-container">
+          <div class="sidebar-query-item">
+
+
+              <div class="sidebar-query-icon-container">
+                <%= image_tag 'sparkles.svg', class: 'sidebar-query-icon'%>
+              </div>
+              <div class="sidebar-query-name">
+               Summer '69 Sales
+              </div>
+              <div class="sidebar-query-edit-icon-container">
+                <%= image_tag 'pencil.svg', class: 'sidebar-query-edit-icon'%>
+              </div>
+
+          </div>
+        </div>
+
+      </div>
+
+      <div class="sidebar-file-container">
+        <div class="sidebar-file-item">
+          <div class="sidebar-file-icon-container">
+            <%= image_tag 'database.svg', class: 'sidebar-file-icon'%>
+          </div>
+          <div class="sidebar-file-name">
+            Customers
+          </div>
+          <div class="sidebar-file-dropdown-toggle-container">
+            <%= image_tag 'chevron-down.svg', class: 'sidebar-dropdown-toggle-icon'%>
+          </div>
+        </div>
+
+
+        <div class="sidebar-queries-container hidden">
+          <div class="sidebar-query-item">
+
+
+              <div class="sidebar-query-icon-container">
+                <%= image_tag 'sparkles.svg', class: 'sidebar-query-icon'%>
+              </div>
+              <div class="sidebar-query-name">
+               Summer'69 Sales
+              </div>
+              <div class="sidebar-query-edit-icon-container">
+                <%= image_tag 'pencil.svg', class: 'sidebar-query-edit-icon'%>
+              </div>
+
+          </div>
         </div>
       </div>
-    </div>
 
-    <div class="sidebar-files-container">
-      <div class="sidebar-file-container">
-        <div class="sidebar-file-icon-container">
-          <%= image_tag 'database.svg', class: 'sidebar-file-icon'%>
-        </div>
-        <div class="sidebar-file-item">
-          Products
-          <div class="sidebar-queries-container">
-            <div class="sidebar-query-container">
-              <div class="sidebar-query-icon-container"></div>
-              <div class="sidebar-query-item"></div>
-            </div>
-          </div>
 
-        </div>
-      </div>
     </div>
   </div>
 </div>
