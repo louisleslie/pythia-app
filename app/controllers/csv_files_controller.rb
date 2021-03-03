@@ -6,7 +6,7 @@ class CsvFilesController < ApplicationController
   end
 
   def create
-    @csv_file = CsvFile.new(csvfile_params)
+    @csv_file = CsvFile.new(csv_file_params)
     @csv_file.user = current_user
     if @csv_file.save
       generate_orders(@csv_file)
