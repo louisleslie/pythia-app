@@ -1,6 +1,6 @@
 class CsvFilesController < ApplicationController
-
-  before_action :set_csvfile, only: [:show, :edit, :update, :destroy]
+  before_action :set_csv_file, only: [:show, :edit, :update, :destroy]
+  
   def new
     @csv_file = CsvFile.new
   end
@@ -17,25 +17,26 @@ class CsvFilesController < ApplicationController
   end
 
   def show
+    @csv_file = CsvFile.new
   end
 
   def destroy
-    @csv_file = CsvFile.find(params[:id])
     @csv_file.destroy
     redirect_to csv_files_path
   end
 
   def index
-    @csvfiles = current_user.csv_files
+    @csv_files = current_user.csv_files
   end
 
   private
 
-  def set_csvfile
+
+  def set_csv_file
     @csv_file = CsvFile.find(params[:id])
   end
 
-  def csvfile_params
+  def csv_file_params
     params.require(:csv_file).permit(:filename, :csv_doc)
   end
 
