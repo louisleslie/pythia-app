@@ -11,7 +11,6 @@
     <div class="show-page-section-border"></div>
 
     <div class="show-page-views-container">
-      Views container
       <ul class="nav nav-tabs show-page-views-tabs-container" id="myTab" role="tablist">
         <li class="nav-item show-page-views-tab-container">
           <a class="nav-link active show-page-views-tab-link" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Table</a>
@@ -24,10 +23,10 @@
         <div class="tab-pane fade show active show-page-views-tab-pane" id="home" role="tabpanel" aria-labelledby="home-tab">
           <h1><%= @csv_file.filename %></h1>
           <% @csv_file.orders.each do |order|%>
-          <p><%= order.order_id %> <%= order.total %></p>
-          <% end %>s
+            <p><%= order.order_id %> <%= order.total %></p>
+          <% end %>
         </div>
-        <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">Here be SVGs</div>
+        <div class="tab-pane fade show-page-views-tab-pane" id="profile" role="tabpanel" aria-labelledby="profile-tab">Here be SVGs</div>
       </div>
     </div>
   </div>

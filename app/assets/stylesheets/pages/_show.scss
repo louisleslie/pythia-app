@@ -1,6 +1,9 @@
 .show-page-container {
   display: flex;
   overflow: hidden;
+  max-height: calc(100vh - 40px);
+  overflow-y: none;
+  border: 1px solid pink;
 }
 
 .show-page-sidebar-wrapper {
@@ -15,6 +18,7 @@
 
 
   border: 1px solid red;
+
 }
 
 .show-page-filters-container {
@@ -46,9 +50,12 @@
 }
 
 .show-page-views-tab-content-container {
-
+  height: 100%;
 }
 
 .show-page-views-tab-pane {
-
+  padding: 0rem 1rem;
+  border: 1px solid orange;
+  overflow: scroll;
+  height: 600px;
 }
