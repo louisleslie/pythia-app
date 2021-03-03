@@ -8,7 +8,7 @@ Rails.application.routes.draw do
     resources :queries, except: :delete
   end
   resources :queries, only: :delete do
-    resources :filters only: :create
+    resources :filters, only: :create
   end
-  resources :filters except: [:create, :new]
+  resources :filters, except: [:create, :new]
 end
