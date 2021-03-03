@@ -1,3 +1,17 @@
+<div class="show-page-container">
+  <div class="show-page-sidebar-wrapper">
+    <%= render partial: 'shared/sidebar' %>
+  </div>
+  <div class="show-page-content-container">
+
+    <div class="show-page-filters-container"></div>
+    <div class="show-page-views-container">
+
+    </div>
+  </div>
+</div>
+
+
 <h1><%= @csv_file.filename %></h1>
 <% @csv_file.orders.each do |order|%>
   <p><%= order.order_id %> <%= order.total %></p>
