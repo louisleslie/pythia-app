@@ -71,6 +71,11 @@ a {
 
 // Text Mixins
 
+@mixin text-xs {
+  font-size: 0.75rem;
+  line-height: 1rem;
+}
+
 @mixin text-sm {
   font-size: 0.875rem;
   line-height: 1.25rem;
@@ -111,6 +116,7 @@ a {
 
   &:hover {
     background-color: $purple-700;
+    border: 2px solid $purple-600;
   }
 }
 
@@ -130,6 +136,7 @@ a {
 
   &:hover {
     background-color: $purple-50;
+    border: 2px solid $purple-600;
   }
 }
 
@@ -153,3 +160,6 @@ a {
   }
 }
 
+.first-button-row {
+  margin-right: 1rem;
+}

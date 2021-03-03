@@ -1,0 +1,35 @@
+.upload-form-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 2rem;
+}
+
+.form-contents-container {
+
+}
+
+.upload-form-text-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 0.5rem;
+  @include text-xs;
+  color: $gray-500;
+}
+
+.upload-form-drop-field {
+  cursor: pointer;
+}
+
+.upload-form-text {
+
+}
+
+.upload-form-buttons-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 1rem;
+
+}
