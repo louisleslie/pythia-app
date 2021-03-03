@@ -22,13 +22,33 @@
   border: 1px solid green;
 }
 
+.show-page-section-border {
+  margin: 1rem 0rem;
+  border-top: 1px solid $gray-200;
+}
+
 .show-page-views-container {
 
   padding: 1rem 0rem;
   border: 1px solid blue;
 }
 
-.show-page-section-border {
-  margin: 1rem 0rem;
-  border-top: 1px solid $gray-200;
+.show-page-views-tabs-container {
+  border-bottom: 1px solid $gray-200;
+}
+
+.show-page-views-tab-container {
+  background-color: white;
+}
+
+.show-page-views-tab-link {
+
+}
+
+.show-page-views-tab-content-container {
+
+}
+
+.show-page-views-tab-pane {
+
 }
