@@ -131,14 +131,6 @@ ActiveRecord::Schema.define(version: 2021_03_03_111224) do
     t.bigint "csv_file_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["csv_file_id"], name: "index_queries_on_csv_file_id"
-  end
-
-  create_table "queries", force: :cascade do |t|
-    t.text "fields"
-    t.bigint "csv_file_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
     t.string "query_name"
     t.index ["csv_file_id"], name: "index_queries_on_csv_file_id"
   end
