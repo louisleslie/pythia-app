@@ -1,2 +1,5 @@
 <h1>CsvFiles#show</h1>
 <p>Find me in app/views/csv_files/show.html.erb</p>
+<% @csv_file.orders.each do |order|%>
+  <p><%= order.order_id %> <%= order.total %></p>
+<% end %>
