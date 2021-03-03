@@ -6,8 +6,9 @@ class CsvFilesController < ApplicationController
   end
 
   def create
-    @csv_file = CsvFile.new(csvfile_params)
+    @csv_file = CsvFile.new(csv_file_params)
     @csv_file.user = current_user
+    @csv_file.filename = arams[:csv_file]["csv_doc"].original_filename
     if @csv_file.save
       generate_orders(@csv_file)
       redirect_to csv_file_path(@csv_file)
@@ -17,7 +18,6 @@ class CsvFilesController < ApplicationController
   end
 
   def show
-    @csv_file = CsvFile.new
   end
 
   def destroy
@@ -54,16 +54,11 @@ class CsvFilesController < ApplicationController
           k = newk.to_sym
         end
       end
-      p row
       ord_syms = []
       Order.column_names.each { |col_name| ord_syms << col_name.to_sym }
-      p ord_syms
       row.slice!(*ord_syms)
-      p row
       row["csv_file_id"] = csv_file.id
-      p row
       o = Order.new(row)
-      p o
       o.save
     end
   end

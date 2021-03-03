@@ -10,6 +10,7 @@ class QueriesController < ApplicationController
   end
 
   def show
+    @query = Query.new
   end
 
   def new
