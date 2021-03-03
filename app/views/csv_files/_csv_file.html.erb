@@ -1,8 +1,14 @@
-<div class="form-container">
+<div class="upload-form-container">
   <% if @csv_file %>
     <%= simple_form_for @csv_file do |f| %>
-      <%= f.file_field :csv_doc %>
-      <%= f.submit label: "upload!", class: "btn btn-primary" %>
+      <%= f.file_field :csv_doc, class: 'button-secondary upload-form-drop-field', label_input: "CSV Test"  %>
+      <div class="upload-form-text-container">
+        <p class="upload-form-text">CSV up to 10MB</p>
+      </div>
+      <div class="upload-form-buttons-container">
+        <button class="button-utility first-button-row">Cancel</button>
+        <%= f.submit label: "upload!", class: "button-primary", value: "Save" %>
+      </div>
     <% end %>
   <% end %>
 
