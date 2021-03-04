@@ -2,8 +2,8 @@
   <div id="fieldset-container">
     <br>
     <fieldset id="0" class="d-flex">
-      <%= filter_f.input :verb %>
-      <%= filter_f.input :column_name %>
+      <%= filter_f.input :verb, collection: ['Where'], default: "Where" %>
+      <%= filter_f.input :column_name, collection: order_data_types %>
       <%= filter_f.input :comparison_operator %>
       <%= filter_f.input :value %>
     </fieldset>
