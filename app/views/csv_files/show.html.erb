@@ -23,13 +23,50 @@
       <div class="tab-content show-page-views-tab-content-container" id="myTabContent">
         <div class="tab-pane fade show active show-page-views-tab-pane" id="home" role="tabpanel" aria-labelledby="home-tab">
           <h1><%= @csv_file.filename %></h1>
-          <% @csv_file.orders.each do |order|%>
-            <p><%= order.order_id %> <%= order.total %></p>
-          <% end %>
+          <div class="show-page-table-wrapper">
+            <div class="show-page-table-container">
+              <table class='show-page-table'>
+                <thead class='show-page-table-header-section'>
+                  <tr class='show-page-table-row'>
+                    <th class='show-page-table-header'>Order ID</th>
+                    <th class='show-page-table-header'>Order Total</th>
+                    <th class='show-page-table-header'>Some Column</th>
+                    <th class='show-page-table-header'>Some Column</th>
+                    <th class='show-page-table-header'>Some Column</th>
+                    <th class='show-page-table-header'>Some Column</th>
+                    <th class='show-page-table-header'>Some Column</th>
+                    <th class='show-page-table-header'>Some Column</th>
+                    <th class='show-page-table-header'>Some Column</th>
+                    <th class='show-page-table-header'>Some Column</th>
+                    <th class='show-page-table-header'>Some Column</th>
+                    <th class='show-page-table-header'>Some Column</th>
+                  </tr>
+                </thead>
+
+                <tbody class='show-page-table-body-section'>
+                  <% @csv_file.orders.each do |order| %>
+                  <tr class='show-page-table-row'>
+                    <td class='show-page-table-data-cell'><%= order.order_id %></td>
+                    <td class='show-page-table-data-cell'><%= order.total %></td>
+                    <td class='show-page-table-data-cell'>Some Data</td>
+                    <td class='show-page-table-data-cell'>More Data</td>
+                    <td class='show-page-table-data-cell'>012341234</td>
+                    <td class='show-page-table-data-cell'>Some Data</td>
+                    <td class='show-page-table-data-cell'>More Data</td>
+                    <td class='show-page-table-data-cell'>012341234</td>
+                    <td class='show-page-table-data-cell'>012341234</td>
+                    <td class='show-page-table-data-cell'>012341234</td>
+                    <td class='show-page-table-data-cell'>012341234</td>
+                    <td class='show-page-table-data-cell'>012341234</td>
+                  </tr>
+                  <% end %>
+                </tbody>
+              </table>
+            </div>
+          </div>
         </div>
         <div class="tab-pane fade show-page-views-tab-pane" id="profile" role="tabpanel" aria-labelledby="profile-tab">Here be SVGs</div>
       </div>
     </div>
   </div>
 </div>
-

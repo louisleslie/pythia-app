@@ -2,6 +2,7 @@
   display: flex;
   overflow: hidden;
   height: calc(100vh - 40px);
+  width: 100vw;
   overflow-y: none;
   border: 1px solid pink;
 }
@@ -15,7 +16,7 @@
   flex-direction: column;
   flex: 1 1 0%;
   padding: 2.5rem 2rem;
-
+  overflow-x: auto;
 
   border: 1px solid red;
 
@@ -40,7 +41,6 @@
 .show-page-views-tabs-container {
   border-bottom: 1px solid $gray-200;
   border: 1px solid chartreuse;
-
 }
 
 .show-page-views-tab-container {
@@ -53,6 +53,7 @@
 
 .show-page-views-tab-content-container {
   height: 100%;
+  width: 100%;
   border: 1px solid cyan;
 }
 
@@ -62,3 +63,83 @@
   overflow: scroll;
   height: 600px;
 }
+
+
+// Table View
+
+.show-page-table-wrapper {
+  border: 1px solid purple;
+  overflow-x: auto;
+}
+
+.show-page-table-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: min-content;
+  border-radius: 0.375rem;
+  border: 1px solid hotpink;
+}
+
+.show-page-table {
+  display: table;
+  overflow-x: auto;
+  white-space: nowrap;
+  width: 100%;
+  border-collapse: collapse;
+  border: 1px solid $gray-200;
+}
+
+.show-page-table-header-section {
+  background-color: $gray-50;
+}
+
+.show-page-table-row {
+
+}
+
+tr:nth-child(even) {
+  background: $gray-50;
+}
+
+.show-page-table-header {
+  padding: 0.75rem 1.5rem;
+  text-align: left;
+  @include text-xs;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: $gray-700;
+  border-bottom: 1px solid $gray-300;
+}
+
+.show-page-table-body-section {
+  background-color: $white;
+
+}
+
+.show-page-table-data-cell {
+  padding: 1rem 1.5rem;
+  white-space: nowrap;
+  text-align: left;
+  @include text-sm;
+  font-weight: 500;
+  color: $gray-900;
+  border-bottom: 1px solid $gray-200;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
