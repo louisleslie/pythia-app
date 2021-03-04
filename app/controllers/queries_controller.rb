@@ -13,7 +13,6 @@ class QueriesController < ApplicationController
     @results = fetch_query_results(@query)
     @sql_query = generate_query(@query)
     @filtered_orders = Order.connection.select_all(@sql_query)
-    raise
   end
 
   def new
