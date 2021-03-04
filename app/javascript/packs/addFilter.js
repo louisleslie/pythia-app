@@ -1,3 +1,19 @@
+
+const listenForFieldChanges = () => {
+  const fieldsetOptionFields = document.querySelectorAll("fieldset > .query_filters_column_name > select")
+
+  fieldsetOptionFields.forEach(optionfield => optionfield.addEventListener("change", (event) => {
+    console.log("Something changed");
+    console.log(event.target);
+    console.log(event.target.text);
+    console.log(event.target.value);
+    console.log(optionfield);
+    // find the value of the option that changed. 
+  }));
+}
+
+export {  }
+
 const addFilter = () => {
   const createButton = document.querySelector("#add-filter");
 
@@ -10,7 +26,8 @@ const addFilter = () => {
     document.querySelector("#fieldset-container").insertAdjacentHTML(
       "beforeend", newFieldset
     );
+    listenForFieldChanges();
   });
 }
 
-export { addFilter }
+export { addFilter, listenForFieldChanges }
