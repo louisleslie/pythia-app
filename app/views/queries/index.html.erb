@@ -1,10 +1,8 @@
-<h1>Queries#index</h1>
-<p>Find me in app/views/queries/index.html.erb</p>
-
 <% if @authorized %>
   <% unless @queries.empty? %>
     <% @queries.each do |query| %>
-      <p>Name: <%= query.query_name %></p>
+      <p>Name: <%= query.query_name %> <%= link_to "view", csv_file_query_path(id: query.id) %> </p>
+
     <% end %>
   <% else %>
     <div>You have no queries</div>
