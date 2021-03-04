@@ -1,7 +1,7 @@
 <%= f.simple_fields_for :filters do |filter_f| %>
   <div id="fieldset-container">
     <br>
-    <fieldset id="0">
+    <fieldset id="0" class="d-flex">
       <%= filter_f.input :verb %>
       <%= filter_f.input :column_name %>
       <%= filter_f.input :comparison_operator %>
