@@ -92,11 +92,11 @@ orderid = ["3650854682786", "3650854322338", "3650854322332", "3650854322331", "
       lineitem_fulfillment_status:"pending",
       lineitem_compare_at_price:0,
       billing_name:name,
-      billing_company:vendors[rand(0.4)],
+      billing_company:vendors[rand(0..4)],
       billing_zip: shippingzip,
       billing_province:billingprovince ,
       billing_country:country,
-      lineitem_name:vendors[rand(0.4)]
+      lineitem_name:vendors[rand(0..4)]
 
    )
 
