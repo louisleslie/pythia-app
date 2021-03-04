@@ -11,6 +11,7 @@ class QueriesController < ApplicationController
 
   def show
     @results = fetch_query_results(@query)
+    @sql_query = generate_query(@query)
   end
 
   def new
@@ -64,4 +65,20 @@ class QueriesController < ApplicationController
       
     end
   end
+
+  def generate_query(query)
+    fields = query.fields
+    base_query = "SELECT #{fields} FROM orders"
+
+    # converted_query_filters = []
+    # query.filters.each do |filter|
+    #   verb = filters.verb
+    #   operator = filters.comparison_operator
+    #   column = filters.column_name
+    #   value = filters.value
+    #   converted_query_filters << ".#{verb}"
+    # end
+    return base_query
+  end
+
 end
