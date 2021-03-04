@@ -12,6 +12,9 @@ class QueriesController < ApplicationController
   def show
     @results = fetch_query_results(@query)
     @sql_query = generate_query(@query)
+    @filtered_orders = Order.connection.select_all(@sql_query)
+    raise
+
   end
 
   def new
@@ -68,7 +71,7 @@ class QueriesController < ApplicationController
 
   def generate_query(query)
     fields = query.fields
-    base_query = "SELECT #{fields} FROM orders"
+    base_query = "SELECT DISTINCT #{fields} FROM orders"
 
     converted_query_filters = []
     query.filters.each do |filter|
@@ -78,6 +81,7 @@ class QueriesController < ApplicationController
       value = filter.value
       converted_query_filters << " #{verb} #{column} #{operator} #{value}"
     end
+    raw_query = converted_query_filters.join
     
     return base_query + converted_query_filters[0]
   end
