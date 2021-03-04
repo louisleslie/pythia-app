@@ -71,22 +71,34 @@ class QueriesController < ApplicationController
   end
 
   def generate_query(query)
-    fields = query.fields
-    base_query = "SELECT #{fields} FROM orders"
+    # TODO make this line DRY
+    clean_up_fields = query.fields.gsub(/"/, "").gsub(/\[/, "").gsub(/\]/, "")
+    # fields adds an empty first element so this line removes it
+    formatted_fields = clean_up_fields.split(",")[1, query.fields.length].join(", ")
+    base_query = "SELECT #{formatted_fields} FROM orders"
     converted_query_filters = []
-    
+
     query.filters.each do |filter|
       verb = filter.verb.upcase
-      operator = filter.comparison_operator
-      column = filter.column_name
+      operator = convert_operator(filter.comparison_operator)
+      column = filter.column_name.split("-")[0]
       value = filter.value
       converted_query_filters << " #{verb} #{column} #{operator} #{value}"
     end
 
+    # currently this only handles WHERE verbs I havent added the logic for group by yet
     first_filter = converted_query_filters.pop
+    # convert subsequent WHEREs to AND
     subsequent_filters = converted_query_filters.join.gsub("WHERE", "AND")
 
     return base_query + first_filter + subsequent_filters
+  end
+
+  def convert_operator(text_operator)
+    case text_operator
+    when "Equals" then return "="
+    when "Greater Than" then return ">"
+    end
   end
 
 end
