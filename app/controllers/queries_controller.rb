@@ -21,11 +21,15 @@ class QueriesController < ApplicationController
     @query = Query.new
     @query.filters.build
     @order_data_types = {}
-    Order.columns_hash.map { |k, v| @order_data_types[k] = v.sql_type_metadata.type }
+    Order.columns_hash.map { |k, v| @order_data_types[k] = "#{k}-#{v.sql_type_metadata.type}" }
   end
 
   def create
+    p params[:fields]
     @query = Query.new(query_params)
+    #p query_params[:fields]
+    @query.fields = params[:query][:fields].to_s
+    p @query.fields
     @csv_file = CsvFile.find(params[:csv_file_id])
     @query.csv_file = @csv_file
     if @query.save
@@ -65,7 +69,6 @@ class QueriesController < ApplicationController
   def fetch_query_results(query)
     filtrs = []
     query.filters.each do |filt|
-      
     end
   end
 

@@ -1,1 +1,110 @@
 // Specific CSS for your home-page
+.home-page-container {
+
+}
+
+
+
+// Header
+
+.home-page-header-section-container {
+  padding-top: 2.5rem;
+  background-color: $gray-900;
+  margin: auto;
+  border: 1px solid orange;
+
+  @media (min-width: $break-sm) {
+    padding-top: 4rem;
+  }
+
+  @media (min-width: $break-lg) {
+    padding-top: 2rem;
+    padding-bottom: 3.5rem;
+    overflow: hidden;
+    padding-right: 2rem;
+    padding-left: 2rem;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 2rem;
+  }
+}
+
+.home-page-header-section-content-container {
+  margin: auto;
+  max-width: 28rem;
+  padding: 0rem 4rem;
+  border: 1px solid yellow;
+
+  @media (min-width: $break-sm) {
+    max-width: 42rem;
+    padding: 0rem 1.5rem;
+    text-align: center;
+  }
+
+  @media (min-width: $break-lg) {
+    padding: 6rem 0rem;
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+.home-page-header-section-image-container {
+  margin-top: 3rem;
+  margin-bottom: 4rem;
+  margin: auto;
+  max-width: 28rem;
+  padding: 0rem 1rem;
+
+  @media (min-width: $break-sm) {
+    margin-bottom: 12rem;
+    max-width: 42rem;
+    padding: 0rem 1.5rem;
+  }
+
+  @media (min-width: $break-lg) {
+    margin: 0rem;
+    position: relative;
+    max-width: none;
+    padding: 0rem;
+  }
+ border: 1px solid cyan;
+}
+
+
+
+
+
+// Demo
+
+.home-page-demo-section-container {
+
+}
+
+.home-page-demo-section-demo {
+
+}
+
+// Features
+
+.home-page-feature-section-container {
+
+}
+
+.home-page-feature-section-container {
+
+}
+
+// Testimonial
+
+.home-page-testimonial-section-container {
+
+}
+
+// Footer
+
+.home-page-footer-section-container {
+
+}
+
