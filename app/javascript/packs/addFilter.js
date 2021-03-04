@@ -1,18 +1,34 @@
 
 const listenForFieldChanges = () => {
-  const fieldsetOptionFields = document.querySelectorAll("fieldset > .query_filters_column_name > select")
+  const fieldsetSelectFields = document.querySelectorAll("fieldset > .query_filters_column_name > select");
 
-  fieldsetOptionFields.forEach(optionfield => optionfield.addEventListener("change", (event) => {
+  const comparisonOptions = {
+    "datetime": ["Before", "After",	"On", "Between", "Is Empty", "Is Not Empty"],
+    "string":["Equals",	"Does Not Equal",	"Contains",	"Does Not Contain",	"Starts With",	"Ends With",	"is Empty", "Is Not Empty"]
+  };
+
+  fieldsetSelectFields.forEach(selectField => selectField.addEventListener("change", (event) => {
     console.log("Something changed");
-    console.log(event.target);
-    console.log(event.target.text);
     console.log(event.target.value);
-    console.log(optionfield);
     // find the value of the option that changed. 
+    let dataType = event.target.value.split("-")[1];
+    let dataValue = event.target.value.split("-")[0];
+    console.log(dataType);
+    console.log(dataValue);
+    let comparisonOperatorField = selectField.parentElement.nextElementSibling.querySelector("select");
+    console.log(comparisonOperatorField);
+    //comparisonOperatorField.type = "select"
+    //comparisonOperatorField.classList.replace("text", "select");
+    comparisonOperatorField.innerHTML = "";
+    comparisonOptions[dataType].forEach( option => {
+      comparisonOperatorField.insertAdjacentHTML('beforeend', `<option value="${option}">${option}</option>`);
+    });
+    let valueField = selectField.parentElement.nextElementSibling.nextElementSibling.querySelector("input");
+    console.log(valueField);
   }));
 }
 
-export {  }
+
 
 const addFilter = () => {
   const createButton = document.querySelector("#add-filter");
