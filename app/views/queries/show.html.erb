@@ -1,9 +1,15 @@
 <h1>Queries#show</h1>
 <p>Find me in app/views/queries/show.html.erb</p>
 <% @query.filters.each_with_index do |filter, index| %>
-  <p> <%= filter.verb %></p>
-  <p> <%= filter.column_name %></p>
-  <p> <%= filter.value %></p>
-  <p> <%= filter.verb %></p>
+<p>filter -------</p>
+  <p>verb: <%= filter.verb %></p>
+  <p>column: <%= filter.column_name %></p>
+  <p>operator: <%= filter.comparison_operator %></p>
+  <p>value: <%= filter.value %></p>
+  <p>--------</p>
 <% end %>
+<p>Query ----- </p>
+<p>fields: <%= @query.fields %></p>
+<p>----------</p>
+<p>SQL query: </p>
 <%= @sql_query %>

@@ -70,15 +70,16 @@ class QueriesController < ApplicationController
     fields = query.fields
     base_query = "SELECT #{fields} FROM orders"
 
-    # converted_query_filters = []
-    # query.filters.each do |filter|
-    #   verb = filters.verb
-    #   operator = filters.comparison_operator
-    #   column = filters.column_name
-    #   value = filters.value
-    #   converted_query_filters << ".#{verb}"
-    # end
-    return base_query
+    converted_query_filters = []
+    query.filters.each do |filter|
+      verb = filter.verb.upcase
+      operator = filter.comparison_operator
+      column = filter.column_name
+      value = filter.value
+      converted_query_filters << " #{verb} #{column} #{operator} #{value}"
+    end
+    
+    return base_query + converted_query_filters[0]
   end
 
 end
