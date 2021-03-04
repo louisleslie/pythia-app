@@ -8,9 +8,9 @@ require 'faker'
 #   Character.create(name: 'Luke', movie: movies.first)
 
 # Clean out existing properties and user accounts. 
-User.destroy_all
-CsvFile.destroy_all
 Order.destroy_all
+CsvFile.destroy_all
+User.destroy_all
 
 users = ['alex.terenda@gmail.com', 'jake.howlett@gmail.com', 'louis.leslie@gmail.com', 'yunus.firat@gmail.com']
 
@@ -40,7 +40,8 @@ vendors = ["DR MARTENS","VANS","PALLADIUM","NIKE","CONVERSE"]
 name = Faker::Restaurant.name
 shippingname = ["Gabriel Campbell","Colt Patton", "Reed Valencia", "Howard Hahn"]
 orderid = ["3650854682786", "3650854322338", "3650854322332", "3650854322331", "3650854322335"]
-   order = Order.new(
+  50.times do
+    order = Order.new(
       csv_file_id:csv_file.id,
       name: Faker::Name.name,
       email: User.all.sample.email,
@@ -100,5 +101,6 @@ orderid = ["3650854682786", "3650854322338", "3650854322332", "3650854322331", "
    )
 
    order.save!
+end
 end
 puts "Created!"
