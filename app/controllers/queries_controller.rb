@@ -46,11 +46,19 @@ class QueriesController < ApplicationController
     redirect_to csv_files_path(@csv_file)
   end
 
+  private
+
   def set_query
     @query = Query.find(params[:id])
   end
 
   def query_params
     params.require(:query).permit(:fields, :query_name, filters_attributes: [:verb, :column_name, :comparison_operator, :value])
+  end
+
+  def fetch_query_results(query)
+    query.filters.each do |filt|
+
+    end
   end
 end

@@ -1,11 +1,5 @@
 <%= simple_form_for @query, url: csv_file_queries_path do |f| %>
   <%= f.input :query_name %>
-  <%= f.input :fields %>
-  <%= f.simple_fields_for :filters do |filter_f| %>
-    <%= filter_f.input :verb %>
-    <%= filter_f.input :column_name %>
-    <%= filter_f.input :comparison_operator %>
-    <%= filter_f.input :value %>
-  <% end %>
+  <%= render :partial => "/filters/filter_form", locals: { :f => f } %>
   <%= f.submit %>
 <% end %>

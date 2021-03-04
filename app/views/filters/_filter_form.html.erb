@@ -1,0 +1,6 @@
+<%= f.simple_fields_for :filters do |filter_f| %>
+    <%= filter_f.input :verb %>
+    <%= filter_f.input :column_name %>
+    <%= filter_f.input :comparison_operator %>
+    <%= filter_f.input :value %>
+<% end %>
