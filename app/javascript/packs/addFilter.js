@@ -42,7 +42,9 @@ const listenForFieldChanges = () => {
   }));
 }
 
-
+const addDivToQueryFieldsInput = () => {
+  const createButton = document.querySelector("#add-filter");
+}
 
 const addFilter = () => {
   const createButton = document.querySelector("#add-filter");
@@ -60,4 +62,4 @@ const addFilter = () => {
   });
 }
 
-export { addFilter, listenForFieldChanges }
+export { addFilter, listenForFieldChanges, addDivToQueryFieldsInput }
