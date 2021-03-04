@@ -1,18 +1,6 @@
 <%= simple_form_for @query, url: csv_file_queries_path do |f| %>
   <%= f.input :query_name %>
-  <%= f.input :fields %>
-  <%= f.simple_fields_for :filters do |filter_f| %>
-    <div id="fieldset-container">
-      <br>
-      <fieldset id="0">
-        <%= filter_f.input :verb %>
-        <%= filter_f.input :column_name %>
-        <%= filter_f.input :comparison_operator %>
-        <%= filter_f.input :value %>
-      <% end %>
-      </fieldset>
-      </br>
-    </div>
-    <button class="filter-btn" id="add-filter">Add another filter</button>
+  <%= f.input :fields, collection: @order_data_types.keys, input_html: { multiple: true } %>
+  <%= render :partial => "/filters/filter_form", locals: { :f => f, :query => @query, :order_data_types => @order_data_types } %>
   <%= f.submit %>
 <% end %>
