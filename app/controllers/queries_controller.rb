@@ -21,11 +21,10 @@ class QueriesController < ApplicationController
   end
 
   def create
-    p params[:fields]
     @query = Query.new(query_params)
-    #p query_params[:fields]
     @query.fields = params[:query][:fields].to_s
-    p @query.fields
+    @order_data_types = {}
+    Order.columns_hash.map { |k, v| @order_data_types[k] = "#{k}-#{v.sql_type_metadata.type}" }
     @csv_file = CsvFile.find(params[:csv_file_id])
     @query.csv_file = @csv_file
     if @query.save
