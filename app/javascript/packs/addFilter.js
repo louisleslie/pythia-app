@@ -4,7 +4,17 @@ const listenForFieldChanges = () => {
 
   const comparisonOptions = {
     "datetime": ["Before", "After",	"On", "Between", "Is Empty", "Is Not Empty"],
-    "string":["Equals",	"Does Not Equal",	"Contains",	"Does Not Contain",	"Starts With",	"Ends With",	"is Empty", "Is Not Empty"]
+    "string":["Equals",	"Does Not Equal",	"Contains",	"Does Not Contain",	"Starts With",	"Ends With",	"is Empty", "Is Not Empty"],
+    "boolean":["Is", "Is not"],
+    "float":["Equals",	"Does Not Equal",	"Greater Than",	"Less Than",	"Greater Than or Equal To",	"Less Than or Equal To",	"Is Empty",	"Is Not Empty"],
+    "integer":["Equals",	"Does Not Equal",	"Greater Than",	"Less Than",	"Greater Than or Equal To",	"Less Than or Equal To",	"Is Empty",	"Is Not Empty"]
+  };
+  const fieldTypes = {
+    "datetime":"datetime-local", 
+    "string":"string", 
+    "boolean":"checkbox", 
+    "float":"number", 
+    "integer":"number"
   };
 
   fieldsetSelectFields.forEach(selectField => selectField.addEventListener("change", (event) => {
@@ -25,6 +35,10 @@ const listenForFieldChanges = () => {
     });
     let valueField = selectField.parentElement.nextElementSibling.nextElementSibling.querySelector("input");
     console.log(valueField);
+    valueField.parentElement.className = `form-group ${dataType} optional query_filters_value`;
+    valueField.previousSibling.className = `${fieldTypes[dataType]} optional`;
+    valueField.className = `form-control ${fieldTypes[dataType]} optional`;
+    valueField.type = fieldTypes[dataType];
   }));
 }
 
@@ -32,12 +46,12 @@ const listenForFieldChanges = () => {
 
 const addFilter = () => {
   const createButton = document.querySelector("#add-filter");
-
+  const Fieldset = document.querySelector('[id="0"]').outerHTML
   createButton.addEventListener("click", (event) => {
-    event.preventDefault()
-    const lastId = document.querySelector('#fieldset-container').lastElementChild.id
+    event.preventDefault();
+    const lastId = document.querySelector('#fieldset-container').lastElementChild.id;
     const newId = parseInt(lastId, 10) + 1;
-    const newFieldset = document.querySelector('[id="0"]').outerHTML.replace(/0/g, newId)
+    const newFieldset = Fieldset.replace(/0/g, newId);
 
     document.querySelector("#fieldset-container").insertAdjacentHTML(
       "beforeend", newFieldset
