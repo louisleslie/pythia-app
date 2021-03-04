@@ -29,7 +29,7 @@ gem 'redis', '~> 4.0'
 gem 'bootsnap', '>= 1.4.4', require: false
 
 gem 'devise'
-
+gem 'faker'
 # Amazon web service gem
 gem "aws-sdk-s3", require: false
 

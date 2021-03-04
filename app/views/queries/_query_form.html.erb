@@ -1,5 +1,6 @@
 <%= simple_form_for @query, url: csv_file_queries_path do |f| %>
   <%= f.input :query_name %>
-  <%= render :partial => "/filters/filter_form", locals: { :f => f } %>
+  <%= f.input :fields %>
+  <%= render :partial => "/filters/filter_form", locals: { :f => f, :query => @query } %>
   <%= f.submit %>
 <% end %>

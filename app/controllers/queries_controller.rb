@@ -10,12 +10,14 @@ class QueriesController < ApplicationController
   end
 
   def show
-    @query = Query.new
+    @results = fetch_query_results(@query)
   end
 
   def new
     @query = Query.new
     @query.filters.build
+    @order_data_types = {}
+    Order.columns_hash.map { |k, v| @order_data_types[k] = v.sql_type_metadata.type }
   end
 
   def create
@@ -57,8 +59,9 @@ class QueriesController < ApplicationController
   end
 
   def fetch_query_results(query)
+    filtrs = []
     query.filters.each do |filt|
-
+      
     end
   end
 end
