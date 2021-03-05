@@ -60,6 +60,7 @@ a {
   cursor: pointer;
   font-weight: 500;
   color: $purple-700;
+  transition: $transition;
 
   &:hover,
   &:focus {
@@ -102,10 +103,17 @@ a {
   display: none;
 }
 
+.opacity-none {
+  opacity: 0.0;
+}
+
 .visibility-hidden {
   visibility: hidden;
 }
 
+.button-after-form {
+  margin-top: 0.75rem;
+}
 // Components
 
 // Buttons
