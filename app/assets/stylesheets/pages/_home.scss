@@ -14,6 +14,8 @@
   background-color: $gray-900;
   margin: auto;
   border: 1px solid orange;
+  min-height: calc(100vh - 40px);
+  position: relative;
 
   @media (min-width: $break-sm) {
     padding-top: 4rem;
@@ -50,6 +52,27 @@
     flex-direction: column;
     align-items: flex-start;
   }
+}
+
+.home-page-header-section-header {
+  color: white;
+  @include text-4xl;
+  letter-spacing: -0.025em;
+  font-weight: 800;
+}
+
+.home-page-header-section-header-highlight {
+  display: block;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-color: #1bbcfe;
+  background-image: linear-gradient(151deg,#818CF8,rgba(232,121,249,.88));
+}
+
+.home-page-header-section-paragraph {
+  color: $gray-300;
+  margin-top: 1.5rem;
+  max-width: 28rem;
 }
 
 .home-page-header-section-image-container {
@@ -112,3 +135,58 @@
 
 }
 
+.home-page-header-section-waves-container {
+  position: absolute;
+  width: 100%;
+  bottom: 0px;
+}
+
+.waves {
+  position:relative;
+  width: 100%;
+  height:15vh;
+  margin-bottom:-7px; /*Fix for safari gap*/
+  min-height:100px;
+  max-height:150px;
+}
+
+.parallax > use {
+  animation: move-forever 25s cubic-bezier(.55,.5,.45,.5)     infinite;
+}
+.parallax > use:nth-child(1) {
+  animation-delay: -2s;
+  animation-duration: 15s;
+}
+.parallax > use:nth-child(2) {
+  animation-delay: -3s;
+  animation-duration: 20s;
+}
+.parallax > use:nth-child(3) {
+  animation-delay: -4s;
+  animation-duration: 25s;
+}
+.parallax > use:nth-child(4) {
+  animation-delay: -5s;
+  animation-duration: 35s;
+}
+@keyframes move-forever {
+  0% {
+   transform: translate3d(-90px,0,0);
+  }
+  100% {
+    transform: translate3d(85px,0,0);
+  }
+}
+/*Shrinking for mobile*/
+@media (max-width: 768px) {
+  .waves {
+    height:40px;
+    min-height:40px;
+  }
+  .content {
+    height:30vh;
+  }
+  h1 {
+    font-size:24px;
+  }
+}
