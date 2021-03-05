@@ -1,4 +1,25 @@
-<h1>Query: <%= @query.query_name %></h1>
+
+<div class="show-page-container">
+
+  <div class="show-page-sidebar-wrapper">
+    <%= render partial: 'shared/sidebar' %>
+  </div>
+  <div class="show-page-content-container">
+    <h1 class="show-page-header"><%= @query.query_name %></h1>
+    <div class="show-page-filters-container">
+      <%= render :partial => "/partials/filters_data", locals: { query: @query } %>
+
+    </div>
+
+    <div class="show-page-section-border"></div>
+    <%= render :partial => "/partials/view_data", locals: { query: @results } %>
+  </div>
+</div>
+
+
+
+
+
 <div class="container">
 <% @query.filters.each_with_index do |filter, index| %>
   <p>Filter <%= index + 1 %>: -------</p>

@@ -4,7 +4,7 @@
           <a class="nav-link active show-page-views-tab-link" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Table</a>
         </li>
         <li class="nav-item show-page-views-tab-container">
-          <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Map</a>
+          <a class="nav-link show-page-views-tab-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Map</a>
         </li>
       </ul>
       <div class="tab-content show-page-views-tab-content-container" id="myTabContent">
@@ -32,7 +32,7 @@
 
                 <tbody class='show-page-table-body-section'>
                   <% query.each do |order| %>
-                  
+
                   <tr class='show-page-table-row'>
                     <td class='show-page-table-data-cell'><%= order["order_id"] %></td>
                     <td class='show-page-table-data-cell'><%= order["total"] %></td>
