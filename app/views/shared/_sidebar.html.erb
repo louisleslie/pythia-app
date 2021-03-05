@@ -1,6 +1,6 @@
 <div class="sidebar-container">
   <div class="sidebar-content-container">
-    <div class="sidebar-wordmark-container">
+    <div class="sidebar-wordmark-container hidden">
       <img src="" alt="" class="sidebar-wordmark-image">
     </div>
 
@@ -9,36 +9,46 @@
         <div class="sidebar-file-container">
           <div class="sidebar-file-item">
             <div class="sidebar-file-icon-container">
-              <%= image_tag 'database.svg', class: 'sidebar-file-icon'%>
+              <%= link_to csv_file_path(csv_file) do %>
+                <%= image_tag 'database.svg', class: 'sidebar-file-icon'%>
+              <% end %>
             </div>
             <div class="sidebar-file-name">
-              <%= csv_file.filename %>
+              <%= link_to csv_file.filename, csv_file_path(csv_file) %>
             </div>
             <div class="sidebar-file-dropdown-toggle-container">
               <%= image_tag 'chevron-down.svg', class: 'sidebar-dropdown-toggle-icon'%>
             </div>
           </div>
-          <div class="sidebar-queries-container hidden">
+          </div>
+          <div class="sidebar-queries-container">
           <% csv_file.queries.each do |query| %>
             <div class="sidebar-query-item">
                 <div class="sidebar-query-icon-container">
-                  <%= image_tag 'sparkles.svg', class: 'sidebar-query-icon'%>
+                  <%= link_to csv_file_query_path(query) do %>
+                    <%= image_tag 'sparkles.svg', class: 'sidebar-query-icon'%>
+                  <% end %>
                 </div>
                 <div class="sidebar-query-name">
-                <%= query.query_name %>
+                <%= link_to query.query_name, csv_file_query_path(query) %>
                 </div>
                 <div class="sidebar-query-edit-icon-container">
-                  <%= image_tag 'pencil.svg', class: 'sidebar-query-edit-icon'%>
+                  <%= link_to edit_csv_file_query_path(query) do %>
+                    <%= image_tag 'pencil.svg', class: 'sidebar-query-edit-icon'%>
+                  <% end %>
                 </div>
-
             </div>
           <% end %>
-          </div>
+
         </div>
       <% end %>
+    </div>
+  </div>
+</div>
 
-      <div class="sidebar-file-container-current">
-
+      <%
+=begin%>
+ <div class="sidebar-file-container-current">
         <div class="sidebar-file-item">
           <div class="sidebar-file-icon-container">
             <%= image_tag 'database.svg', class: 'sidebar-file-icon'%>
@@ -122,4 +132,6 @@
   </div>
 </div>
 
-
+ 
+<%
+=end%>
