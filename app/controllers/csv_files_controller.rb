@@ -20,6 +20,7 @@ class CsvFilesController < ApplicationController
   end
 
   def show
+    @orders = Order.connection.select_all("SELECT * FROM Orders WHERE csv_file_id = #{@csv_file.id}")
   end
 
   def destroy

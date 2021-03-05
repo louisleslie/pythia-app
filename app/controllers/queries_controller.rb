@@ -10,9 +10,8 @@ class QueriesController < ApplicationController
   end
 
   def show
-    @results = fetch_query_results(@query)
     @sql_query = generate_query(@query)
-    @filtered_orders = Order.connection.select_all(@sql_query)
+    @results = Order.connection.select_all(@sql_query)
   end
 
   def new
@@ -61,12 +60,6 @@ class QueriesController < ApplicationController
 
   def query_params
     params.require(:query).permit(:fields, :query_name, filters_attributes: [:verb, :column_name, :comparison_operator, :value])
-  end
-
-  def fetch_query_results(query)
-    filtrs = []
-    query.filters.each do |filt|
-    end
   end
 
   def generate_query(query)
