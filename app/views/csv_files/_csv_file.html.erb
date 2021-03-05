@@ -17,10 +17,6 @@
   <div class="upload-form-text-container">
     <%= f.input :filename, label: "Filename (optional)", class: "form-input-field"  %>
   </div>
-
-  <div class="upload-form-text-container">
-    <%= f.input :filename, label: "Filename (optional)" %>
-  </div>
   <div class="upload-form-buttons-container">
     <%= link_to "Cancel", root_path, class: "button-utility first-button-row" %>
     <%= f.submit label: "upload!", class: "button-primary", value: "Save", id: 'upload-form-save-button' %>
@@ -58,5 +54,5 @@
     (hiddenButton.value != "") ? console.log("I have a file!") : console.log("I have no file!");
   });
 
-</script> 
+</script>
 
