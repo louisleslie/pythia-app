@@ -1,6 +1,14 @@
 .avatar {
   width: 40px;
   border-radius: 50%;
+  cursor: pointer;
+  transition: $transition;
+  border: 2px solid transparent;
+
+  &:hover {
+    transform: scale(1.05);
+    border: 2px solid $purple-600;
+  }
 }
 .avatar-large {
   width: 56px;
