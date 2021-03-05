@@ -90,7 +90,7 @@ class QueriesController < ApplicationController
   def convert_operator(text_operator, column)
     comparison_conversion = {
       "Equals" => "=",
-      "Does Not Equal" => "<>", # not tested
+      "Does Not Equal" => "<>",
       "Greater Than" => ">",
       "Less Than" => "<",
       "Greater Than or Equal To" => ">=", # not tested
