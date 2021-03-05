@@ -73,9 +73,8 @@ class QueriesController < ApplicationController
   end
 
   def generate_query(query)
-    clean_up_fields = JSON.parse(query.fields)
-    # Fields adds an empty first element so this line removes it and formats the fields into an SQL friendly string
-    formatted_fields = clean_up_fields.flatten[1, query.fields.length].join(", ")
+    parsed_fields = JSON.parse(query.fields)
+    formatted_fields = parsed_fields.flatten.join(", ")
     formatted_fields = "*" if formatted_fields.split(",").count == 61 # TODO: find a more dynamic way to do this
     base_query = "SELECT #{formatted_fields} FROM orders"
     converted_query_filters = []
