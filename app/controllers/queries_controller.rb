@@ -1,3 +1,5 @@
+require 'json'
+
 class QueriesController < ApplicationController
   before_action :set_query, only: [:show, :edit, :update, :destroy]
   def index
@@ -63,10 +65,9 @@ class QueriesController < ApplicationController
   end
 
   def generate_query(query)
-    # TODO: make this line DRY
-    clean_up_fields = query.fields.gsub(/"/, "").gsub(/\[/, "").gsub(/\]/, "")
-    # fields adds an empty first element so this line removes it
-    formatted_fields = clean_up_fields.split(",")[1, query.fields.length].join(", ")
+    clean_up_fields = JSON.parse(query.fields)
+    # Fields adds an empty first element so this line removes it and formats the fields into an SQL friendly string
+    formatted_fields = clean_up_fields.flatten[1, query.fields.length].join(", ")
     formatted_fields = "*" if formatted_fields.split(",").count == 61 # TODO: find a more dynamic way to do this
     base_query = "SELECT #{formatted_fields} FROM orders"
     converted_query_filters = []
