@@ -17,7 +17,12 @@
                   <tr class='show-page-table-row'>
                     <td class='show-page-table-data-cell'><%= link_to csv_file.filename, csv_file_path(csv_file), class: "" %></td>
                     <td class='show-page-table-data-cell'><%= csv_file.updated_at.strftime("%b %d, %Y") %></td>
-                    <td class='show-page-table-data-cell'><%= link_to "Edit", csv_file_path(csv_file), class: "" %> · <%= link_to "Delete", csv_file_path(csv_file), method: "delete", data: { confirm: "Remove this CSV file?" }, class: "" %></td>
+                    <td class='show-page-table-data-cell'><%= link_to "Delete", csv_file_path(csv_file), method: "delete", data: { confirm: "Remove this CSV file?" }, class: "" %></td>
+                    <%
+=begin%>
+ <%= link_to "Edit", edit_csv_file_path(csv_file), class: "" %> ·  
+<%
+=end%>
                   </tr>
                   <% end %>
                 </tbody>
