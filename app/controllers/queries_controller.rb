@@ -104,8 +104,8 @@ class QueriesController < ApplicationController
       "Less Than or Equal To" => "<=", # not tested
       "Is Empty" => "IS NULL OR #{column} = ''", # not tested
       "Is Not Empty" => "<> ''", # not tested
-      "Is" => "= 'yes' OR #{column} = 1 OR #{column} = 'true'", # TODO: not sure if true and no need to be in quotation marks # not tested
-      "Is Not" => "= 'no' OR #{column} = 0 OR #{column} = 'false'", # TODO: same as above # not tested
+      "Is" => "= 'yes' OR #{column} = 1 OR #{column} = 'true'", # TODO: not sure if true and no need to be in quotation marks # not tested #needs to be change as value can be true or false (tick box)
+      "Is Not" => "= 'no' OR #{column} = 0 OR #{column} = 'false'", # TODO: same as above # not tested #needs to be changed as value can be true or false
       "Contains" => "ILIKE", # TODO: this should match substrings (currently only matches exact values) # not tested
       "Does Not Contain" => "NOT ILIKE", # TODO: this should match substrings (currently only matches exact values) # not tested
       "Starts With" => "ILIKE", # TODO: should match substrings only at the start of the field # # not tested
