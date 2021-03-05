@@ -34,7 +34,9 @@
                 <%= link_to query.query_name, csv_file_query_path(query) %>
                 </div>
                 <div class="sidebar-query-edit-icon-container">
-                  <%= image_tag 'pencil.svg', class: 'sidebar-query-edit-icon'%>
+                  <%= link_to edit_csv_file_query_path(query) do %>
+                    <%= image_tag 'pencil.svg', class: 'sidebar-query-edit-icon'%>
+                  <% end %>
                 </div>
             </div>
           <% end %>
