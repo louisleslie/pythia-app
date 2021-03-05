@@ -5,40 +5,37 @@
     </div>
 
     <div class="sidebar-files-container">
-
-
-      <div class="sidebar-file-container">
-        <div class="sidebar-file-item">
-          <div class="sidebar-file-icon-container">
-            <%= image_tag 'database.svg', class: 'sidebar-file-icon'%>
+      <% current_user.csv_files.each do |csv_file| %>
+        <div class="sidebar-file-container">
+          <div class="sidebar-file-item">
+            <div class="sidebar-file-icon-container">
+              <%= image_tag 'database.svg', class: 'sidebar-file-icon'%>
+            </div>
+            <div class="sidebar-file-name">
+              <%= csv_file.filename %>
+            </div>
+            <div class="sidebar-file-dropdown-toggle-container">
+              <%= image_tag 'chevron-down.svg', class: 'sidebar-dropdown-toggle-icon'%>
+            </div>
           </div>
-          <div class="sidebar-file-name">
-            Products
-          </div>
-          <div class="sidebar-file-dropdown-toggle-container">
-            <%= image_tag 'chevron-down.svg', class: 'sidebar-dropdown-toggle-icon'%>
-          </div>
-        </div>
+          <div class="sidebar-queries-container hidden">
+          <% csv_file.queries.each do |query| %>
+            <div class="sidebar-query-item">
+                <div class="sidebar-query-icon-container">
+                  <%= image_tag 'sparkles.svg', class: 'sidebar-query-icon'%>
+                </div>
+                <div class="sidebar-query-name">
+                <%= query.query_name %>
+                </div>
+                <div class="sidebar-query-edit-icon-container">
+                  <%= image_tag 'pencil.svg', class: 'sidebar-query-edit-icon'%>
+                </div>
 
-
-        <div class="sidebar-queries-container hidden">
-          <div class="sidebar-query-item">
-
-
-              <div class="sidebar-query-icon-container">
-                <%= image_tag 'sparkles.svg', class: 'sidebar-query-icon'%>
-              </div>
-              <div class="sidebar-query-name">
-               Summer'69 Sales
-              </div>
-              <div class="sidebar-query-edit-icon-container">
-                <%= image_tag 'pencil.svg', class: 'sidebar-query-edit-icon'%>
-              </div>
-
+            </div>
+          <% end %>
           </div>
         </div>
-      </div>
-
+      <% end %>
 
       <div class="sidebar-file-container-current">
 
@@ -64,6 +61,20 @@
               </div>
               <div class="sidebar-query-name">
                Summer '69 Sales
+              </div>
+              <div class="sidebar-query-edit-icon-container">
+                <%= image_tag 'pencil.svg', class: 'sidebar-query-edit-icon'%>
+              </div>
+
+          </div>
+          <div class="sidebar-query-item">
+
+
+              <div class="sidebar-query-icon-container">
+                <%= image_tag 'sparkles.svg', class: 'sidebar-query-icon'%>
+              </div>
+              <div class="sidebar-query-name">
+               Summer '96 Refunds
               </div>
               <div class="sidebar-query-edit-icon-container">
                 <%= image_tag 'pencil.svg', class: 'sidebar-query-edit-icon'%>
