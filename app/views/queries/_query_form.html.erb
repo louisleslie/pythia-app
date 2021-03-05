@@ -1,6 +1,16 @@
-<%= simple_form_for @query, url: csv_file_queries_path do |f| %>
-  <%= f.input :query_name %>
-  <%= f.input :fields, collection: @order_data_types.keys, input_html: { multiple: true }, checked: @order_data_types.keys, as: :check_boxes %>
-  <%= render :partial => "/filters/filter_form", locals: { :f => f, :query => @query, :order_data_types => @order_data_types } %>
-  <%= f.submit %>
+
+<% if controller_name == 'queries' && action_name == 'new' %>
+  <%= simple_form_for @query, url: csv_file_queries_path do |f| %>
+    <%= f.input :query_name %>
+    <%= f.input :fields, collection: @order_data_types.keys, input_html: { multiple: true }, checked: @order_data_types.keys, as: :check_boxes %>
+    <%= render :partial => "/filters/filter_form", locals: { :f => f, :query => @query, :order_data_types => @order_data_types } %>
+    <%= f.submit %>
+  <% end %>
+<% elsif controller_name == 'queries' && action_name == 'edit' %>
+  <%= simple_form_for @query, url: csv_file_query_path do |f| %>
+    <%= f.input :query_name %>
+    <%= f.input :fields, collection: @order_data_types.keys, input_html: { multiple: true }, checked: @checked_fields, as: :check_boxes %>
+    <%= render :partial => "/filters/filter_form", locals: { :f => f, :query => @query, :order_data_types => @order_data_types } %>
+    <%= f.submit %>
+  <% end %>
 <% end %>

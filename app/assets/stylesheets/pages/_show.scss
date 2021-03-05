@@ -209,7 +209,14 @@ tr:nth-child(even) {
   border-bottom: 1px solid $gray-200;
 }
 
+.query_fields {
+  display: flex;
+  flex-wrap: wrap;
 
+  .form-check {
+    width: 225px;
+  }
+}
 
 
 
