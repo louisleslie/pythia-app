@@ -1,12 +1,44 @@
 <% if @authorized %>
-  <% unless @queries.empty? %>
-    <% @queries.each_with_index do |query, index| %>
-      <h2><%= index + 1 %>. <%=  query.query_name %> <%= link_to "view", csv_file_query_path(id: query.id) %> </h2>
+  <% if @queries.empty? %>
+    <h1 class="text-center my-3">Queries</h1>
+  <% else %>
+    <h1 class="text-center my-3">Queries for <%= @queries.last.csv_file.filename %></h1>
+  <% end %>
+  <% if @queries.first %>
+  <div class="show-page-table-container mx-auto">
+    <table class='show-page-table'>
+      <thead class='show-page-table-header-section'>
+        <tr class='show-page-table-row'>
+          <th class='show-page-table-header'>Query Name</th>
+          <th class='show-page-table-header'>Last Updated</th>
+          <th class='show-page-table-header'>Actions</th>
+        </tr>
+      </thead>
+      <tbody class='show-page-table-body-section'>
+        <% @queries.each_with_index do |query, index| %>
+        <tr class='show-page-table-row'>
+          <td class='show-page-table-data-cell'><%= link_to query.query_name, csv_file_query_path(id: query.id), class: "" %></td>
+          <td class='show-page-table-data-cell'><%= query.updated_at.strftime("%b %d, %Y") %></td>
+          <td class='show-page-table-data-cell'><%= link_to "Edit", edit_csv_file_query_path(id: query.id), class: "" %> · <%= link_to "Delete", csv_file_query_path(id: query.id), method: "delete", data: { confirm: "Remove this query?" }, class: "" %></td>
+        </tr>
+        <% end %>
 
-    <% end %>
+      </tbody>
+    </table>
+  </div>
   <% else %>
     <div>You have no queries</div>
   <% end %>
 <% else %>
-  <div>You dont have access to this file</div>
+  <div>You don't have access to this file.</div>
 <% end %>
+
+
+
+
+
+
+
+
+
+
