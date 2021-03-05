@@ -1,8 +1,6 @@
 // Specific CSS for your home-page
 .home-page-container {
-  border: 1px solid red;
   min-height: calc(100vh - 40px);
-
 }
 
 
@@ -13,7 +11,6 @@
   padding-top: 2.5rem;
   background-color: $gray-900;
   margin: auto;
-  border: 1px solid orange;
   min-height: calc(100vh - 40px);
   position: relative;
 
@@ -37,7 +34,6 @@
   margin: auto;
   max-width: 28rem;
   padding: 0rem 4rem;
-  border: 1px solid yellow;
 
   @media (min-width: $break-sm) {
     max-width: 42rem;
@@ -56,7 +52,8 @@
 
 .home-page-header-section-header {
   color: white;
-  @include text-4xl;
+  font-size: 4rem;
+  line-height: 4.5rem;
   letter-spacing: -0.025em;
   font-weight: 800;
 }
@@ -81,6 +78,7 @@
   margin: auto;
   max-width: 28rem;
   padding: 0rem 1rem;
+  max-height: 32rem;
 
   @media (min-width: $break-sm) {
     margin-bottom: 12rem;
@@ -94,7 +92,6 @@
     max-width: none;
     padding: 0rem;
   }
- border: 1px solid cyan;
 }
 
 
