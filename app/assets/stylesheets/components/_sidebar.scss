@@ -75,6 +75,24 @@
 
 }
 
+.sidebar-file-name-text {
+  display: inline-block;
+  text-decoration: none;
+  color: inherit;
+  position: relative;
+  transition: $transition;
+  cursor: pointer;
+  font-weight: 500;
+  color: $gray-300;
+  transition: $transition;
+
+  &:hover,
+  &:focus {
+    color: $white;
+    text-decoration: none;
+  }
+}
+
 .sidebar-file-dropdown-toggle-container {
   margin-left: auto;
 }
@@ -122,6 +140,24 @@
 
 .sidebar-query-name {
 
+}
+
+.sidebar-query-name-text {
+  display: inline-block;
+  text-decoration: none;
+  color: inherit;
+  position: relative;
+  transition: $transition;
+  cursor: pointer;
+  font-weight: 500;
+  color: $gray-400;
+  transition: $transition;
+
+  &:hover,
+  &:focus {
+    color: $white;
+    text-decoration: none;
+  }
 }
 
 .sidebar-file-container-current {

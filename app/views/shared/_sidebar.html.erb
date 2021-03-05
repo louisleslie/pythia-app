@@ -1,6 +1,6 @@
 <div class="sidebar-container">
   <div class="sidebar-content-container">
-    <div class="sidebar-wordmark-container hidden">
+    <div class="sidebar-wordmark-container display-none">
       <img src="" alt="" class="sidebar-wordmark-image">
     </div>
 
@@ -14,7 +14,7 @@
               <% end %>
             </div>
             <div class="sidebar-file-name">
-              <%= link_to csv_file.filename, csv_file_path(csv_file) %>
+              <%= link_to csv_file.filename, csv_file_path(csv_file), class: 'sidebar-file-name-text' %>
             </div>
             <div class="sidebar-file-dropdown-toggle-container">
               <%= image_tag 'chevron-down.svg', class: 'sidebar-dropdown-toggle-icon'%>
@@ -30,7 +30,7 @@
                   <% end %>
                 </div>
                 <div class="sidebar-query-name">
-                <%= link_to query.query_name, csv_file_query_path(query) %>
+                <%= link_to query.query_name, csv_file_query_path(query), class: 'sidebar-query-name-text' %>
                 </div>
                 <div class="sidebar-query-edit-icon-container">
                   <%= link_to edit_csv_file_query_path(query) do %>
@@ -132,6 +132,6 @@
   </div>
 </div>
 
- 
+
 <%
 =end%>
