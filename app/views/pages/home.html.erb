@@ -6,22 +6,44 @@
 
 
 
-    <div class="home-page-header-section-content-container"></div>
-    <div class="home-page-header-section-image-container"></div>
+    <div class="home-page-header-section-content-container">
+      <h1 class="home-page-header-section-header">A better way to
+        <span class="home-page-header-section-header-highlight">explore your data</span>
+      </h1>
+      <p class="home-page-header-section-paragraph">Anim aute id magna aliqua ad ad non deserunt sunt. Qui irure qui Lorem cupidatat commodo. Elit sunt amet fugiat veniam occaecat fugiat.</p>
+      <%= link_to "Get started", new_csv_file_path, class: "home-page-header-section-button" %>
+    </div>
+    <div class="home-page-header-section-image-container">
+      <%= image_tag 'illustration.svg', class: 'home-page-header-section-image'%>
+    </div>
 
 
-
-
+    <div class='home-page-header-section-waves-container'>
+      <svg class="waves" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+      viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">
+      <defs>
+        <path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z" />
+      </defs>
+      <g class="parallax">
+        <use xlink:href="#gentle-wave" x="48" y="0" fill="rgba(255,255,255,0.7" />
+        <use xlink:href="#gentle-wave" x="48" y="3" fill="rgba(255,255,255,0.5)" />
+        <use xlink:href="#gentle-wave" x="48" y="5" fill="rgba(255,255,255,0.3)" />
+        <use xlink:href="#gentle-wave" x="48" y="7" fill="#fff" />
+      </g>
+    </svg>
+    <div>
   </div>
 
+</div>
 
 
 
-  <div class="home-page-demo-section-container">
-    <div class="home-page-demo-section-demo"></div>
-  </div>
-  <div class="home-page-feature-section-container"></div>
-  <div class="home-page-feature-section-container"></div>
-  <div class="home-page-testimonial-section-container"></div>
-  <div class="home-page-footer-section-container"></div>
+
+<div class="home-page-demo-section-container">
+  <div class="home-page-demo-section-demo"></div>
+</div>
+<div class="home-page-feature-section-container"></div>
+<div class="home-page-feature-section-container"></div>
+<div class="home-page-testimonial-section-container"></div>
+<div class="home-page-footer-section-container"></div>
 </main>
