@@ -1,9 +1,19 @@
 <div class="upload-form-container">
   <% if @csv_file %>
-  <button class="button-secondary upload-form-drop-field" id='upload-button-visible'>CSV Test</button>
-  <div id="upload-form-dropzone">I don't have a file</div>
+  
+  <%
+=begin%>
+ <button class="button-secondary upload-form-drop-field" id='upload-button-visible'>CSV Test</button>
+  <div id="upload-form-dropzone">I don't have a file</div> 
+<%
+=end%>
   <%= simple_form_for @csv_file do |f| %>
-  <%= f.file_field :csv_doc, class: 'display-none', label_input: "CSV Test", id: 'upload-button-hidden'  %>
+  <%= f.file_field :csv_doc, label_input: "CSV Test" %>
+  <%
+=begin%>
+ <%= f.file_field :csv_doc, class: 'display-none', label_input: "CSV Test", id: 'upload-button-hidden'  %> 
+<%
+=end%>
 
 
 
@@ -24,7 +34,9 @@
 
 
 
-<script>
+<%
+=begin%>
+ <script>
   const visibleButton = document.getElementById("upload-button-visible");
   const hiddenButton = document.getElementById("upload-button-hidden");
   const dropzone = document.getElementById("upload-form-dropzone");
@@ -48,4 +60,6 @@
     (hiddenButton.value != "") ? console.log("I have a file!") : console.log("I have no file!");
   });
 
-</script>
+</script> 
+<%
+=end%>
