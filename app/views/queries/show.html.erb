@@ -1,13 +1,24 @@
-<h1>Queries#show</h1>
-<p>Find me in app/views/queries/show.html.erb</p>
-
+<h1>Query: <%= @query.query_name %></h1>
 <div class="container">
-<p> <%= "#{@query.fields}" %> </p>
-<p><%= "#{@query.query_name}" %> </p>
-</div>
+<% @query.filters.each_with_index do |filter, index| %>
+  <p>Filter <%= index + 1 %>: -------</p>
+  <p>verb: <%= filter.verb %></p>
+  <p>column: <%= filter.column_name %></p>
+  <p>operator: <%= filter.comparison_operator %></p>
+  <p>value: <%= filter.value %></p>
+  <p>--------</p>
+<% end %>
+<p>Query ----- </p>
+<p>fields: <%= @query.fields %></p>
+<p>----------</p>
+<p>SQL query: </p>
+<%= @sql_query %>
 
-<div>
- <%= link_to "Edit your query", edit_csv_file_query_path(@query) , class: "btn btn-warning"  %>
-    <%= link_to "Delete your query", csv_file_queries_path(@query), class: "btn btn-danger", method: :delete %>
-    <%= render  partial: 'query_form', locals: {query: @query} %>
+<% if user_signed_in? && @query.csv_file.user == current_user %>
+    <%= link_to "Edit your Query", edit_csv_file_query_path(@query) , class: "btn btn-warning"  %>
+    <%= link_to "Delete your Query", csv_file_query_path(@query), class: "btn btn-danger", method: :delete, data: { confirm: "Deleting this query cannot be undone. Are you sure you want to delete?" } %>
+<% end %>
+
+<%= render :partial => "/partials/view_data", locals: { query: @results } %>
+
 </div>
