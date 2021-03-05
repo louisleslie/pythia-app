@@ -25,7 +25,7 @@ class QueriesController < ApplicationController
 
   def create
     @query = Query.new(query_params)
-    @query.fields = params[:query][:fields].to_s
+    @query.fields = params[:query][:fields][1..-1].to_s
     @order_data_types = {}
     Order.columns_hash.map { |k, v| @order_data_types[k] = "#{k}-#{v.sql_type_metadata.type}" }
     @csv_file = CsvFile.find(params[:csv_file_id])
@@ -42,13 +42,15 @@ class QueriesController < ApplicationController
     @csv_file = @query.csv_file
     @order_data_types = {}
     Order.columns_hash.map { |k, v| @order_data_types[k] = "#{k}-#{v.sql_type_metadata.type}" }
+    @checked_fields = JSON.parse(@query.fields)[1..-1]
   end
 
   def update
     @csv_file = @query.csv_file
     @query.filters.destroy_all
     @query.update(query_params)
-    @query.fields = params[:query][:fields].to_s
+    @query.fields = params[:query][:fields][1..-1].to_s
+    @query.save
     @order_data_types = {}
     Order.columns_hash.map { |k, v| @order_data_types[k] = "#{k}-#{v.sql_type_metadata.type}" }
     redirect_to csv_file_query_path(@query)
