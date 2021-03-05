@@ -1,8 +1,26 @@
 <div class="container">
-  <h1>My Files</h1>
-  <% @csv_files.each do |csv_file| %>
-    <ul style="list-style-type: none;">
-      <li><%= link_to csv_file.filename, csv_file_path(csv_file), class: "btn btn-primary" %></li>
-    </ul>
-  <% end %>
+  <h1 class="text-center my-3">My Files</h1>
+  <div class="show-page-table-container mx-auto">
+              <table class='show-page-table'>
+                <thead class='show-page-table-header-section'>
+                  <tr class='show-page-table-row'>
+                    <%= %>
+                    <th class='show-page-table-header'>File Name</th>
+                    <th class='show-page-table-header'>Last Updated</th>
+                    <th class='show-page-table-header'>Actions</th>
+                  </tr>
+                </thead>
+
+                <tbody class='show-page-table-body-section'>
+                  <% @csv_files.each do |csv_file| %>
+
+                  <tr class='show-page-table-row'>
+                    <td class='show-page-table-data-cell'><%= link_to csv_file.filename, csv_file_path(csv_file), class: "" %></td>
+                    <td class='show-page-table-data-cell'><%= csv_file.updated_at.strftime("%b %d, %Y") %></td>
+                    <td class='show-page-table-data-cell'><%= link_to "Edit", csv_file_path(csv_file), class: "" %> · <%= link_to "Delete", csv_file_path(csv_file), method: "delete", data: { confirm: "Remove this CSV file?" }, class: "" %></td>
+                  </tr>
+                  <% end %>
+                </tbody>
+              </table>
+            </div>
 </div>
