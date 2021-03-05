@@ -10,7 +10,9 @@
         <div class="sidebar-file-container">
           <div class="sidebar-file-item">
             <div class="sidebar-file-icon-container">
-              <%= image_tag 'database.svg', class: 'sidebar-file-icon'%>
+              <%= link_to csv_file_path(csv_file) do %>
+                <%= image_tag 'database.svg', class: 'sidebar-file-icon'%>
+              <% end %>
             </div>
             <div class="sidebar-file-name">
               <%= link_to csv_file.filename, csv_file_path(csv_file) %>
@@ -24,7 +26,9 @@
           <% csv_file.queries.each do |query| %>
             <div class="sidebar-query-item">
                 <div class="sidebar-query-icon-container">
-                  <%= image_tag 'sparkles.svg', class: 'sidebar-query-icon'%>
+                  <%= link_to csv_file_query_path(query) do %>
+                    <%= image_tag 'sparkles.svg', class: 'sidebar-query-icon'%>
+                  <% end %>
                 </div>
                 <div class="sidebar-query-name">
                 <%= link_to query.query_name, csv_file_query_path(query) %>
