@@ -1,31 +1,26 @@
 <div class="upload-form-container">
   <% if @csv_file %>
-  
-  <%
-=begin%>
- <button class="button-secondary upload-form-drop-field" id='upload-button-visible'>CSV Test</button>
-  <div id="upload-form-dropzone">I don't have a file</div> 
-<%
-=end%>
   <%= simple_form_for @csv_file do |f| %>
-  <%= f.file_field :csv_doc, label_input: "CSV Test" %>
-  <%
-=begin%>
- <%= f.file_field :csv_doc, class: 'display-none', label_input: "CSV Test", id: 'upload-button-hidden'  %> 
-<%
-=end%>
-
-
-
-  <div class="upload-form-text-container">
-    <p class="upload-form-text">CSV up to 10MB</p>
+  <div class="upload-form-drop-field-container">
+    <%= f.file_field :csv_doc, class: 'opacity-none upload-form-drop-field', label_input: "CSV Test", id: 'upload-button-hidden'  %>
+    <div class="upload-form-content-container">
+      <div class="upload-form-icon-container">
+        <%= image_tag 'document-report.svg', class: 'upload-form-icon'%>
+      </div>
+      <div class="upload-form-text-container">
+        <p class="upload-form-text"><a class='upload-form-link' id='upload-button-visible'>Upload a file</a> or drag and drop</p>
+        <p id="upload-form-feedback"></p>
+        <p class="upload-form-text">.CSV up to 10MB</p>
+      </div>
+    </div>
   </div>
+
   <div class="upload-form-text-container">
-    <%= f.input :filename, label_input: "Filename (optional)"  %>
+    <%= f.input :filename, label: "Filename (optional)" %>
   </div>
   <div class="upload-form-buttons-container">
-    <button class="button-utility first-button-row">Cancel</button>
-    <%= f.submit label: "upload!", class: "button-primary", value: "Save" %>
+    <%= link_to "Cancel", root_path, class: "button-utility first-button-row" %>
+    <%= f.submit label: "upload!", class: "button-primary", value: "Save", id: 'upload-form-save-button' %>
   </div>
   <% end %>
   <% end %>
@@ -34,12 +29,11 @@
 
 
 
-<%
-=begin%>
  <script>
   const visibleButton = document.getElementById("upload-button-visible");
   const hiddenButton = document.getElementById("upload-button-hidden");
-  const dropzone = document.getElementById("upload-form-dropzone");
+  const dropzone = document.getElementById("upload-form-feedback");
+  const saveButton = document.getElementById("upload-form-save-button");
 
   const handleClick = () => {
     hiddenButton.click();
@@ -48,7 +42,8 @@
   hiddenButton.addEventListener("change", (event) => {
     console.log("I have changed!");
     const file = hiddenButton.value.replace(/^.*[\\\/]/, '');
-    dropzone.innerHTML = `I have a file! It's name is ${file}`;
+    dropzone.innerHTML = `${file}`;
+    saveButton.value = `Save ${file}`;
   });
 
 
@@ -61,5 +56,4 @@
   });
 
 </script> 
-<%
-=end%>
+
