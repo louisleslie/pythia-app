@@ -1,3 +1,5 @@
+require 'json'
+
 class QueriesController < ApplicationController
   before_action :set_query, only: [:show, :edit, :update, :destroy]
   def index
@@ -69,17 +71,17 @@ class QueriesController < ApplicationController
   end
 
   def generate_query(query)
-    # TODO make this line DRY
-    clean_up_fields = query.fields.gsub(/"/, "").gsub(/\[/, "").gsub(/\]/, "")
-    # fields adds an empty first element so this line removes it
-    formatted_fields = clean_up_fields.split(",")[1, query.fields.length].join(", ")
+    clean_up_fields = JSON.parse(query.fields)
+    # Fields adds an empty first element so this line removes it and formats the fields into an SQL friendly string
+    formatted_fields = clean_up_fields.flatten[1, query.fields.length].join(", ")
+    formatted_fields = "*" if formatted_fields.split(",").count == 61 # TODO: find a more dynamic way to do this
     base_query = "SELECT #{formatted_fields} FROM orders"
     converted_query_filters = []
 
     query.filters.each do |filter|
       verb = filter.verb.upcase
-      operator = convert_operator(filter.comparison_operator)
       column = filter.column_name.split("-")[0]
+      operator = convert_operator(filter.comparison_operator, column)
       value = filter.value
       converted_query_filters << " #{verb} #{column} #{operator} #{value}"
     end
@@ -92,11 +94,28 @@ class QueriesController < ApplicationController
     return base_query + first_filter + subsequent_filters
   end
 
-  def convert_operator(text_operator)
-    case text_operator
-    when "Equals" then return "="
-    when "Greater Than" then return ">"
-    end
+  def convert_operator(text_operator, column)
+    comparison_conversion = {
+      "Equals" => "=",
+      "Does Not Equal" => "<>",
+      "Greater Than" => ">",
+      "Less Than" => "<",
+      "Greater Than or Equal To" => ">=", # not tested
+      "Less Than or Equal To" => "<=", # not tested
+      "Is Empty" => "IS NULL OR #{column} = ''", # not tested
+      "Is Not Empty" => "<> ''", # not tested
+      "Is" => "= 'yes' OR #{column} = 1 OR #{column} = 'true'", # TODO: not sure if true and no need to be in quotation marks # not tested #needs to be change as value can be true or false (tick box)
+      "Is Not" => "= 'no' OR #{column} = 0 OR #{column} = 'false'", # TODO: same as above # not tested #needs to be changed as value can be true or false
+      "Contains" => "ILIKE", # TODO: this should match substrings (currently only matches exact values) # not tested
+      "Does Not Contain" => "NOT ILIKE", # TODO: this should match substrings (currently only matches exact values) # not tested
+      "Starts With" => "ILIKE", # TODO: should match substrings only at the start of the field # # not tested
+      "Ends With" => "ILIKE", # TODO: should match substrings only at the end of the field # not tested
+      "Before" => "<", # not tested
+      "After" => ">", # not tested
+      "On" => "=", # not tested
+      "Between" => "" # TODO: this cant be done till some logic is added to forms for a second value field see github issues # not tested
+    }
+    comparison_conversion[text_operator]
   end
 
 end
