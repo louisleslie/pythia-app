@@ -136,8 +136,11 @@ table {
   border: 2px solid $purple-600;
   border-radius: 0.375rem;
   box-shadow: $shadow-sm;
+  transition: $transition;
 
   &:hover {
+    color: $white;
+    transform: scale(1.05);
     background-color: $purple-700;
     border: 2px solid $purple-600;
   }
@@ -156,8 +159,10 @@ table {
   border: 2px solid $purple-600;
   border-radius: 0.375rem;
   box-shadow: $shadow-sm;
+  transition: $transition;
 
   &:hover {
+    transform: scale(1.05);
     background-color: $purple-50;
     border: 2px solid $purple-600;
   }
@@ -177,8 +182,10 @@ table {
   border-radius: 0.375rem;
   border-color: $gray-300;
   box-shadow: $shadow-sm;
+  transition: $transition;
 
   &:hover {
+    transform: scale(1.05);
     background-color: $gray-50;
   }
 }
