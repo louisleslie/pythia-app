@@ -150,7 +150,7 @@ table {
 
   &:hover {
     background-color: $purple-700;
-    border: 2px solid $purple-600;
+    border: 2px solid $purple-700;
   }
 }
 
@@ -171,6 +171,7 @@ table {
   &:hover {
     background-color: $purple-50;
     border: 2px solid $purple-600;
+    color: $white;
   }
 }
 
