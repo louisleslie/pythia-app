@@ -1,5 +1,7 @@
 // Specific CSS for your home-page
 .home-page-container {
+  border: 1px solid red;
+  min-height: calc(100vh - 40px);
 
 }
 
@@ -73,7 +75,9 @@
 }
 
 
+.home-page-header-section-image {
 
+}
 
 
 // Demo
