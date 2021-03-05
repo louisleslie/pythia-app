@@ -1,7 +1,7 @@
 <h1>Query: <%= @query.query_name %></h1>
 <div class="container">
 <% @query.filters.each_with_index do |filter, index| %>
-  <p>filter -------</p>
+  <p>Filter <%= index + 1 %>: -------</p>
   <p>verb: <%= filter.verb %></p>
   <p>column: <%= filter.column_name %></p>
   <p>operator: <%= filter.comparison_operator %></p>
@@ -14,14 +14,12 @@
 <p>SQL query: </p>
 <%= @sql_query %>
 
-<% @query.filters.each do |filter| %>
-  <p> <%= "#{filter.comparison_operator}" %> </p>
-  <p><%= "#{filter.column_name}" %> </p>
-  <p> <%="#{filter.value}"  %></p>
-  <p> <%="#{filter.verb}"  %></p>
+
+<% if user_signed_in? && @query.csv_file.user == current_user %>
+    <%= link_to "Edit your Query", edit_csv_file_query_path(@query) , class: "btn btn-warning"  %>
+    <%= link_to "Delete your Query", csv_file_query_path(@query), class: "btn btn-danger", method: :delete, data: { confirm: "Deleting this query cannot be undone. Are you sure you want to delete?" } %>
 <% end %>
 
 <%= render :partial => "/partials/view_data", locals: { query: @results } %>
-
 
 </div>

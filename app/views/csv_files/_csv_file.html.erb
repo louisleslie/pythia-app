@@ -1,9 +1,5 @@
 <div class="upload-form-container">
   <% if @csv_file %>
-
-
-
-
   <%= simple_form_for @csv_file do |f| %>
   <div class="upload-form-drop-field-container">
     <%= f.file_field :csv_doc, class: 'opacity-none upload-form-drop-field', label_input: "CSV Test", id: 'upload-button-hidden'  %>
@@ -11,18 +7,17 @@
       <div class="upload-form-icon-container">
         <%= image_tag 'document-report.svg', class: 'upload-form-icon'%>
       </div>
-
-        <div class="upload-form-text-container">
-          <p class="upload-form-text"><a class='upload-form-link' id='upload-button-visible'>Upload a file</a> or drag and drop</p>
-          <p id="upload-form-feedback"></p>
-          <p class="upload-form-text">CSV up to 10MB</p>
-
+      <div class="upload-form-text-container">
+        <p class="upload-form-text"><a class='upload-form-link' id='upload-button-visible'>Upload a file</a> or drag and drop</p>
+        <p id="upload-form-feedback"></p>
+        <p class="upload-form-text">.CSV up to 10MB</p>
       </div>
     </div>
-
   </div>
 
-
+  <div class="upload-form-text-container">
+    <%= f.input :filename, label: "Filename (optional)" %>
+  </div>
   <div class="upload-form-buttons-container">
     <%= link_to "Cancel", root_path, class: "button-utility first-button-row" %>
     <%= f.submit label: "upload!", class: "button-primary", value: "Save", id: 'upload-form-save-button' %>
@@ -34,7 +29,7 @@
 
 
 
-<script>
+ <script>
   const visibleButton = document.getElementById("upload-button-visible");
   const hiddenButton = document.getElementById("upload-button-hidden");
   const dropzone = document.getElementById("upload-form-feedback");
@@ -60,4 +55,5 @@
     (hiddenButton.value != "") ? console.log("I have a file!") : console.log("I have no file!");
   });
 
-</script>
+</script> 
+
