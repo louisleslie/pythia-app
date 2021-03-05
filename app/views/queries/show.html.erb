@@ -21,10 +21,7 @@
   <p> <%="#{filter.verb}"  %></p>
 <% end %>
 
+<%= render :partial => "/partials/view_data", locals: { query: @results } %>
 
-<% if user_signed_in? && filter.query.file.user == current_user %>
-   <%= link_to "Edit your filter", edit_filter_path(filter) , class: "btn btn-warning"  %>
-   <%= link_to "Delete your filter", filter_path(filter), class: "btn btn-danger", method: :delete %>
-   <%= render  partial: 'query_form', locals: {query: @query} %>
-<% end %>
+
 </div>
