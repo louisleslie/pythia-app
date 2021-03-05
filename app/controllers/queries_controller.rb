@@ -44,6 +44,7 @@ class QueriesController < ApplicationController
 
   def update
     @csv_file = @query.csv_file
+    @query.filters.destroy_all
     @query.update(query_params)
     @query.fields = params[:query][:fields].to_s
     @order_data_types = {}

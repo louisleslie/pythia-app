@@ -5,14 +5,14 @@
     </div>
 
     <div class="sidebar-files-container">
-      <% csv_files.each do |csv_file| %>
+      <% current_user.csv_files.each do |csv_file| %>
         <div class="sidebar-file-container">
           <div class="sidebar-file-item">
             <div class="sidebar-file-icon-container">
               <%= image_tag 'database.svg', class: 'sidebar-file-icon'%>
             </div>
             <div class="sidebar-file-name">
-              Products
+              <%= csv_file.filename %>
             </div>
             <div class="sidebar-file-dropdown-toggle-container">
               <%= image_tag 'chevron-down.svg', class: 'sidebar-dropdown-toggle-icon'%>
@@ -25,7 +25,7 @@
                   <%= image_tag 'sparkles.svg', class: 'sidebar-query-icon'%>
                 </div>
                 <div class="sidebar-query-name">
-                Summer'69 Sales
+                <%= query.query_name %>
                 </div>
                 <div class="sidebar-query-edit-icon-container">
                   <%= image_tag 'pencil.svg', class: 'sidebar-query-edit-icon'%>
