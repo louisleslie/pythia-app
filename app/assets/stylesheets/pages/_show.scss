@@ -4,7 +4,6 @@
   height: calc(100vh - 40px);
   width: 100vw;
   overflow-y: none;
-  border: 1px solid pink;
 }
 
 .show-page-sidebar-wrapper {
@@ -35,7 +34,6 @@
 // Filters Partial
 
 .show-page-filters-container {
-  border: 1px solid blue;
 }
 
 .show-page-filters-menu-container {
@@ -50,12 +48,10 @@
 
 .show-page-filters-tabs-container {
   border-bottom: 1px solid $gray-200;
-  border: 3px solid yellow;
 }
 
 .show-page-filters-tab-container {
   background-color: white;
-  border: 1px solid green;
 }
 
 .show-page-filters-tab-link {
@@ -65,21 +61,21 @@
 .show-page-filters-tab-content-container {
   height: 100%;
   width: 100%;
-  border: 1px solid cyan;
 }
 
 .show-page-filters-tab-pane {
   padding: 0rem 1rem;
-  border: 1px solid orange;
   overflow: scroll;
   height: 200;
 }
 
 .show-page-filters-sql-container {
   border-radius: 0.375rem;
-  padding: 1rem 1rem 0.25rem;
+  padding: 0.75rem 1rem 0.25rem;
   background-color: $gray-800;
   overflow: none;
+  margin-top: 0.5rem;
+
 }
 
 .show-page-sql-query {
@@ -90,7 +86,33 @@
   color: $purple-100;
 }
 
+.show-page-filter-pills-container {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 0.5rem 0rem;
+}
 
+.show-page-filter-pill {
+  display: infline-flex;
+  align-items: center;
+  padding: 0.5rem 1rem;
+  border-width: 1px;
+  border-color: transparent;
+  @include text-sm;
+  font-weight: 500;
+  color: $white;
+  background-color: $purple-600;
+  border: 2px solid $purple-600;
+  border-radius: 0.375rem;
+  box-shadow: $shadow-sm;
+  transition: $transition;
+
+  &:hover {
+    color: $white;
+    background-color: $purple-700;
+    border: 2px solid $purple-700;
+  }
+}
 
 
 // Views Partial
@@ -99,12 +121,10 @@
 .show-page-views-container {
 
   padding: 1rem 0rem;
-  border: 1px solid blue;
 }
 
 .show-page-views-tabs-container {
   border-bottom: 1px solid $gray-200;
-  border: 1px solid chartreuse;
 }
 
 .show-page-views-tab-container {
@@ -118,12 +138,10 @@
 .show-page-views-tab-content-container {
   height: 100%;
   width: 100%;
-  border: 1px solid cyan;
 }
 
 .show-page-views-tab-pane {
   padding: 0rem 1rem;
-  border: 1px solid orange;
   overflow: scroll;
   height: 600px;
 }
@@ -132,7 +150,6 @@
 // Table View
 
 .show-page-table-wrapper {
-  border: 1px solid purple;
   overflow-x: auto;
 }
 
@@ -142,7 +159,7 @@
   align-items: center;
   width: min-content;
   border-radius: 0.375rem;
-  border: 1px solid hotpink;
+  padding-top: 0.5rem;
 }
 
 .show-page-table {
