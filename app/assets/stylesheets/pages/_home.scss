@@ -397,8 +397,7 @@
 
   padding-bottom: 4rem;
   width: 100%;
-  background-image: linear-gradient(90deg,#8B5CF6,#6D28D9
-);
+  background-image: linear-gradient(90deg,#8B5CF6,#6D28D9);
 
 
   @media (min-width: $break-lg) {
@@ -428,49 +427,21 @@
   }
 }
 
-.home-page-testimonial-section-image-background {
-  position: absolute;
-  top: 0px;
-  right: 0px;
-  left: 0px;
-  height: 50%;
-  background-color: $white;
-
-  @media (min-width: $break-lg) {
-    display: none;
-  }
-}
-
-.home-page-testimonial-section-image-positioning-container {
-  margin-left: auto;
-  margin-right: auto;
-  padding-left: 1rem;
-  padding-right: 1rem;
-  max-width: 28rem;
-
-  @media (min-width: $break-sm) {
-    max-width: 48rem;
-    padding-left: 1.5rem;
-    padding-right: 1.5rem;
-  }
-
-  @media (min-width: $break-lg) {
-    height: 100%;
-  }
-}
-
 .home-page-testimonial-section-image-container {
-  width: 2.5rem;
-  height: 1.5rem;
-  border-radius: 0.75rem;
-  box-shadow: $shadow-xl;
+  width: 100%;
+  height: 100%;
   overflow: none;
+  border-radius: 0.75rem;
+  // padding: 0.25rem;
+  // background-image: linear-gradient(90deg,#845BF5,#814CEC);
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.75);
 }
 
 
 .home-page-testimonial-section-image {
   width: 100%;
   height: 100%;
+  border-radius: 0.75rem;
   object-fit: cover;
 }
 
@@ -540,7 +511,8 @@
 }
 
 .home-page-testimonial-section-blockquote-footer-subtext {
-  @include text-base;
+  margin-top: -0.75rem;
+  @include text-sm;
   color: $purple-100;
 
 }
