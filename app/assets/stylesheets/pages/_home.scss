@@ -1,16 +1,18 @@
 // Specific CSS for your home-page
 .home-page-container {
-  min-height: calc(100vh - 40px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 
 
-// Header
+// Header section
 
 .home-page-header-section-container {
   padding-top: 2.5rem;
   background-color: $gray-900;
-  margin: auto;
+  width: 100%;
   min-height: calc(100vh - 40px);
   position: relative;
 
@@ -72,6 +74,11 @@
   max-width: 28rem;
 }
 
+.home-page-header-section-button-container {
+  display: flex;
+  align-items: center;
+}
+
 .home-page-header-section-button {
   display: infline-flex;
   align-items: center;
@@ -123,37 +130,123 @@
 }
 
 
-// Demo
+
+
+
+
+
+
+
+// Demo section
 
 .home-page-demo-section-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  background-color: $white;
+  padding-top: 4rem;
+  width: 100%;
+}
+
+.home-page-demo-section-supertext-container {
 
 }
 
-.home-page-demo-section-demo {
+.home-page-demo-section-supertext {
+  @include text-base;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  color: $purple-600;
+  text-transform: uppercase;
+}
+
+.home-page-demo-section-header-container {
 
 }
 
-// Features
+.home-page-demo-section-header {
+  @include text-3xl;
+  font-weight: 800;
+  color: $gray-900;
+  letter-spacing: -0.025em;
+}
+
+.home-page-demo-section-paragraph-container {
+
+}
+
+.home-page-demo-section-paragraph {
+  margin-top: 1.25rem;
+  max-width: 65ch;
+  @include text-xl;
+  color: $gray-500;
+  text-align: center;
+}
+
+
+.home-page-demo-section-demo-container {
+  margin-top: 2rem;
+  background-color: $gray-200;
+  width: 100%;
+  height: 600px;
+  width: 80vw;
+  border-radius: 0.375rem;
+
+}
+
+
+
+
+// Features sections
 
 .home-page-feature-section-container {
 
 }
 
-.home-page-feature-section-container {
+.home-page-feature-section-right-container {
 
 }
 
-// Testimonial
+
+.home-page-feature-section-left-container {
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// Testimonial section
 
 .home-page-testimonial-section-container {
 
 }
 
-// Footer
+// Footer section
 
 .home-page-footer-section-container {
 
 }
+
+// Waves
 
 .home-page-header-section-waves-container {
   position: absolute;
@@ -165,13 +258,13 @@
   position:relative;
   width: 100%;
   height:15vh;
-  margin-bottom:-7px; /*Fix for safari gap*/
+  margin-bottom:-7px;
   min-height:100px;
   max-height:150px;
 }
 
 .parallax > use {
-  animation: move-forever 25s cubic-bezier(.55,.5,.45,.5)     infinite;
+  animation: move-forever 25s cubic-bezier(.55,.5,.45,.5) infinite;
 }
 .parallax > use:nth-child(1) {
   animation-delay: -2s;
@@ -197,7 +290,7 @@
     transform: translate3d(85px,0,0);
   }
 }
-/*Shrinking for mobile*/
+
 @media (max-width: 768px) {
   .waves {
     height:40px;
