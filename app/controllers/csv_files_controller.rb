@@ -24,6 +24,8 @@ class CsvFilesController < ApplicationController
   end
 
   def destroy
+    @csv_file.queries.destroy_all
+    @csv_file.orders.destroy_all
     @csv_file.destroy
     redirect_to csv_files_path
   end
