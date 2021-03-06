@@ -36,7 +36,6 @@ class CsvFilesController < ApplicationController
 
   private
 
-
   def set_csv_file
     @csv_file = CsvFile.find(params[:id])
   end
