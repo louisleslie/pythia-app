@@ -1,23 +1,19 @@
 <main class="home-page-container">
 
-
-
   <div class="home-page-header-section-container">
-
-
-
     <div class="home-page-header-section-content-container">
       <h1 class="home-page-header-section-header">A better way to
         <span class="home-page-header-section-header-highlight">explore your data</span>
       </h1>
       <p class="home-page-header-section-paragraph">Anim aute id magna aliqua ad ad non deserunt sunt. Qui irure qui Lorem cupidatat commodo. Elit sunt amet fugiat veniam occaecat fugiat.</p>
-      <%= link_to "Get started", new_csv_file_path, class: "home-page-header-section-button" %>
+      <div class="home-page-header-section-buttons-container">
+        <%= link_to "Live demo", new_csv_file_path, class: "home-page-header-section-button mr-3" %>
+        <%= link_to "Get started", new_csv_file_path, class: "home-page-header-section-button" %>
+      </div>
     </div>
     <div class="home-page-header-section-image-container">
       <%= image_tag 'illustration.svg', class: 'home-page-header-section-image'%>
     </div>
-
-
     <div class='home-page-header-section-waves-container'>
       <svg class="waves" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
       viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">
@@ -30,20 +26,146 @@
         <use xlink:href="#gentle-wave" x="48" y="5" fill="rgba(255,255,255,0.3)" />
         <use xlink:href="#gentle-wave" x="48" y="7" fill="#fff" />
       </g>
-    </svg>
-    <div>
+      </svg>
+    </div>
   </div>
 
-</div>
+  <div class="home-page-demo-section-container">
+    <div class="home-page-demo-section-supertext-container">
+      <h2 class="home-page-demo-section-supertext">Demo</h2>
+    </div>
+    <div class="home-page-demo-section-header-container">
+      <p class="home-page-demo-section-header">No analyst? No problem.</p>
+    </div>
+    <div class="home-page-demo-section-paragraph-container">
+      <p class="home-page-demo-section-paragraph">Phasellus lorem quam molestie id quisque diam aenean nulla in. Accumsan in quis quis nunc, ullamcorper malesuada. Eleifend condimentum id viverra nulla.</p>
+    </div>
+    <div class="home-page-demo-section-demo-container">
+    </div>
+  </div>
+
+  <div class="home-page-features-section-container">
+    <div class="home-page-feature-section-container">
+      <div class="home-page-feature-section-content-container">
+        <h2 class="home-page-feature-section-supertext">Lorem ipsum</h2>
+        <p class="home-page-feature-section-header">All the features</p>
+        <p class="home-page-feature-section-paragraph">Semper curabitur ullamcorper posuere nunc sed. Ornare iaculis bibendum malesuada faucibus lacinia porttitor. Pulvinar laoreet sagittis viverra duis. In venenatis sem arcu pretium pharetra at. Lectus viverra dui tellus ornare pharetra.</p>
+        <div class="home-page-feature-section-button-container">
+          <%= link_to "Get started", new_csv_file_path, class: "button-primary" %>
+        </div>
+      </div>
+      <div class="home-page-feature-section-image-container">
+        <img
+          class="home-page-feature-section-image"
+          src=""
+          alt=""
+        />
+      </div>
+    </div>
+
+
+    <div class="home-page-feature-section-container-alt">
+      <div class="home-page-feature-section-content-container-alt">
+        <h2 class="home-page-feature-section-supertext">Dolor sit amet</h2>
+        <p class="home-page-feature-section-header">So many features</p>
+        <p class="home-page-feature-section-paragraph">Semper curabitur ullamcorper posuere nunc sed. Ornare iaculis bibendum malesuada faucibus lacinia porttitor. Pulvinar laoreet sagittis viverra duis. In venenatis sem arcu pretium pharetra at. Lectus viverra dui tellus ornare pharetra.</p>
+        <div class="home-page-feature-section-button-container">
+          <%= link_to "Get started", new_csv_file_path, class: "button-primary" %>
+        </div>
+      </div>
+      <div class="home-page-feature-section-image-container-alt">
+        <img
+          class="home-page-feature-section-image-alt"
+          src=""
+          alt=""
+        />
+      </div>
+    </div>
+
+
+    <div class="home-page-feature-section-container">
+      <div class="home-page-feature-section-content-container">
+        <h2 class="home-page-feature-section-supertext">Lorem ipsum</h2>
+        <p class="home-page-feature-section-header">Yet more features</p>
+        <p class="home-page-feature-section-paragraph">Semper curabitur ullamcorper posuere nunc sed. Ornare iaculis bibendum malesuada faucibus lacinia porttitor. Pulvinar laoreet sagittis viverra duis. In venenatis sem arcu pretium pharetra at. Lectus viverra dui tellus ornare pharetra.</p>
+        <div class="home-page-feature-section-button-container">
+          <%= link_to "Get started", new_csv_file_path, class: "button-primary" %>
+        </div>
+      </div>
+      <div class="home-page-feature-section-image-container">
+        <img
+          class="home-page-feature-section-image"
+          src=""
+          alt=""
+        />
+      </div>
+    </div>
+  </div>
 
 
 
+  <div class="home-page-testimonial-section-container">
+    <div class="home-page-testimonial-section-grid">
+      <div class="home-page-testimonial-section-image-contents-container">
 
-<div class="home-page-demo-section-container">
-  <div class="home-page-demo-section-demo"></div>
-</div>
-<div class="home-page-feature-section-container"></div>
-<div class="home-page-feature-section-container"></div>
-<div class="home-page-testimonial-section-container"></div>
-<div class="home-page-footer-section-container"></div>
+
+          <div class="home-page-testimonial-section-image-container">
+            <img
+              class="home-page-testimonial-section-image"
+              src="https://res.cloudinary.com/wagon/image/upload/c_fill,g_face,h_600,w_600/lurfrjfxefgxyftxbskh.jpg"
+              alt="Leonard Percival"
+            />
+          </div>
+
+      </div>
+      <div class="home-page-testimonial-section-contents-container-grid">
+        <div class="home-page-testimonial-section-contents-container">
+          <blockquote class="home-page-testimonial-section-blockquote">
+            <div class="home-page-testimonial-section-blockquote-contents">
+              <svg class="home-page-testimonial-section-blockquote-quote-icon" fill="currentColor" viewBox="0 0 32 32" aria-hidden="true">
+                <path d="M9.352 4C4.456 7.456 1 13.12 1 19.36c0 5.088 3.072 8.064 6.624 8.064 3.36 0 5.856-2.688 5.856-5.856 0-3.168-2.208-5.472-5.088-5.472-.576 0-1.344.096-1.536.192.48-3.264 3.552-7.104 6.624-9.024L9.352 4zm16.512 0c-4.8 3.456-8.256 9.12-8.256 15.36 0 5.088 3.072 8.064 6.624 8.064 3.264 0 5.856-2.688 5.856-5.856 0-3.168-2.304-5.472-5.184-5.472-.576 0-1.248.096-1.44.192.48-3.264 3.456-7.104 6.528-9.024L25.864 4z"></path>
+              </svg>
+              <p class="home-page-testimonial-section-paragraph">Pythia has replaced Blazer for all my data visualisation needs. A truly superior product.</p>
+            </div>
+            <footer class="home-page-testimonial-section-blockquote-footer">
+              <p class="home-page-testimonial-section-blockquote-footer-text">Leonard Percival</p>
+              <p class="home-page-testimonial-section-blockquote-footer-subtext">Director, Hoxton Digital</p>
+            </footer>
+          </blockquote>
+        </div>
+
+      </div>
+
+
+    </div>
+  </div>
 </main>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
