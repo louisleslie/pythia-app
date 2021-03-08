@@ -7,6 +7,9 @@
         <a class="nav-link active show-page-views-tab-link" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Table</a>
       </li>
       <li class="nav-item show-page-views-tab-container">
+        <a class="nav-link" id="profile-tab" data-toggle="tab" href="#chart" role="tab" aria-controls="profile" aria-selected="false">Chart</a>
+      </li>
+      <li class="nav-item show-page-views-tab-container">
         <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Map</a>
       </li>
     </ul>
@@ -36,12 +39,20 @@
           </div>
         </div>
       </div>
-    <div class="tab-pane fade show-page-views-tab-pane" id="profile" role="tabpanel" aria-labelledby="profile-tab">
-      <!-- Don't touch this please, map projections are made for 960x500 aspect ratio -->
 
-      <svg width="960" height="500" id="map"></svg>
 
-    </div>
+      <div class="tab-pane fade show-page-views-tab-pane" id="chart" role="tabpanel" aria-labelledby="profile-tab">
+        <p>Charts</p>
+      </div>
+
+
+
+      <div class="tab-pane fade show-page-views-tab-pane" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+        <!-- Don't touch this please, map projections are made for 960x500 aspect ratio -->
+
+        <svg width="960" height="500" id="map"></svg>
+
+      </div>
     </div>
   <% end %>
 </div>
@@ -63,7 +74,11 @@
     g.attr('transform', d3.event.transform);
   }));
 
-  const colorScale = d3.scaleOrdinal(d3.schemeSpectral[7]);
+  const colorScale = d3.scaleOrdinal(d3.schemeCategory10);
+
+
+
+
 
   const colorValue = d => d.properties.economy;
 
