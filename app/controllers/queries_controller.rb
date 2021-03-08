@@ -13,8 +13,8 @@ class QueriesController < ApplicationController
 
   def show
     # @sql_query = generate_query(@query)
-    @query_results = generate_query(@query)
-    @display_query = query_results[0] + query_results[2]
+    query_results = generate_query(@query)
+    @display_query = query_results[0] + query_results[2].sub("AND", "WHERE")
     sql_query = query_results.join(" ")
     @results = Order.connection.select_all(sql_query)
   end
