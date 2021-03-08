@@ -230,6 +230,11 @@ tr:nth-child(even) {
   fill: $gray-900;
   stroke: $gray-200;
   stroke-opacity: 0.1;
+  transition: $transition;
+
+  &:hover {
+    fill: $gray-300;
+  }
 }
 
 
