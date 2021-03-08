@@ -22,6 +22,8 @@ ActiveStorage.start()
 // External imports
 import "bootstrap";
 
+import * as d3 from "d3";
+
 // Internal imports, e.g:
 // import { initSelect2 } from '../components/init_select2';
 import { addFilter, listenForFieldChanges } from './addFilter';
@@ -35,3 +37,7 @@ document.addEventListener('turbolinks:load', () => {
   }
 
 });
+
+// window.addEventListener('DOMContentLoaded', () => {
+//   console.log(d3);
+// })
