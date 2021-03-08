@@ -80,12 +80,18 @@
     // });
 
     const countries = topojson.feature(topoJSONdata, topoJSONdata.objects.countries);
+
+    countries.features.forEach(d => {
+        Object.assign(d.properties, rowById[d.id]);
+    });
+
     g.selectAll('path').data(countries.features)
       .enter().append('path')
         .attr('class', 'country')
         .attr('d', pathGenerator)
+        .attr('fill', 'red')
       .append('title')
-        .text(d => countryName[d.id].name);
+        .text(d => d.properties.name);
 
   });
 
