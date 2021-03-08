@@ -50,8 +50,22 @@ const addDivToQueryFieldsInput = () => {
 const insertRemoveFilter = (Fieldset, newId) => {
   console.log(Fieldset);
   if (newId === undefined) {
-    Fieldset.insertAdjacentHTML('afterend', `<button class="filter-btn button-secondary" id="remove-filter-0">Delete filter</button>`);
+    var parent = Fieldset.parentNode;
+    var wrapper = document.createElement('div');
+    wrapper.className = "d-flex"
+    // set the wrapper as child (instead of the element)
+    parent.replaceChild(wrapper, Fieldset);
+    // set element as child of wrapper
+    wrapper.appendChild(Fieldset);
+    Fieldset.insertAdjacentHTML('afterend', `<button class="filter-btn button-secondary" style="align-self: flex-end;" id="remove-filter-0">Delete filter</button>`);
   } else {
+    var parent = Fieldset.parentNode;
+    var wrapper = document.createElement('div');
+    wrapper.className = "d-flex"
+    // set the wrapper as child (instead of the element)
+    parent.replaceChild(wrapper, Fieldset);
+    // set element as child of wrapper
+    wrapper.appendChild(Fieldset);
     Fieldset.insertAdjacentHTML('afterend', `<button class="filter-btn button-secondary" id="remove-filter-${newId}">Delete filter</button>`);
   }
     console.log(Fieldset.nextElementSibling);
