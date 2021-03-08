@@ -6,7 +6,7 @@ Order.destroy_all
 CsvFile.destroy_all
 User.destroy_all
 
-users = ['alex.terenda@gmail.com', 'jake.howlett@gmail.com', 'louis.leslie@gmail.com', 'yunus.firat@gmail.com']
+users = ['alex.terenda@gmail.com', 'jake.howlett@gmail.com', 'louis.leslie@gmail.com', 'yunus.firat@gmail.com', 'filter.test@gmail.com']
 
 address_list = [
   # UK 22
@@ -96,7 +96,7 @@ address_list = [
 
 
 financial_status = ["paid", "pending", "refunded"]
-subtotal = [0.5, 0.75, 0.9, 1, 1.25, 5, 10.35, 23, 28, 45, 36.24, 23, 22.5, 42.9, 12, 13.5, 15.6, 24, 26, 38, 37.45]
+subtotals = [0.5, 0.75, 0.9, 5, 10.35, 23, 28, 13.5, 15.6, 24, 26, 38]
 
 users.each do |user|
   puts "Generating account and data for #{user}..."
@@ -115,6 +115,8 @@ users.each do |user|
     city = split_address[2]
     zip = split_address[3]
     name = Faker::Name.name
+    subtotal = subtotals.sample
+    shipping = rand(1..5)
 
     case index
     when 0..21 then country = "UK"
@@ -131,7 +133,8 @@ users.each do |user|
     end
     
     
-    order = Order.create(
+    order = Order.new(
+      
       csv_file_id: csv_file.id,
       name: name,
       email: Faker::Internet.email,
@@ -151,10 +154,10 @@ users.each do |user|
       paid_at: Faker::Date.backward(days: 14),
       fulfilled_at: Faker::Date.backward(days: 14),
       accepts_marketing: true,
-      subtotal: subtotal.sample,
-      shipping: rand(1..5),
+      subtotal: subtotal,
+      shipping: shipping,
       taxes: 0,
-      total: subtotal[rand(0..3)],
+      total: subtotal,
       shipping_method: "Standard Shipping Method",
       order_created_at:Faker::Date.backward(days: rand(1..14)),
       billing_street: line_one,
@@ -188,10 +191,88 @@ users.each do |user|
       billing_country: country,
       lineitem_name: vendors[rand(0..4)]
     )
+    # order.full_billing_address = "#{order.billing_address1} #{order.billing_address2} #{order.billing_city} #{order.billing_province_name} #{order.billing_country}"
+    order.save
   end
 end
 
-puts "Seeding user for test filters..."
-  user = User.create(email: "filtertest@test.com", password: "password", password_confirmation: "password")
-  Filter.new
-puts "DB seeding complete!"
+puts "Creating test queries..."
+  csv_id = CsvFile.last.id
+
+  # Int and float tests
+  # ----------
+
+  # Int / float: greater than
+  query = Query.new(query_name: "Integer greater than", fields: "[\"name\", \"total\"]")
+  query.csv_file_id = csv_id
+  query.save
+  Filter.create(verb: "Where", comparison_operator: "Greater Than", column_name: "total", value: 10, query_id: query.id)
+
+  # Int / float: less than
+  query = Query.new(query_name: "Integer less than", fields: "[\"name\", \"total\"]")
+  query.csv_file_id = csv_id
+  query.save
+  Filter.create(verb: "Where", comparison_operator: "Less Than", column_name: "total", value: 25, query_id: query.id)
+
+  
+  # Int / float: equals
+  query = Query.new(query_name: "Integer equals", fields: "[\"name\", \"total\"]")
+  query.csv_file_id = csv_id
+  query.save
+  Filter.create(verb: "Where", comparison_operator: "Equals", column_name: "total", value: 5, query_id: query.id)
+  
+  # Int / float: Does not equal
+  query = Query.new(query_name: "Integer does not equal", fields: "[\"name\", \"total\"]")
+  query.csv_file_id = csv_id
+  query.save
+  Filter.create(verb: "Where", comparison_operator: "Does Not Equal", column_name: "total", value: 5, query_id: query.id)
+  
+  # Int / float: greater than or equals to
+  query = Query.new(query_name: "Integer greater than or equal", fields: "[\"name\", \"total\"]")
+  query.csv_file_id = csv_id
+  query.save
+  Filter.create(verb: "Where", comparison_operator: "Greater Than or Equal To", column_name: "total", value: 5, query_id: query.id)
+
+  # Int / float: less than or equals to
+  query = Query.new(query_name: "Integer less than or equal", fields: "[\"name\", \"total\"]")
+  query.csv_file_id = csv_id
+  query.save
+  Filter.create(verb: "Where", comparison_operator: "Less Than or Equal To", column_name: "total", value: 15, query_id: query.id)
+
+  # Int / float: is empty
+  query = Query.new(query_name: "Integer is empty", fields: "[\"name\", \"total\"]")
+  query.csv_file_id = csv_id
+  query.save
+  Filter.create(verb: "Where", comparison_operator: "Is Empty", column_name: "total", value: "", query_id: query.id)
+
+  # Int / float: is not empty
+  query = Query.new(query_name: "Integer is not empty", fields: "[\"name\", \"total\"]")
+  query.csv_file_id = csv_id
+  query.save
+  Filter.create(verb: "Where", comparison_operator: "Is Not Empty", column_name: "total", value: "", query_id: query.id)
+
+  # Int / float: greater than less than
+  query = Query.new(query_name: "Integer greater than less than", fields: "[\"name\", \"total\"]")
+  query.csv_file_id = csv_id
+  query.save
+  Filter.create(verb: "Where", comparison_operator: "Greater Than", column_name: "total", value: 10, query_id: query.id)
+  Filter.create(verb: "Where", comparison_operator: "Less Than", column_name: "total", value: 25, query_id: query.id)
+
+
+
+
+
+
+  # DateTime tests Broken for now
+  # ----------
+
+  # Date before
+  # query = Query.new(query_name: "Integer is not empty", fields: "[\"name\", \"order_created_at\"]")
+  # query.csv_file_id = csv_id
+  # query.save
+  # Filter.create(verb: "Where", comparison_operator: "Before", column_name: "total", value: "Mon, 08 Mar 2021", query_id: query.id)
+  
+
+
+
+  puts "DB seeding complete!"
