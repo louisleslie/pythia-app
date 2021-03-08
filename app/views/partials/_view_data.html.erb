@@ -100,7 +100,7 @@
       Object.assign(d.properties, rowById[d.id]);
     });
 
-    const colorScale = d3.scaleOrdinal(d3.schemeSpectral[7]);
+    const colorScale = d3.scaleOrdinal();
 
     const colorValue = d => d.properties.economy;
 
@@ -108,15 +108,18 @@
     // Sort category entry values
     colorScale
       .domain(countries.features.map(colorValue))
-      .domain(colorScale.domain().sort().reverse());
+      .domain(colorScale.domain().sort().reverse())
+      // .range(d3.schemeSpectral[colorScale.domain().length]);
+      .range(["#D1D5DB" , "#9CA3AF" , "#6B7280" , "#4B5563" , "#374151" , "#1F2937" , "#111827"]);
 
+      // "#F9FAFB", "#F3F4F6" , "#E5E7EB" ,
     g.selectAll('path').data(countries.features)
       .enter().append('path')
         .attr('class', 'country')
         .attr('d', pathGenerator)
         .attr('fill', d => colorScale(colorValue(d)))
       .append('title')
-        .text(d => d.properties.name);
+        .text(d => d.properties.name + ': ' + colorValue(d));
   });
 
 </script>
