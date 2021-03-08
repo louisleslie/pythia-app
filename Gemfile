@@ -32,6 +32,8 @@ gem 'devise'
 gem 'faker'
 # Amazon web service gem
 gem "aws-sdk-s3", require: false
+# D3 gem
+gem "d3-rails"
 
 gem 'autoprefixer-rails'
 gem 'font-awesome-sass'

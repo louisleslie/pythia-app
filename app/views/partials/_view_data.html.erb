@@ -57,10 +57,12 @@
   <% end %>
 </div>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/5.6.0/d3.min.js" integrity="sha512-Gdjw6rdB8Tefa1RazvbG8hecjW7qSjnmcRnPPj40lnNnsX5Ci9pijAciBieg9XcQIFm1w/PICAzzsE6POaDyiw==" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/topojson/3.0.2/topojson.min.js" integrity="sha512-4UKI/XKm3xrvJ6pZS5oTRvIQGIzZFoXR71rRBb1y2N+PbwAsKa5tPl2J6WvbEvwN3TxQCm8hMzsl/pO+82iRlg==" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/5.6.0/d3.min.js" integrity="sha512-Gdjw6rdB8Tefa1RazvbG8hecjW7qSjnmcRnPPj40lnNnsX5Ci9pijAciBieg9XcQIFm1w/PICAzzsE6POaDyiw==" crossorigin="anonymous"></script>
 
 <script>
+
+
 
   const svg = d3.select('#map');
 
@@ -98,15 +100,23 @@
       Object.assign(d.properties, rowById[d.id]);
     });
 
+    const colorScale = d3.scaleOrdinal(d3.schemeSpectral[7]);
+
+    const colorValue = d => d.properties.economy;
+
+    // Get rid of duplicate category entries
+    // Sort category entry values
+    colorScale
+      .domain(countries.features.map(colorValue))
+      .domain(colorScale.domain().sort().reverse());
 
     g.selectAll('path').data(countries.features)
       .enter().append('path')
         .attr('class', 'country')
         .attr('d', pathGenerator)
-        .attr('fill', 'red')
+        .attr('fill', d => colorScale(colorValue(d)))
       .append('title')
         .text(d => d.properties.name);
-
   });
 
 </script>
