@@ -2,8 +2,8 @@
 <% if controller_name == 'queries' && action_name == 'new' %>
   <%= simple_form_for @query, url: csv_file_queries_path do |f| %>
     <%= f.input :query_name %>
-    <input type="checkbox" onclick="toggle(this);" /> Select all<br />
-    <%= f.input :fields, collection: @order_data_types.keys, input_html: { multiple: true }, as: :check_boxes %>
+    <div onclick="toggle(this);" class="select-tag-item"><input type="checkbox" class="select-tag-selector"/><label>Select all</label><br /></div>
+    <%= f.input :fields, collection: @order_data_types.keys, input_html: { multiple: true }, as: :check_boxes, input_html: { class: "tag-selector" }, item_wrapper_class: 'tag-item' %>
     <%= render :partial => "/filters/filter_form", locals: { :f => f, :query => @query, :filter_comparisons => @filter_comparisons, :order_data_types => @order_data_types } %>
     <%= f.submit class: "button-primary" %>
   <% end %>
@@ -19,11 +19,14 @@
 <script>
   function toggle(source) {
     console.log("checkbox clicked!");
+    console.log(source.querySelector('input').checked);
+    source.querySelector('input').checked = !source.querySelector('input').checked;
+    console.log(source.querySelector('input').checked);
     var checkboxes = document.querySelectorAll('.query_fields > div > input');
     console.log(checkboxes);
     for (var i = 0; i < checkboxes.length; i++) {
-        if (checkboxes[i] != source) {
-            checkboxes[i].checked = source.checked;
+        if (checkboxes[i].checked != source.querySelector('input').checked) {
+            checkboxes[i].checked = source.querySelector('input').checked;
         }
     }
   }

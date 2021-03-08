@@ -178,6 +178,60 @@ form > .button-primary, .button-secondary, .button-utility, .button-primary {
   margin-bottom: 1rem;
 }
 
+.tag-item {
+  display: inline-block;
+}
+
+.tag-selector {
+  position: absolute;
+  transform: scale(0);
+}
+
+.tag-selector + label {
+  cursor: pointer;
+  display: inline-block;
+  font-size: 0.7rem;
+  border-radius: 50rem;
+  padding: 0.1rem 0.5rem;
+  background-color: #ECEAFF;
+  color: $purple-600;
+  border: 1px solid $purple-600;
+  margin-right: 0.6rem;
+  margin-bottom: 0.4rem;
+}
+
+.tag-selector:checked + label {
+  background-color: $purple-600;
+  color: white;
+}
+
+
+.select-tag-item {
+  display: inline-block;
+}
+
+.select-tag-selector {
+  position: absolute;
+  transform: scale(0);
+}
+
+.select-tag-selector + label {
+  cursor: pointer;
+  display: inline-block;
+  font-size: 0.7rem;
+  border-radius: 50rem;
+  padding: 0.1rem 0.5rem;
+  background-color: #ECEAFF;
+  color: $purple-600;
+  border: 1px solid $purple-600;
+  margin-right: 0.6rem;
+  margin-bottom: 0.4rem;
+}
+
+.select-tag-selector:checked + label {
+  background-color: $purple-600;
+  color: white;
+}
 // Buttons
 
 .button-bottom {
