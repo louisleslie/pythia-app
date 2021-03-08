@@ -269,14 +269,14 @@ DEPENDENCIES
   bootsnap (>= 1.4.4)
   byebug
   capybara (>= 3.26)
-  d3-rails
   chartkick
+  d3-rails
   devise
   dotenv-rails
   faker
   font-awesome-sass
-  groupdate
   geocoder
+  groupdate
   jbuilder (~> 2.7)
   listen (~> 3.3)
   pg (~> 1.1)
