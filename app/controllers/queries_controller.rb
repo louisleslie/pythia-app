@@ -20,6 +20,7 @@ class QueriesController < ApplicationController
     @query = Query.new
     @query.filters.build
     @order_data_types = {}
+    @filter_comparisons = []
     Order.columns_hash.map { |k, v| @order_data_types[k] = "#{k}-#{v.sql_type_metadata.type}" }
   end
 
@@ -42,6 +43,9 @@ class QueriesController < ApplicationController
     @csv_file = @query.csv_file
     @order_data_types = {}
     Order.columns_hash.map { |k, v| @order_data_types[k] = "#{k}-#{v.sql_type_metadata.type}" }
+    @filter_comparisons = []
+    @query.filters.each { |filter| @filter_comparisons << filter.comparison_operator }
+    p @filter_comparisons
     @checked_fields = JSON.parse(@query.fields)[1..-1]
   end
 
