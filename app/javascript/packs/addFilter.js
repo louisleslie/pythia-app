@@ -3,9 +3,9 @@ const listenForFieldChanges = () => {
   const fieldsetSelectFields = document.querySelectorAll("fieldset > .query_filters_column_name > select");
 
   const comparisonOptions = {
-    "datetime": ["Before", "After",	"On", "Between", "Is Empty", "Is Not Empty"],
+    "datetime": ["Before", "After",	"On", "Is Empty", "Is Not Empty"],
     "string":["Equals",	"Does Not Equal",	"Contains",	"Does Not Contain",	"Starts With",	"Ends With",	"is Empty", "Is Not Empty"],
-    "boolean":["Is", "Is Not"],
+    "boolean":["Is"],
     "float":["Equals",	"Does Not Equal",	"Greater Than",	"Less Than",	"Greater Than or Equal To",	"Less Than or Equal To",	"Is Empty",	"Is Not Empty"],
     "integer":["Equals",	"Does Not Equal",	"Greater Than",	"Less Than",	"Greater Than or Equal To",	"Less Than or Equal To",	"Is Empty",	"Is Not Empty"]
   };
