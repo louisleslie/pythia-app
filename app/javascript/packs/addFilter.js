@@ -50,9 +50,9 @@ const addDivToQueryFieldsInput = () => {
 const insertRemoveFilter = (Fieldset, newId) => {
   console.log(Fieldset);
   if (newId === undefined) {
-    Fieldset.insertAdjacentHTML('afterend', `<button class="filter-btn" id="remove-filter-0">Delete filter</button>`);
+    Fieldset.insertAdjacentHTML('afterend', `<button class="filter-btn button-secondary" id="remove-filter-0">Delete filter</button>`);
   } else {
-    Fieldset.insertAdjacentHTML('afterend', `<button class="filter-btn" id="remove-filter-${newId}">Delete filter</button>`);
+    Fieldset.insertAdjacentHTML('afterend', `<button class="filter-btn button-secondary" id="remove-filter-${newId}">Delete filter</button>`);
   }
     console.log(Fieldset.nextElementSibling);
   Fieldset.nextElementSibling.addEventListener("click", (event) => {
