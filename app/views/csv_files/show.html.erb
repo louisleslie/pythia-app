@@ -4,12 +4,6 @@
     <%= render partial: 'shared/sidebar' %>
   </div>
   <div class="show-page-content-container">
-
-    <div class="show-page-filters-container">
-      Filters container
-    </div>
-    
-    <div class="show-page-section-border"></div>
     <h1><%= @csv_file.filename %></h1>
     <%= render :partial => "/partials/view_data", locals: { query: @orders } %>
   </div>
