@@ -10,6 +10,9 @@
         <a class="nav-link" id="profile-tab" data-toggle="tab" href="#chart" role="tab" aria-controls="profile" aria-selected="false">Chart</a>
       </li>
       <li class="nav-item show-page-views-tab-container">
+        <a class="nav-link" id="profile-tab" data-toggle="tab" href="#pie-chart" role="tab" aria-controls="profile" aria-selected="false">Pie-chart</a>
+      </li>
+      <li class="nav-item show-page-views-tab-container">
         <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Map</a>
       </li>
     </ul>
@@ -41,11 +44,35 @@
       </div>
 
 
-      <div class="tab-pane fade show-page-views-tab-pane" id="chart" role="tabpanel" aria-labelledby="profile-tab">
-        <%= line_chart chart.group_by_day(:order_created_at).count %>
+      <div class="tab-pane fade show-page-views-tab-pane" id="chart" role="tabpanel" aria-labelledby="profile-tab" style="margin-top: 10px;">
+        <h4>orders by day</h4>
+        <%= line_chart chart.group_by_day(:order_created_at).count, xtitle: "Time", ytitle: "Number of Order", colors: ["#b00", "#666"], stacked: true , discrete: true,legend: false%>
+        <h2>Summary</h2>
+        <p>The chart shows changes of your orders day by day.</p>
+        <br>
+        <h4>Prices for each item</h4>
+        <%= pie_chart chart.group(:lineitem_price).count %>
+        <h2>Summary</h2>
+        <p>The Pie chart indicates that......</p>
+
       </div>
+      <div class="tab-pane fade show-page-views-tab-pane" id="pie-chart" role="tabpanel" aria-labelledby="profile-tab">
+        <h4>introduction:</h4>
+        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Molestiae soluta 
+        eveniet unde blanditiis qui, voluptate maxime animi iure quo praesentium consequuntur 
+        consequatur, id, officiis perferendis facilis molestias modi deleniti cumque!</p>
+        <%= column_chart chart.group_by_day_of_week(:created_at, format: "%a").count %>
+        <h2>Summary</h2>
+        <p>The Column chart indicates that......</p>
 
-
+        <h4 style="margin-top:5px;">introduction:</h4>
+         <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Molestiae soluta 
+        eveniet unde blanditiis qui, voluptate maxime animi iure quo praesentium consequuntur 
+        consequatur, id, officiis perferendis facilis molestias modi deleniti cumque!</p>
+        <%= bar_chart chart.group(:source).sum(:lineitem_price) %>
+        <h2>Summary</h2>
+        <p>The bar chart indicates that......</p>
+      </div>
 
       <div class="tab-pane fade show-page-views-tab-pane" id="profile" role="tabpanel" aria-labelledby="profile-tab">
         <!-- Don't touch this please, map projections are made for 960x500 aspect ratio -->
