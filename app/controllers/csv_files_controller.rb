@@ -61,6 +61,7 @@ class CsvFilesController < ApplicationController
       row.slice!(*ord_syms)
       row["csv_file_id"] = csv_file.id
       o = Order.new(row)
+      o.full_billing_address = " #{o.billing_street} #{o.billing_address1} #{o.billing_address2} #{o.billing_city} #{o.billing_province_name} #{o.billing_country}"
       o.save
     end
   end
