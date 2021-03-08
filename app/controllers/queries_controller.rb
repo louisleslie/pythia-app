@@ -12,8 +12,10 @@ class QueriesController < ApplicationController
   end
 
   def show
-    @sql_query = generate_query(@query)
-    @results = Order.connection.select_all(@sql_query)
+    query_results = generate_query(@query)
+    @display_query = query_results[0] + query_results[2].sub("AND", "WHERE")
+    sql_query = query_results.join(" ")
+    @results = Order.connection.select_all(sql_query)
   end
 
   def new
@@ -80,7 +82,9 @@ class QueriesController < ApplicationController
     parsed_fields = JSON.parse(query.fields)
     formatted_fields = parsed_fields.flatten.join(", ")
     formatted_fields = "*" if formatted_fields.split(",").count == 61 # TODO: find a more dynamic way to do this
+    csv_id = query.csv_file_id
     base_query = "SELECT #{formatted_fields} FROM orders"
+    file_query = "WHERE csv_file_id = #{csv_id}"
     converted_query_filters = []
 
     query.filters.each do |filter|
@@ -92,11 +96,9 @@ class QueriesController < ApplicationController
     end
 
     # currently this only handles WHERE verbs I havent added the logic for group by yet
-    first_filter = converted_query_filters.pop
-    # convert subsequent WHEREs to AND
-    subsequent_filters = converted_query_filters.join.gsub("WHERE", "AND")
+    generated_query = converted_query_filters.join.gsub("WHERE", "AND")
 
-    return base_query + first_filter + subsequent_filters
+    return [base_query, file_query, generated_query]
   end
 
   def convert_operator(text_operator, column)
