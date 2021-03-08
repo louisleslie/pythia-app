@@ -17,7 +17,8 @@ ActiveStorage.start()
 // Note(lewagon): ABOVE IS RAILS DEFAULT CONFIGURATION
 // WRITE YOUR OWN JS STARTING FROM HERE 👇
 // ----------------------------------------------------
-
+require("chartkick")
+require("chart.js")
 // External imports
 import "bootstrap";
 
