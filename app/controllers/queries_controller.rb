@@ -91,8 +91,7 @@ class QueriesController < ApplicationController
       verb = filter.verb.upcase
       column = filter.column_name.split("-")[0]
       operator = convert_operator(filter.comparison_operator, column)
-      if filter.value.match(/T\d{2}:\d{2}/) #this stuffs part of trying to get date to work
-        # value = "'2020-05-04'"
+      if filter.value.match(/T\d{2}:\d{2}/)
         value = "'#{filter.value.split("T")[0]}'"
         column = "#{column}::date"
       else
@@ -127,9 +126,9 @@ class QueriesController < ApplicationController
       "Does Not Contain" => "NOT ILIKE", # TODO: this should match substrings (currently only matches exact values) # not tested
       "Starts With" => "ILIKE", # TODO: should match substrings only at the start of the field # # not tested
       "Ends With" => "ILIKE", # TODO: should match substrings only at the end of the field # not tested
-      "Before" => "<", # not tested
-      "After" => ">", # not tested
-      "On" => "=" # not tested
+      "Before" => "<",
+      "After" => ">",
+      "On" => "="
     }
     comparison_conversion[text_operator]
   end

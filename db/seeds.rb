@@ -258,21 +258,45 @@ puts "Creating test queries..."
   Filter.create(verb: "Where", comparison_operator: "Greater Than", column_name: "total", value: 10, query_id: query.id)
   Filter.create(verb: "Where", comparison_operator: "Less Than", column_name: "total", value: 25, query_id: query.id)
 
+  # Boolean tests
+  # ----------
+
+  # Bool: is true
+  # query = Query.new(query_name: "Bool is true", fields: "[\"name\", \"accepts_marketing\"]")
+  # query.csv_file_id = csv_id
+  # query.save
+  # Filter.create(verb: "Where", comparison_operator: "Is True", column_name: "accepts_marketing", value: "", query_id: query.id)
+
+  # Bool: is false
 
 
 
-
-
-  # DateTime tests Broken for now
+  # DateTime tests
   # ----------
 
   # Date before
-  # query = Query.new(query_name: "Integer is not empty", fields: "[\"name\", \"order_created_at\"]")
-  # query.csv_file_id = csv_id
-  # query.save
-  # Filter.create(verb: "Where", comparison_operator: "Before", column_name: "total", value: "Mon, 08 Mar 2021", query_id: query.id)
-  
+  query = Query.new(query_name: "Date before", fields: "[\"name\", \"order_created_at\"]")
+  query.csv_file_id = csv_id
+  query.save
+  Filter.create(verb: "Where", comparison_operator: "Before", column_name: "order_created_at", value: "2021-03-06T20:47", query_id: query.id)
 
+  # Date after
+  query = Query.new(query_name: "Date after", fields: "[\"name\", \"order_created_at\"]")
+  query.csv_file_id = csv_id
+  query.save
+  Filter.create(verb: "Where", comparison_operator: "After", column_name: "order_created_at", value: "2021-03-01T20:47", query_id: query.id)
 
+  # Date on
+  query = Query.new(query_name: "Date on", fields: "[\"name\", \"order_created_at\"]")
+  query.csv_file_id = csv_id
+  query.save
+  Filter.create(verb: "Where", comparison_operator: "On", column_name: "order_created_at", value: "2021-03-06T00:00", query_id: query.id)
+
+  # Date before and after
+  query = Query.new(query_name: "Date before and after", fields: "[\"name\", \"order_created_at\"]")
+  query.csv_file_id = csv_id
+  query.save
+  Filter.create(verb: "Where", comparison_operator: "Before", column_name: "order_created_at", value: "2021-03-06T20:47", query_id: query.id)
+  Filter.create(verb: "Where", comparison_operator: "After", column_name: "order_created_at", value: "2021-03-01T20:47", query_id: query.id)
 
   puts "DB seeding complete!"
