@@ -1,6 +1,6 @@
 class CsvFilesController < ApplicationController
   before_action :set_csv_file, only: [:show, :edit, :update, :destroy]
-  
+
   def new
     @csv_file = CsvFile.new
   end
@@ -8,9 +8,7 @@ class CsvFilesController < ApplicationController
   def create
     @csv_file = CsvFile.new(csv_file_params)
     @csv_file.user = current_user
-    unless @csv_file.filename
-      @csv_file.filename = params[:csv_file]["csv_doc"].original_filename
-    end
+    @csv_file.filename = params[:csv_file]["csv_doc"].original_filename if @csv_file.filename == ""
     if @csv_file.save
       generate_orders(@csv_file)
       redirect_to csv_file_path(@csv_file)
@@ -24,6 +22,8 @@ class CsvFilesController < ApplicationController
   end
 
   def destroy
+    @csv_file.queries.destroy_all
+    @csv_file.orders.destroy_all
     @csv_file.destroy
     redirect_to csv_files_path
   end
@@ -33,7 +33,6 @@ class CsvFilesController < ApplicationController
   end
 
   private
-
 
   def set_csv_file
     @csv_file = CsvFile.find(params[:id])
