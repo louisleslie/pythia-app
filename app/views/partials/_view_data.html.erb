@@ -10,9 +10,6 @@
         <a class="nav-link show-page-views-tab-link" id="chart-tab" data-toggle="tab" href="#chart" role="tab" aria-controls="chart" aria-selected="false">Chart</a>
       </li>
       <li class="nav-item show-page-views-tab-container">
-        <a class="nav-link show-page-views-tab-link" id="pie-tab" data-toggle="tab" href="#pie" role="tab" aria-controls="pie" aria-selected="false">Pie-chart</a>
-      </li>
-      <li class="nav-item show-page-views-tab-container">
         <a class="nav-link show-page-views-tab-link" id="map-tab" data-toggle="tab" href="#map-container" role="tab" aria-controls="map-container" aria-selected="false">Map</a>
       </li>
     </ul>
@@ -56,8 +53,12 @@
           <li class="nav-item show-page-views-tab-container">
             <a class="nav-link show-page-views-tab-link" id="line3-chart-tab" data-toggle="tab" href="#line3-chart" role="tab" aria-controls="line3-chart" aria-selected="false">Line Chart by something</a>
           </li>
+          <li class="nav-item show-page-views-tab-container">
+            <a class="nav-link show-page-views-tab-link" id="pie-chart-tab" data-toggle="tab" href="#pie-chart" role="tab" aria-controls="pie-chart" aria-selected="false">Pie Chart by something</a>
+          </li>
         </ul>
         <div class="tab-content show-page-views-tab-content-container" id="myChartTabContent">
+        
           <div class="tab-pane active show show-page-views-tab-pane" id="line-chart" role="tabpanel" aria-labelledby="line-chart-tab">
             <h4>introduction</h4>
             <%= line_chart chart.group_by_day(:order_created_at).count, xtitle: "Time", ytitle: "Number of Order", colors: ["#b00", "#666"], stacked: true , discrete: true, legend: false%>
@@ -71,31 +72,30 @@
             <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Molestiae soluta 
             eveniet unde blanditiis qui, voluptate maxime animi iure quo praesentium consequuntur 
             consequatur, id, officiis perferendis facilis molestias modi deleniti cumque!</p>
-            <%= line_chart chart.group_by_day(:order_created_at).count, xtitle: "Time", ytitle: "Number of Order", colors: ["#b00", "#666"], discrete: true, legend: false%>
+            <%= line_chart chart.group_by_day(:order_created_at).count, xtitle: "Time", ytitle: "Number of Order", colors: ["#b00", "#666"], discrete: true, legend: false %>
             <h2>Summary</h2>
             <p>The Column chart indicates that......</p> 
           </div>
+
           <div class="tab-pane show-page-views-tab-pane" id="line3-chart" role="tabpanel" aria-labelledby="line3-chart-tab">
             <h4 style="margin-top:5px;">introduction:</h4>
             <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Molestiae soluta 
             eveniet unde blanditiis qui, voluptate maxime animi iure quo praesentium consequuntur 
             consequatur, id, officiis perferendis facilis molestias modi deleniti cumque!</p>
-            <%= line_chart chart.group_by_day(:order_created_at).count, xtitle: "Time", ytitle: "Number of Order", colors: ["#b00", "#666"],discrete: true, legend: false%>
+            <%= line_chart chart.group_by_day(:order_created_at).count, xtitle: "Time", ytitle: "Number of Order", colors: ["#b00", "#666"],discrete: true, legend: false %>
             <h2>Summary</h2>
             <p>The bar chart indicates that......</p>
           </div> 
+
+          <div class="tab-pane active show show-page-views-tab-pane" id="pie-chart" role="tabpanel" aria-labelledby="pietab">
+            <h4>Prices for each item</h4>
+            <%= pie_chart chart.group(:lineitem_price).count %>
+            <h2>Summary</h2>
+            <p>The Pie chart indicates that......</p>  
+          </div> 
+
         </div> 
       </div>
-
-      <div class="tab-pane show-page-views-tab-pane" id="pie" role="tabpanel" aria-labelledby="pie-tab">
-        <!-- Don't touch this please, map projections are made for 960x500 aspect ratio -->
-        <h4>Prices for each item</h4>
-        <%= pie_chart chart.group(:lineitem_price).count %>
-        <h2>Summary</h2>
-        <p>The Pie chart indicates that......</p>  
-
-      </div>
-
       <div class="tab-pane show-page-views-tab-pane" id="map-container" role="tabpanel" aria-labelledby="map-tab">
         <div id="query-json-data" class="display-none">
           <p><%= query.to_json %></p>
