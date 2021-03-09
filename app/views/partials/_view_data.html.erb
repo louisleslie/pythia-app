@@ -58,6 +58,9 @@
           </li>
         </ul>
         <div class="tab-content show-page-views-tab-content-container" id="myChartTabContent">
+          <% content_for :chartkick do %>
+            <%= javascript_pack_tag 'chartkick' %>
+          <% end %>
           <div class="tab-pane active show show-page-views-tab-pane" id="line-chart" role="tabpanel" aria-labelledby="line-chart-tab">
             <h4>introduction</h4>
             <%= line_chart chart.group_by_day(:order_created_at).count, xtitle: "Time", ytitle: "Number of Order", colors: ["#b00", "#666"], stacked: true , discrete: true, legend: false%>
