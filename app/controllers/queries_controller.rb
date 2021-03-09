@@ -91,11 +91,30 @@ class QueriesController < ApplicationController
       verb = filter.verb.upcase
       column = filter.column_name.split("-")[0]
       operator = convert_operator(filter.comparison_operator, column)
-      value = filter.value
-      converted_query_filters << " #{verb} #{column} #{operator} #{value}"
+      if filter.value.nil?
+        value = ""
+      elsif filter.value.match(/T\d{2}:\d{2}/)
+        value = "'#{filter.value.split("T")[0]}'"
+        column = "#{column}::date"
+      elsif filter.comparison_operator == "Contains" || filter.comparison_operator == "Does Not Contain"
+        value = "'%#{filter.value}%'"
+      elsif filter.comparison_operator == "Starts With"
+        value = "'#{filter.value}%'"
+      elsif filter.comparison_operator == "Ends With"
+        value = "'%#{filter.value}'"
+      elsif filter.comparison_operator == "Matches" || filter.comparison_operator == "Does Not Match"
+        value = "'#{filter.value}'"
+      else
+        value = filter.value
+      end
+      if filter.comparison_operator == "Is Empty" || filter.comparison_operator == "Is True" || filter.comparison_operator == "Is False"
+        converted_query_filters << " #{verb} #{column} #{operator}"
+      else
+        converted_query_filters << " #{verb} #{column} #{operator} #{value}"
+      end
     end
 
-    # currently this only handles WHERE verbs I havent added the logic for group by yet
+    # TODO: Currently this only handles WHERE verbs I havent added the logic for group by yet
     generated_query = converted_query_filters.join.gsub("WHERE", "AND")
 
     return [base_query, file_query, generated_query]
@@ -107,20 +126,21 @@ class QueriesController < ApplicationController
       "Does Not Equal" => "<>",
       "Greater Than" => ">",
       "Less Than" => "<",
-      "Greater Than or Equal To" => ">=", # not tested
-      "Less Than or Equal To" => "<=", # not tested
-      "Is Empty" => "IS NULL OR #{column} = ''", # not tested
-      "Is Not Empty" => "<> ''", # not tested
-      "Is" => "= 'yes' OR #{column} = 1 OR #{column} = 'true'", # TODO: not sure if true and no need to be in quotation marks # not tested #needs to be change as value can be true or false (tick box)
-      "Is Not" => "= 'no' OR #{column} = 0 OR #{column} = 'false'", # TODO: same as above # not tested #needs to be changed as value can be true or false
-      "Contains" => "ILIKE", # TODO: this should match substrings (currently only matches exact values) # not tested
-      "Does Not Contain" => "NOT ILIKE", # TODO: this should match substrings (currently only matches exact values) # not tested
-      "Starts With" => "ILIKE", # TODO: should match substrings only at the start of the field # # not tested
-      "Ends With" => "ILIKE", # TODO: should match substrings only at the end of the field # not tested
-      "Before" => "<", # not tested
-      "After" => ">", # not tested
-      "On" => "=", # not tested
-      "Between" => "" # TODO: this cant be done till some logic is added to forms for a second value field see github issues # not tested
+      "Greater Than or Equal To" => ">=",
+      "Less Than or Equal To" => "<=",
+      "Is Empty" => "IS NULL", # TODO: expand this to pick up empty strings ""
+      "Is Not Empty" => "IS NOT NULL", # TODO: expand this to pick up empty strings ""
+      "Is True" => "= 'yes' OR #{column} = 'true' OR #{column} = '1'", # not tested
+      "Is False" => "= 'no' OR #{column} = 'false' OR #{column} = '0'", # not tested
+      "Contains" => "ILIKE",
+      "Does Not Contain" => "NOT ILIKE",
+      "Starts With" => "ILIKE",
+      "Ends With" => "ILIKE",
+      "Before" => "<",
+      "After" => ">",
+      "On" => "=",
+      "Matches" => "ILIKE",
+      "Does Not Match" => "NOT ILIKE"
     }
     comparison_conversion[text_operator]
   end
