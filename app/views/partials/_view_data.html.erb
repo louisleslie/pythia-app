@@ -83,6 +83,7 @@
             <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Molestiae soluta 
             eveniet unde blanditiis qui, voluptate maxime animi iure quo praesentium consequuntur 
             consequatur, id, officiis perferendis facilis molestias modi deleniti cumque!</p>
+            
             <%= line_chart chart.group_by_day(:order_created_at).count, xtitle: "Time", ytitle: "Number of Order", colors: ["#b00", "#666"],discrete: true, legend: false%>
             <h2>Summary</h2>
             <p>The bar chart indicates that......</p>

@@ -174,9 +174,11 @@ input, select, option {
   }
 }
 
-form > .button-primary, .button-secondary, .button-utility, .button-primary {
+form > .button-primary .button-secondary .button-utility .button-primary {
   margin-bottom: 1rem;
 }
+
+// tag-item to overlay select checkbox and label
 
 .tag-item {
   display: inline-block;
@@ -198,6 +200,9 @@ form > .button-primary, .button-secondary, .button-utility, .button-primary {
   border: 1px solid $purple-600;
   margin-right: 0.6rem;
   margin-bottom: 0.4rem;
+  &:valid {
+    color: $purple-600 !important; 
+  }
 }
 
 .tag-selector:checked + label {
@@ -228,10 +233,18 @@ form > .button-primary, .button-secondary, .button-utility, .button-primary {
   margin-bottom: 0.4rem;
 }
 
+.tag-make-not-green {
+  color: $purple-600 !important; 
+  &:valid {
+    color: $purple-600 !important; 
+  }
+}
+
 .select-tag-selector:checked + label {
   background-color: $purple-600;
   color: white;
 }
+
 // Buttons
 
 .button-bottom {
