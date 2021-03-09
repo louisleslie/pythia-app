@@ -2,7 +2,9 @@
 <html>
   <head>
     <title>PythiaApp</title>
-    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%
+=begin%>
+ <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="description" content="<%= meta_description %>">
     <!-- Facebook Open Graph data -->
     <meta property="og:title" content="<%= meta_title %>" />
@@ -18,7 +20,9 @@
     <meta name="twitter:title" content="<%= meta_title %>">
     <meta name="twitter:description" content="<%= meta_description %>">
     <meta name="twitter:creator" content="<%= DEFAULT_META["twitter_account"] %>">
-    <meta name="twitter:image:src" content="<%= meta_image %>">
+    <meta name="twitter:image:src" content="<%= meta_image %>"> 
+<%
+=end%>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
