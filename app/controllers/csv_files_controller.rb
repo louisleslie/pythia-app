@@ -60,6 +60,9 @@ class CsvFilesController < ApplicationController
       Order.column_names.each { |col_name| ord_syms << col_name.to_sym }
       row.slice!(*ord_syms)
       row["csv_file_id"] = csv_file.id
+      row[:accepts_marketing] = row[:accepts_marketing] == "yes"
+      row[:lineitem_requires_shipping] = row[:lineitem_requires_shipping] == "true"
+      row[:lineitem_taxable] = row[:lineitem_taxable] == "true"
       o = Order.new(row)
       o.full_billing_address = "#{o.billing_address1} #{o.billing_address2} #{o.billing_city} #{o.billing_province_name} #{o.billing_country}"
       o.save
