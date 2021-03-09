@@ -122,7 +122,7 @@
       return accumulator;
     }, {});
 
-    const countryIsos = {826:"UK", 840:"US", 124:"Canada", 250:"France", 276:"Germany", 380:"Italy", 724:"Spain", 356:"India", 710:"South Africa"};
+    const countryIsos = {826:"UK", 840:"US", 124:"Canada", 250:"France", 276:"Germany", 380:"Italy", 724:"Spain", 356:"India", 710:"South Africa", 36:"Australia"};
     // const countryName = {};
     // tsvData.forEach(d => {
     //   countryName[d.iso_n3] = d.name;
@@ -135,7 +135,7 @@
       Object.assign(d.properties, rowById[countryIsos[d.id]]);
     });
 
-    const colorScale = d3.scaleOrdinal();
+    const colorScale = d3.scaleQuantile();
 
     // const colorValue = d => d.properties.economy;
     const colorValue = d => d.properties.subtotal;
@@ -144,9 +144,9 @@
     // Sort category entry values
     colorScale
       .domain(countries.features.map(colorValue))
-      .domain(colorScale.domain().sort().reverse())
-      // .range(d3.schemeSpectral[colorScale.domain().length]);
-      .range(["#D1D5DB", "#9CA3AF", "#6B7280", "#4B5563", "#374151", "#1F2937", "#111827"]);
+      // .domain(colorScale.domain().sort().reverse()) 
+      // .range(d3.schemeSpectral[colorScale.domain().length]); 
+      .range(["#9CA3AF", "#D1D5DB", "#6B7280", "#4B5563"]);//, "#6B7280", "#4B5563", "#374151", "#1F2937", "#111827"]);
 
       // "#F9FAFB", "#F3F4F6" , "#E5E7EB" ,
     g.selectAll('path').data(countries.features)
