@@ -6,7 +6,7 @@
 
     <div class="sidebar-files-container">
       <% current_user.csv_files.each do |csv_file| %>
-        <div class="sidebar-file-container">
+        <div class="sidebar-file-container<%= ((params[:csv_file_id] == nil && params[:id].to_i == csv_file.id) || (params[:csv_file_id].to_i == csv_file.id)) ? "-current" : "" %>">
           <div class="sidebar-file-item">
             <div class="sidebar-file-icon-container">
               <%= link_to csv_file_path(csv_file) do %>
@@ -17,11 +17,15 @@
               <%= link_to csv_file.filename, csv_file_path(csv_file), class: 'sidebar-file-name-text' %>
             </div>
             <div class="sidebar-file-dropdown-toggle-container">
-              <%= image_tag 'chevron-down.svg', class: 'sidebar-dropdown-toggle-icon'%>
+              <% if ((params[:csv_file_id] == nil && params[:id].to_i == csv_file.id) || (params[:csv_file_id].to_i == csv_file.id)) %>
+                <%= image_tag 'chevron-up.svg', class: 'sidebar-dropdown-toggle-icon'%>
+              <% else %>
+                <%= image_tag 'chevron-down.svg', class: 'sidebar-dropdown-toggle-icon'%>
+              <% end %>
             </div>
           </div>
           </div>
-          <div class="sidebar-queries-container">
+          <div class="sidebar-queries-container <%= ((params[:csv_file_id] == nil && params[:id].to_i == csv_file.id) || (params[:csv_file_id].to_i == csv_file.id)) ? "" : "hidden" %>">
           <% csv_file.queries.each do |query| %>
             <div class="sidebar-query-item">
                 <div class="sidebar-query-icon-container">
