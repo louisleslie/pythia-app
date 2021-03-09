@@ -1,0 +1,5 @@
+meta_product_name: "pythiaapp"
+meta_title: "pythia - any query ? "
+meta_description: "pythia provides result according to any query about your business"
+meta_image: "logo.svg" # should exist in `app/assets/images/`
+twitter_account: "@product_twitter_account"   # required for Twitter Cards
