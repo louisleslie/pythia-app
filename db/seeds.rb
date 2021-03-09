@@ -161,7 +161,7 @@ users.each do |user|
       shipping_country: country,
       paid_at: Faker::Date.backward(days: 14),
       fulfilled_at: Faker::Date.backward(days: 14),
-      accepts_marketing: ["yes", "no"].sample,
+      accepts_marketing: [true, false].sample,
       subtotal: subtotal,
       shipping: shipping,
       taxes: 0,
