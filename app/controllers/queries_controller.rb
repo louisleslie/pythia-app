@@ -91,14 +91,15 @@ class QueriesController < ApplicationController
       verb = filter.verb.upcase
       column = filter.column_name.split("-")[0]
       operator = convert_operator(filter.comparison_operator, column)
-      if filter.value.match(/T\d{2}:\d{2}/)
+      if filter.value.nil?
+        value = ""
+      elsif filter.value.match(/T\d{2}:\d{2}/)
         value = "'#{filter.value.split("T")[0]}'"
         column = "#{column}::date"
       elsif filter.comparison_operator == "Contains" || filter.comparison_operator == "Does Not Contain"
         value = "'%#{filter.value}%'"
       elsif filter.comparison_operator == "Starts With"
-        value = "'#{filter.value}'"
-        # column = "#{column}"
+        value = "'#{filter.value}%'"
       elsif filter.comparison_operator == "Ends With"
         value = "'%#{filter.value}'"
       elsif filter.comparison_operator == "Matches" || filter.comparison_operator == "Does Not Match"
@@ -129,8 +130,8 @@ class QueriesController < ApplicationController
       "Less Than or Equal To" => "<=",
       "Is Empty" => "IS NULL", # TODO: expand this to pick up empty strings ""
       "Is Not Empty" => "IS NOT NULL", # TODO: expand this to pick up empty strings ""
-      "Is True" => "= 'yes'", # not tested
-      "Is False" => "= 'no'", # not tested
+      "Is True" => "= 'yes' OR #{column} = 'true' OR #{column} = '1'", # not tested
+      "Is False" => "= 'no' OR #{column} = 'false' OR #{column} = '0'", # not tested
       "Contains" => "ILIKE",
       "Does Not Contain" => "NOT ILIKE",
       "Starts With" => "ILIKE",
