@@ -12,7 +12,7 @@ address_list = [
   # UK 22
   "61 Montpelier Road, Prestonville, Brighton, BN1 2PA",
   "Lockway, Drayton, Oxfordshire, OX14 4LH",
-  "Duton Hill Farm, Great Easton, Uttlesford, Essex, CM6 2DZ",
+  "Duton Hill Farm, Uttlesford, Essex, CM6 2DZ",
   "Rochfords, Woughton on the Green, Milton Keynes, MK6 5DN",
   "12 Burnland Grove, Elrick, Westhill, AB32 6AF",
   "37, Westbury Hill, Westbury on Trym, Bristol, BS9 3AG",
@@ -34,7 +34,7 @@ address_list = [
   "59 Essex Road, Canonbury, London, N1 2SF",
   # US 19
   "4202 Country Dr, Vernon, TX, 76384",
-  "423rd Avenue, Bon Homme County, South Dakota, 57059, United States"
+  "423rd Avenue, Bon Homme County, South Dakota, 57059, United States",
   "16116 33rd Ave, Flushing, NY, 11358",
   "45412 275th St, Parker, SD, 57053",
   "One Bowdoin Square, New Chardon Street, Boston, MA, 02222",
@@ -92,7 +92,14 @@ address_list = [
   "1709 Bad St, Laingsburg, Western Cape, 6901",
   "60 Plein Street, Johannesburg, Gauteng, 2000",
   "386 Johannes Ramokhoase Street, Pretoria, Gauteng, 0083",
-  "1751 Oranje St, Aliwal North, Eastern Cape, 9750"
+  "1751 Oranje St, Aliwal North, Eastern Cape, 9750",
+  # Australia 6
+  "443 Little Collins St, Melbourne, Victoria, VIC 3000",
+  "100 Franklin St, Melbourne, Victoria, VIC 3000",
+  "196 Drummond St, Carlton, Victoria, VIC 3053",
+  "26 Highvale St, Eight Mile Plains, Queensland, QLD 4113",
+  "218 Padstow Rd, Eight Mile Plains, Queensland, QLD 4113",
+  "104 Holmead Rd, Eight Mile Plains, Queensland, QLD 4113"
 ] #74 addresses
 
 
@@ -102,7 +109,7 @@ subtotals = [0.5, 0.75, 0.9, 5, 10.35, 23, 28, 13.5, 15.6, 24, 26, 38]
 users.each do |user|
   puts "Generating account and data for #{user}..."
   user_instance = User.create(email: user, password: "password", password_confirmation: "password")
-  csv_file = CsvFile.create(user_id: user_instance.id, filename: "Shoppify Orders")
+  csv_file = CsvFile.create(user_id: user_instance.id, filename: "Shopify Orders")
 
   lineitemsku = ["Shoes White", "Shoes Black", "Shirt Blue", "Jumper Grey", "Tshirt Red", "Tshirt Mint", "Jacket Black"]
   vendors = ["DR MARTENS", "VANS", "PALLADIUM" ,"NIKE", "CONVERSE", "ADIDAS", "RAYBAN", "FRUIT OF THE LOOM", "SUPERDRY"]
@@ -110,7 +117,7 @@ users.each do |user|
   orderid = ["3650854682786", "3650854322338", "3650854322332", "3650854322331", "3650854322335"]
 
   address_list.each_with_index do |full_address, index|
-    split_address = full_address.split(",")
+    split_address = full_address.split(", ")
     line_one = split_address[0]
     province = split_address[1]
     city = split_address[2]
@@ -129,6 +136,7 @@ users.each do |user|
     when 65..67 then country = "Spain"
     when 68..69 then country = "India"
     when 70..73 then country = "South Africa"
+    when 74..79 then county = "Australia"
     else
       country = "UK"
     end
@@ -139,10 +147,10 @@ users.each do |user|
       name: name,
       email: Faker::Internet.email,
       financial_status: financial_status[rand(0..2)],
-      fulfillment_status: "",
+      fulfillment_status: ["filled", "unfulfilled"].sample,
       currency: "GBP",
       cancelled_at:  "",
-      tags: "egnition-sample-data",
+      tags: "clothing",
       shipping_company: ["Royal Mail", "Hermes", "DPD", "Yodel"].sample,
       shipping_name: shippingname[rand(0..3)],
       shipping_address1: line_one,
@@ -153,13 +161,13 @@ users.each do |user|
       shipping_country: country,
       paid_at: Faker::Date.backward(days: 14),
       fulfilled_at: Faker::Date.backward(days: 14),
-      accepts_marketing: true,
+      accepts_marketing: ["yes", "no"].sample,
       subtotal: subtotal,
       shipping: shipping,
       taxes: 0,
-      total: subtotal, # TODO: Add + shipping here (removed it while testing so i knew what values to expect)
+      total: subtotal + shipping,
       shipping_method: "Standard Shipping Method",
-      order_created_at:Faker::Date.backward(days: rand(1..14)),
+      order_created_at: Faker::Date.backward(days: rand(1..14)),
       billing_street: line_one,
       shipping_street: line_one,
       payment_method: "card",
@@ -177,22 +185,22 @@ users.each do |user|
       lineitem_quantity: 1,
       lineitem_price: 0.1,
       lineitem_sku: lineitemsku[rand(0..5)],
-      lineitem_requires_shipping: true,
+      lineitem_requires_shipping: [true, false].sample,
       billing_address1: line_one,
       billing_address2: "",
       billing_city: city,
-      lineitem_taxable: true,
-      lineitem_fulfillment_status: "pending",
+      lineitem_taxable: [true, false].sample,
+      lineitem_fulfillment_status: ["complete", "pending"].sample,
       lineitem_compare_at_price: 0,
       billing_name: name,
-      billing_company: vendors[rand(0..4)],
+      billing_company: vendors.sample,
       billing_zip: zip,
       billing_province: province,
       billing_country: country,
-      lineitem_name: vendors[rand(0..4)]
+      lineitem_name: vendors.sample
     )
 
-    order.full_billing_address = full_address
+    # order.full_billing_address = full_address
     order.save
   end
 end
@@ -302,13 +310,16 @@ puts "Creating test queries..."
   # ----------
 
   # Bool: is true
-  # query = Query.new(query_name: "Bool is true", fields: "[\"name\", \"accepts_marketing\"]")
-  # query.csv_file_id = csv_id
-  # query.save
-  # Filter.create(verb: "Where", comparison_operator: "Is True", column_name: "accepts_marketing", value: "", query_id: query.id)
+  query = Query.new(query_name: "Bool is true", fields: "[\"name\", \"accepts_marketing\"]")
+  query.csv_file_id = csv_id
+  query.save
+  Filter.create(verb: "Where", comparison_operator: "Is True", column_name: "accepts_marketing", value: "", query_id: query.id)
 
   # Bool: is false
-
+  query = Query.new(query_name: "Bool is false", fields: "[\"name\", \"accepts_marketing\"]")
+  query.csv_file_id = csv_id
+  query.save
+  Filter.create(verb: "Where", comparison_operator: "Is False", column_name: "accepts_marketing", value: "", query_id: query.id)
 
 
   # DateTime tests
