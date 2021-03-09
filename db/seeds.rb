@@ -10,18 +10,18 @@ users = ['alex.terenda@gmail.com', 'jake.howlett@gmail.com', 'louis.leslie@gmail
 
 address_list = [
   # UK 22
-  "4-6 Abingdon Road, Poole, Dorset, BH17 0UG",
-  "Campus Manor Childwall Abbey Rd, Merseyside, Liverpool, L16 0JP",
-  "18 Ridgeway Close, Lightwater, Surrey, GU18 5XU",
-  "Oxney Rd, Peterborough, Cambridgeshire PE1 5YN",
+  "61 Montpelier Road, Prestonville, Brighton, BN1 2PA",
+  "Lockway, Drayton, Oxfordshire, OX14 4LH",
+  "Duton Hill Farm, Great Easton, Uttlesford, Essex, CM6 2DZ",
+  "Rochfords, Woughton on the Green, Milton Keynes, MK6 5DN",
   "12 Burnland Grove, Elrick, Westhill, AB32 6AF",
-  "Glenthorne Villas Brownedge Lane, Bamber Bridge, Preston, PR5 6TB",
+  "37, Westbury Hill, Westbury on Trym, Bristol, BS9 3AG",
   "23 College Way, Nottingham, Nottinghamshire NG8 4JH",
-  "Clough Mill Grove St, Longwood, Huddersfield, HD3 4TH",
-  "5 Marine Parade, Instow, Bideford, EX39 4HY",
-  "14 Burntwood Town Shopping Centre Cannock Rd, Burntwood, Staffordshire, WS7",
-  "848 Stanley Road, Bounds Green, London SW74 8GL",
-  "38 Bowmont Court, Heiton, Kelso, TD5 8JY",
+  "10 Scotland Street, New Town, Edinburgh, EH3 6PY",
+  "4 Nicholson Road, Wadham Park, Oxford, Oxfordshire, OX3 0HW",
+  "44 Belvoir Street, Heigham Grove, Norwich, Norfolk, NR2 3AY",
+  "66 St Vincent Lane, Blythswood Hill, Glasgow, G2 6DH",
+  "2 Blenheim Street, Vauxhall, Liverpool, L5 8SL",
   "83 Upper St, Islington, London, N1 0NU",
   "60 Cross Street, Islington, London, N1 2BA",
   "14 Dagmar Passage, Islington, London, N1 2DN",
@@ -34,63 +34,64 @@ address_list = [
   "59 Essex Road, Canonbury, London, N1 2SF",
   # US 19
   "4202 Country Dr, Vernon, TX, 76384",
+  "423rd Avenue, Bon Homme County, South Dakota, 57059, United States"
   "16116 33rd Ave, Flushing, NY, 11358",
   "45412 275th St, Parker, SD, 57053",
-  "172 Enchanted Oak Ct, Robertsville, MO, 63072",
+  "One Bowdoin Square, New Chardon Street, Boston, MA, 02222",
   "650 W Union St, Benson, AZ, 85602",
   "1201 Willow St, Norristown, PA, 19401",
-  "24 W Academy St, Mc Graw, NY, 13101",
+  "85 Franklin Street, Tribeca, Manhattan, NY, 10013,",
   "58 Husted Ln, Greenwich, CT, 06830",
   "1222 June Way, Pasadena, MD, 21122",
   "352 Palmer Road, Ware, MA, 1082",
-  "13858 Rt 31 W, Albion, NY, 14411",
+  "1144 Sherman Street, Capitol Hill, Denver, CO, 80203",
   "30 Catskill, Catskill, NY, 12414",
   "85 Crooked Hill Road, Commack, NY, 11725",
   "279 Troy Road, East Greenbush, NY, 12061",
   "2400 Route 9, Fishkill, NY, 12524",
-  "990 Route 5 20, Geneva, NY, 14456",
+  "1056 10th Street, West Oakland, Oakland, CA, 94607",
   "656 New Haven Ave, Derby, CT, 6418",
   "495 Flatbush Ave, Hartford, CT, 6106",
   "164 Danbury Rd, New Milford, CT, 6776",
   # Canada 10
-  "4526 Av Harvard, Montréal, QC, H4A 2X2",
-  "298 Axminster Dr, Richmond Hill, ON, L4C 2W1",
-  "220 Newfoundland Dr, St. John's, NL, A1A 3R5",
-  "48 Regent St, Guelph, ON, N1E 4W4",
-  "41371 Kingswood Rd, Brackendale, BC, V0N",
-  "4335 Rue Broadway, Lachine, QC, H8T 1V1",
-  "4233 Sutherland Cres, Burlington, ON, L7L 5G3",
-  "455 Isabella, St Pembroke, ON, K8A 5T6",
-  "34 Hallmark Pl SW, Calgary, AB, T2V 3L1",
-  "44 Clyde, Hastings, ON, K0L 1Y0",
+  "4526 Av Harvard, Montreal, QC, H4A 2X2",
+  "3642 Henri Julien Ave, Montreal, QC H2X 3H5",# might worky?
+  "225 St. Patrick St, Ottawa, ON K1N 5K2",# might worky?
+  "Haro Crest Suites, 1246 Haro St, Vancouver, BC V6E 1E7",# might worky?
+  "208 W 1st St, North Vancouver, BC V7M 1C9",# might worky?
+  "607 10 Ave SW, Calgary, AB T2R 0B2",# might worky?
+  "317 St Johns Rd, Toronto, ON M6S 2K3",# might worky?
+  "118 Budea Crescent, Scarborough, ON M1R 4W1",# might worky?
+  "71 Seaton St, Toronto, ON M5A 2T2",# might worky?
+  "526 Markham St, Toronto, ON M6G 2L5",# might worky?
   # France 5
   "75 rue du Faubourg National, Thionville,  Lorraine, 57100",
-  "89 Avenue De Marlioz, Argenteuil, Île-de-France, 95100",
-  "62 Rue de Verdun, MontÉlimar, Rhône-Alpes, 26200",
-  "30 Place de la Madeleine, Paris, Île-de-France, 75008",
-  "89 Quai des Belges, Maubeuge, Nord-Pas-de-Calais, 59600",
+  "50 Boulevard de Port-Royal, Paris, 75005", # might worky?
+  "12-24 Rue Kageneck, Strasbourg, 67000", # might worky?
+  "30 Place de la Madeleine, Paris, Île-de-France, 75008", 
+  "223 Rue Léon Blum, Montpellier, 34000", # might worky?
   # Germany 4
   "Leipziger Strasse 20, Osnabrück, Niedersachsen, 49090",
-  "Nuernbergerstrasse 69, Altenkrempe, Schleswig-Holstein, 23730",
-  "Gruenauer Strasse 39, Himmelpforten, Niedersachsen, 21709",
-  "Messedamm 7, Dresden, Freistaat Sachsen, 01002",
+  "Klosterstrasse 47, Berlin, 10179", # might worky?
+  "Sternengasse 11, Cologne, 50676", # might worky?
+  "Hofkamp 161-133, Wuppertal, 42103", # might worky?
   # Italy 5
-  "Via Alessandro Farnese 50, Fie Allo Sciliar, Bolzano, 39050",
-  "Via Torino 63, Caminata, Piacenza, 29010",
-  "Via Pasquale Scura 10, Pomarico, Matera, 75016",
-  "Via Castelfidardo 49, Laurignano, Cosenza, 87040",
-  "Via Melisurgo 125, Querceta, Lucca, 55046",
+  "Ramo Cardellina, Cannaregio, Venezia-Murano-Burano, Venice, 30170",
+  "6 Via San Giovanni sul Muro, Duomo, Milan, 20121", 
+  "Vicolo di San Trifone, Rione V Ponte, Rome, 00186",
+  "75 Borgo Pinti, Quartiere 1, Florence, 50121",
+  "Palazzo Sassetti, Via degli Anselmi, Florence, 50123",
   # Spain 3
-  "Crta. Cádiz-Málaga 58, Ribesalbes, Castellón, 12210",
-  "Herrería 51, Cogollos De La Vega, Granada, 18197",
-  "C/ Los Herrán 5, San Vicente De Alcántara, Badajoz, 06500",
+  "19 Calle de Prim, Justicia, Centro, Madrid, 28004",
+  "11 Carrer de Jaume Giralt, Sant Pere, Barcelona, 08003",
+  "108 Avinguda del Paral·lel, Sant Antoni, Barcelona, 08015",
   # India 2
   "1520 Kashmere Gate, Delhi, Delhi, 110006",
   "B 805 Avantika Rohini, Delhi, Delhi, 110085",
   # South Africa 4
   "1709 Bad St, Laingsburg, Western Cape, 6901",
-  "25 Wattle St, Molteno, Eastern Cape, 5500",
-  "2399 Rus St, Paarl, Western Cape, 7624",
+  "60 Plein Street, Johannesburg, Gauteng, 2000",
+  "386 Johannes Ramokhoase Street, Pretoria, Gauteng, 0083",
   "1751 Oranje St, Aliwal North, Eastern Cape, 9750"
 ] #74 addresses
 
@@ -131,7 +132,7 @@ users.each do |user|
     end
     
     
-    order = Order.create(
+    order = Order.new(
       csv_file_id: csv_file.id,
       name: name,
       email: Faker::Internet.email,
@@ -183,11 +184,13 @@ users.each do |user|
       lineitem_compare_at_price: 0,
       billing_name: name,
       billing_company: vendors[rand(0..4)],
-      billing_zip: Faker::Address.zip,
+      billing_zip: zip,
       billing_province: province,
       billing_country: country,
       lineitem_name: vendors[rand(0..4)]
     )
+    order.full_billing_address = full_address
+    order.save
   end
 end
 
