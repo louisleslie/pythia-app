@@ -131,8 +131,8 @@ class QueriesController < ApplicationController
       "Less Than or Equal To" => "<=",
       "Is Empty" => "IS NULL", # TODO: expand this to pick up empty strings ""
       "Is Not Empty" => "IS NOT NULL", # TODO: expand this to pick up empty strings ""
-      "Is True" => "= 'yes' OR #{column} = 'true' OR #{column} = '1'", # not tested
-      "Is False" => "= 'no' OR #{column} = 'false' OR #{column} = '0'", # not tested
+      "Is True" => "= 'true'",
+      "Is False" => "= 'false'",
       "Contains" => "ILIKE",
       "Does Not Contain" => "NOT ILIKE",
       "Starts With" => "ILIKE",

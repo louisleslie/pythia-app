@@ -168,15 +168,17 @@ input, select, option {
     margin-top: auto;
     margin-bottom: auto;
   }
-  
+
   > label {
     color: $white;
   }
 }
 
-form > .button-primary, .button-secondary, .button-utility, .button-primary {
+form > .button-primary .button-secondary .button-utility .button-primary {
   margin-bottom: 1rem;
 }
+
+// tag-item to overlay select checkbox and label
 
 .tag-item {
   display: inline-block;
@@ -198,6 +200,9 @@ form > .button-primary, .button-secondary, .button-utility, .button-primary {
   border: 1px solid $purple-600;
   margin-right: 0.6rem;
   margin-bottom: 0.4rem;
+  &:valid {
+    color: $purple-600 !important; 
+  }
 }
 
 .tag-selector:checked + label {
@@ -228,10 +233,18 @@ form > .button-primary, .button-secondary, .button-utility, .button-primary {
   margin-bottom: 0.4rem;
 }
 
+.tag-make-not-green {
+  color: $purple-600 !important; 
+  &:valid {
+    color: $purple-600 !important; 
+  }
+}
+
 .select-tag-selector:checked + label {
   background-color: $purple-600;
   color: white;
 }
+
 // Buttons
 
 .button-bottom {
@@ -281,6 +294,29 @@ form > .button-primary, .button-secondary, .button-utility, .button-primary {
     background-color: $purple-50;
     border: 2px solid $purple-700;
     color: $purple-700;
+  }
+}
+
+.button-tertiary {
+  display: infline-flex;
+  align-items: center;
+  padding: 0.5rem 1rem;
+  border-width: 1px;
+  border-color: transparent;
+  @include text-sm;
+  font-weight: 500;
+  color: $white;
+  background-color: transparent;
+  border: 2px solid $white;
+  border-radius: 0.375rem;
+  box-shadow: $shadow-sm;
+  transition: $transition;
+
+  &:hover {
+    transform: scale(1.05);
+    background-color: rgba(255,255,255,0.1);
+    border: 2px solid $white;
+    color: $white;
   }
 }
 

@@ -57,7 +57,7 @@ const insertRemoveFilter = (Fieldset, newId) => {
     parent.replaceChild(wrapper, Fieldset);
     // set element as child of wrapper
     wrapper.appendChild(Fieldset);
-    Fieldset.insertAdjacentHTML('afterend', `<button class="filter-btn button-secondary" style="align-self: flex-end; white-space: nowrap;" id="remove-filter-0">Delete filter</button>`);
+    Fieldset.insertAdjacentHTML('afterend', `<button class="filter-btn button-secondary button-bottom" style="align-self: flex-end; white-space: nowrap;" id="remove-filter-0">Delete filter</button>`);
   } else {
     var parent = Fieldset.parentNode;
     var wrapper = document.createElement('div');
@@ -66,7 +66,7 @@ const insertRemoveFilter = (Fieldset, newId) => {
     parent.replaceChild(wrapper, Fieldset);
     // set element as child of wrapper
     wrapper.appendChild(Fieldset);
-    Fieldset.insertAdjacentHTML('afterend', `<button class="filter-btn button-secondary" style="align-self: flex-end; white-space: nowrap;" id="remove-filter-${newId}">Delete filter</button>`);
+    Fieldset.insertAdjacentHTML('afterend', `<button class="filter-btn button-secondary button-bottom" style="align-self: flex-end; white-space: nowrap;" id="remove-filter-${newId}">Delete filter</button>`);
   }
     console.log(Fieldset.nextElementSibling);
   Fieldset.nextElementSibling.addEventListener("click", (event) => {

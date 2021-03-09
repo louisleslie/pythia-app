@@ -5,14 +5,15 @@
     <div onclick="toggle(this);" class="select-tag-item"><input type="checkbox" class="select-tag-selector"/><label>Select all</label><br /></div>
     <%= f.input :fields, collection: @order_data_types.keys, input_html: { multiple: true }, as: :check_boxes, input_html: { class: "tag-selector" }, item_wrapper_class: 'tag-item' %>
     <%= render :partial => "/filters/filter_form", locals: { :f => f, :query => @query, :filter_comparisons => @filter_comparisons, :order_data_types => @order_data_types } %>
-    <%= f.submit class: "button-primary" %>
+    <%= f.submit class: "button-primary button-bottom" %>
   <% end %>
 <% elsif controller_name == 'queries' && action_name == 'edit' %>
   <%= simple_form_for @query, url: csv_file_query_path do |f| %>
     <%= f.input :query_name %>
-    <%= f.input :fields, collection: @order_data_types.keys, input_html: { multiple: true }, checked: @checked_fields, as: :check_boxes %>
+    <div onclick="toggle(this);" class="select-tag-item"><input type="checkbox" class="select-tag-selector"/><label>Select all</label><br /></div>
+    <%= f.input :fields, collection: @order_data_types.keys, input_html: { multiple: true }, checked: @checked_fields, as: :check_boxes, input_html: { class: "tag-selector" }, item_wrapper_class: 'tag-item tag-make-not-green', id: "make-not-green"  %>
     <%= render :partial => "/filters/filter_form", locals: { :f => f, :query => @query, :filter_comparisons => @filter_comparisons, :order_data_types => @order_data_types } %>
-    <%= f.submit class: "button-primary" %>
+    <%= f.submit class: "button-primary button-bottom" %>
   <% end %>
 <% end %>
 

@@ -58,7 +58,9 @@
           </li>
         </ul>
         <div class="tab-content show-page-views-tab-content-container" id="myChartTabContent">
-        
+          <% content_for :chartkick do %>
+            <%= javascript_pack_tag 'chartkick' %>
+          <% end %>
           <div class="tab-pane active show show-page-views-tab-pane" id="line-chart" role="tabpanel" aria-labelledby="line-chart-tab">
             <h4>introduction</h4>
             <%= line_chart chart.group_by_day(:order_created_at).count, xtitle: "Time", ytitle: "Number of Order", colors: ["#b00", "#666"], stacked: true , discrete: true, legend: false%>
@@ -135,14 +137,13 @@
     d3.json('https://unpkg.com/world-atlas@1.1.4/world/50m.json')
   ]).then(([tsvData, topoJSONdata]) => {
     console.log(tsvData); //checking it has been parsed correctly
-
     const rowById = tsvData.reduce((accumulator, d) => {
       //accumulator[d.iso_n3] = d; // Alex's original code
       accumulator[d.billing_country] = d;
       return accumulator;
     }, {});
 
-    const countryIsos = {826:"UK", 840:"US", 124:"Canada", 250:"France", 276:"Germany", 380:"Italy", 724:"Spain", 356:"India", 710:"South Africa"};
+    const countryIsos = {826:"UK", 840:"US", 124:"Canada", 250:"France", 276:"Germany", 380:"Italy", 724:"Spain", 356:"India", 710:"South Africa", 36:"Australia"};
     // const countryName = {};
     // tsvData.forEach(d => {
     //   countryName[d.iso_n3] = d.name;
@@ -155,7 +156,7 @@
       Object.assign(d.properties, rowById[countryIsos[d.id]]);
     });
 
-    const colorScale = d3.scaleOrdinal();
+    const colorScale = d3.scaleQuantile();
 
     // const colorValue = d => d.properties.economy;
     const colorValue = d => d.properties.subtotal;
@@ -164,9 +165,9 @@
     // Sort category entry values
     colorScale
       .domain(countries.features.map(colorValue))
-      .domain(colorScale.domain().sort().reverse())
-      // .range(d3.schemeSpectral[colorScale.domain().length]);
-      .range(["#D1D5DB", "#9CA3AF", "#6B7280", "#4B5563", "#374151", "#1F2937", "#111827"]);
+      // .domain(colorScale.domain().sort().reverse()) 
+      // .range(d3.schemeSpectral[colorScale.domain().length]); 
+      .range(["#6EE7B7", "#10B981", "#16A34A", "#047857"]); //["#9CA3AF", "#D1D5DB", "#6B7280", "#4B5563"]);//, "#6B7280", "#4B5563", "#374151", "#1F2937", "#111827"]);
 
       // "#F9FAFB", "#F3F4F6" , "#E5E7EB" ,
     g.selectAll('path').data(countries.features)
