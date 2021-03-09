@@ -94,6 +94,15 @@ class QueriesController < ApplicationController
       if filter.value.match(/T\d{2}:\d{2}/)
         value = "'#{filter.value.split("T")[0]}'"
         column = "#{column}::date"
+      elsif filter.comparison_operator == "Contains" || filter.comparison_operator == "Does Not Contain"
+        value = "'%#{filter.value}%'"
+      elsif filter.comparison_operator == "Starts With"
+        value = "'#{filter.value}'"
+        # column = "#{column}"
+      elsif filter.comparison_operator == "Ends With"
+        value = "'%#{filter.value}'"
+      elsif filter.comparison_operator == "Matches" || filter.comparison_operator == "Does Not Match"
+        value = "'#{filter.value}'"
       else
         value = filter.value
       end
@@ -104,7 +113,7 @@ class QueriesController < ApplicationController
       end
     end
 
-    # currently this only handles WHERE verbs I havent added the logic for group by yet
+    # TODO: Currently this only handles WHERE verbs I havent added the logic for group by yet
     generated_query = converted_query_filters.join.gsub("WHERE", "AND")
 
     return [base_query, file_query, generated_query]
@@ -118,17 +127,19 @@ class QueriesController < ApplicationController
       "Less Than" => "<",
       "Greater Than or Equal To" => ">=",
       "Less Than or Equal To" => "<=",
-      "Is Empty" => "IS NULL", # TODO: expand this to pick up empty strings
-      "Is Not Empty" => "IS NOT NULL", # TODO: expand this to pick up empty strings
-      "Is True" => "= 'yes'", # TODO: not sure if true and no need to be in quotation marks # not tested #needs to be change as value can be true or false (tick box)
-      "Is False" => "= 'no'", # TODO: same as above # not tested #needs to be changed as value can be true or false
-      "Contains" => "ILIKE", # TODO: this should match substrings (currently only matches exact values) # not tested
-      "Does Not Contain" => "NOT ILIKE", # TODO: this should match substrings (currently only matches exact values) # not tested
-      "Starts With" => "ILIKE", # TODO: should match substrings only at the start of the field # # not tested
-      "Ends With" => "ILIKE", # TODO: should match substrings only at the end of the field # not tested
+      "Is Empty" => "IS NULL", # TODO: expand this to pick up empty strings ""
+      "Is Not Empty" => "IS NOT NULL", # TODO: expand this to pick up empty strings ""
+      "Is True" => "= 'yes'", # not tested
+      "Is False" => "= 'no'", # not tested
+      "Contains" => "ILIKE",
+      "Does Not Contain" => "NOT ILIKE",
+      "Starts With" => "ILIKE",
+      "Ends With" => "ILIKE",
       "Before" => "<",
       "After" => ">",
-      "On" => "="
+      "On" => "=",
+      "Matches" => "ILIKE",
+      "Does Not Match" => "NOT ILIKE"
     }
     comparison_conversion[text_operator]
   end
