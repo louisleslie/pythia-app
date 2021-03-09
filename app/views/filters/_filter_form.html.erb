@@ -4,7 +4,7 @@
     <fieldset id="0" class="d-flex w-75 justify-content-between mr-3">
       <%= filter_f.input :verb, collection: ['Where'], default: "Where" %>
       <%= filter_f.input :column_name, collection: order_data_types  %>
-      <%= filter_f.input :comparison_operator, collection: [filter_comparisons] %>
+      <%= filter_f.input :comparison_operator, collection: [filter_comparisons], selected: filter_f.object.comparison_operator %>
       <%= filter_f.input :value %>
     </fieldset>
   </div>
