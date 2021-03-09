@@ -30,7 +30,7 @@
     </div>
   </div>
 
-  <div class="home-page-demo-section-container">
+  <div class="home-page-demo-section-container section-fade-in">
     <div class="home-page-demo-section-supertext-container">
       <h2 class="home-page-demo-section-supertext">Demo</h2>
     </div>
@@ -44,7 +44,7 @@
     </div>
   </div>
 
-  <div class="home-page-features-section-container">
+  <div class="home-page-features-section-container section-fade-in">
     <div class="home-page-feature-section-container">
       <div class="home-page-feature-section-content-container">
         <h2 class="home-page-feature-section-supertext">Lorem ipsum</h2>
@@ -64,7 +64,7 @@
     </div>
 
 
-    <div class="home-page-feature-section-container-alt">
+    <div class="home-page-feature-section-container-alt section-fade-in">
       <div class="home-page-feature-section-content-container-alt">
         <h2 class="home-page-feature-section-supertext">Dolor sit amet</h2>
         <p class="home-page-feature-section-header">So many features</p>
@@ -83,7 +83,7 @@
     </div>
 
 
-    <div class="home-page-feature-section-container">
+    <div class="home-page-feature-section-container section-fade-in">
       <div class="home-page-feature-section-content-container">
         <h2 class="home-page-feature-section-supertext">Lorem ipsum</h2>
         <p class="home-page-feature-section-header">Yet more features</p>
@@ -104,7 +104,7 @@
 
 
 
-  <div class="home-page-testimonial-section-container">
+  <div class="home-page-testimonial-section-container section-fade-in">
     <div class="home-page-testimonial-section-grid">
       <div class="home-page-testimonial-section-image-contents-container">
 
@@ -138,11 +138,32 @@
 
     </div>
   </div>
-        <div class="home-page-footer-section-container">
+        <div class="home-page-footer-section-container section-fade-in">
         <p class="home-page-footer-paragraph">Made with ❤️ and 🌧️ in London</p>
       </div>
+
 </main>
 
+<script>
+
+  let elementsArray = document.querySelectorAll(".section-fade-in");
+  console.log(elementsArray);
+  window.addEventListener('scroll', fadeIn );
+  function fadeIn() {
+    for (var i = 0; i < elementsArray.length; i++) {
+        var elem = elementsArray[i]
+        var distInView = elem.getBoundingClientRect().top - window.innerHeight + 20;
+        if (distInView < 0) {
+            elem.classList.add("inView");
+        } else {
+            elem.classList.remove("inView");
+        }
+    }
+  }
+fadeIn();
+
+
+</script>
 
 
 

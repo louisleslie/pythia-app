@@ -619,3 +619,24 @@
     font-size:24px;
   }
 }
+
+
+
+
+
+
+// Fades
+
+.section-fade-in {
+  opacity: 0.0;
+  transition: opacity 1.5s;
+  transform: translateY(150px) rotate(0deg) translateZ(0);
+  transition-delay: .3s;
+  transition: 1.5s;
+}
+
+.inView {
+    opacity: 1;
+    -webkit-transform: translateY(0px) rotate(0deg) translateZ(0);
+    transform: translateY(0px) rotate(0deg) translateZ(0);
+}
