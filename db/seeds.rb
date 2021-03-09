@@ -103,8 +103,8 @@ users.each do |user|
   user_instance = User.create(email: user, password: "password", password_confirmation: "password")
   csv_file = CsvFile.create(user_id: user_instance.id, filename: "Shoppify Orders")
 
-  lineitemsku = ["VN-03-white-8","VN-09-beige-7", "VN-08-white-6", "C-03-black-8", "DM-02-black-9", "DM-03-red-12"]
-  vendors = ["DR MARTENS","VANS","PALLADIUM","NIKE","CONVERSE"]
+  lineitemsku = ["Shoes White", "Shoes Black", "Shirt Blue", "Jumper Grey", "Tshirt Red", "Tshirt Mint", "Jacket Black"]
+  vendors = ["DR MARTENS", "VANS", "PALLADIUM" ,"NIKE", "CONVERSE", "ADIDAS", "RAYBAN", "FRUIT OF THE LOOM", "SUPERDRY"]
   shippingname = ["Gabriel Campbell","Colt Patton", "Reed Valencia", "Howard Hahn"]
   orderid = ["3650854682786", "3650854322338", "3650854322332", "3650854322331", "3650854322335"]
 
@@ -157,7 +157,7 @@ users.each do |user|
       subtotal: subtotal,
       shipping: shipping,
       taxes: 0,
-      total: subtotal,
+      total: subtotal, # TODO: Add + shipping here (removed it while testing so i knew what values to expect)
       shipping_method: "Standard Shipping Method",
       order_created_at:Faker::Date.backward(days: rand(1..14)),
       billing_street: line_one,
@@ -257,6 +257,45 @@ puts "Creating test queries..."
   query.save
   Filter.create(verb: "Where", comparison_operator: "Greater Than", column_name: "total", value: 10, query_id: query.id)
   Filter.create(verb: "Where", comparison_operator: "Less Than", column_name: "total", value: 25, query_id: query.id)
+
+  # String tests
+  # ----------
+
+  # Exact match
+  query = Query.new(query_name: "String matches", fields: "[\"name\", \"billing_city\"]")
+  query.csv_file_id = csv_id
+  query.save
+  Filter.create(verb: "Where", comparison_operator: "Matches", column_name: "billing_city", value: "London", query_id: query.id)
+
+  # Does not match
+  query = Query.new(query_name: "String does not match", fields: "[\"name\", \"billing_city\"]")
+  query.csv_file_id = csv_id
+  query.save
+  Filter.create(verb: "Where", comparison_operator: "Does Not Match", column_name: "billing_city", value: "London", query_id: query.id)
+
+  # Contains
+  query = Query.new(query_name: "String contains", fields: "[\"name\", \"billing_city\"]")
+  query.csv_file_id = csv_id
+  query.save
+  Filter.create(verb: "Where", comparison_operator: "Contains", column_name: "billing_city", value: "Lon", query_id: query.id)
+
+  # Does not contain
+  query = Query.new(query_name: "String does not contain", fields: "[\"name\", \"billing_city\"]")
+  query.csv_file_id = csv_id
+  query.save
+  Filter.create(verb: "Where", comparison_operator: "Does Not Contain", column_name: "billing_city", value: "Lon", query_id: query.id)
+
+  # Starts with
+  query = Query.new(query_name: "String starts with", fields: "[\"name\", \"billing_city\"]")
+  query.csv_file_id = csv_id
+  query.save
+  Filter.create(verb: "Where", comparison_operator: "Starts With", column_name: "billing_city", value: "Lon", query_id: query.id)
+
+  # Ends with
+  query = Query.new(query_name: "String ends with", fields: "[\"name\", \"billing_city\"]")
+  query.csv_file_id = csv_id
+  query.save
+  Filter.create(verb: "Where", comparison_operator: "Ends With", column_name: "billing_city", value: "on", query_id: query.id)
 
   # Boolean tests
   # ----------
