@@ -4,7 +4,7 @@
 
 
 
-  <div class="upload-form-loading-modal-container">
+  <div class="upload-form-loading-modal-container visibility-hidden">
     <div class="upload-form-loading-modal-contents-container">
       <div class="upload-form-loading-animation-svg-container">
         <svg class="spinner" width="65px" height="65px" viewBox="0 0 66 66" xmlns="http://www.w3.org/2000/svg">
@@ -48,11 +48,12 @@
 
 
 
- <script>
+<script>
   const visibleButton = document.getElementById("upload-button-visible");
   const hiddenButton = document.getElementById("upload-button-hidden");
   const dropzone = document.getElementById("upload-form-feedback");
   const saveButton = document.getElementById("upload-form-save-button");
+  const loadingModal = document.querySelector(".upload-form-loading-modal-container");
 
   const handleClick = () => {
     hiddenButton.click();
@@ -73,6 +74,15 @@
 
     (hiddenButton.value != "") ? console.log("I have a file!") : console.log("I have no file!");
   });
+
+  saveButton.addEventListener("click", (event) => {
+    console.log("I have been clicked!");
+    renderModal();
+  });
+
+  const renderModal = () => {
+    loadingModal.classList.remove("visibility-hidden");
+  }
 
 </script>
 
