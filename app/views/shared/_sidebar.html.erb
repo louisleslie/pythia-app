@@ -1,48 +1,56 @@
 <div class="sidebar-container">
   <div class="sidebar-content-container">
-    <div class="sidebar-wordmark-container display-none">
+  <!-- Remove wordmark container, navbar fulfills this purpose -->
+<!--     <div class="sidebar-wordmark-container display-none">
       <img src="" alt="" class="sidebar-wordmark-image">
     </div>
-
+ -->
     <div class="sidebar-files-container">
-      <% current_user.csv_files.each do |csv_file| %>
-        <div class="sidebar-file-container">
-          <div class="sidebar-file-item">
-            <div class="sidebar-file-icon-container">
-              <%= link_to csv_file_path(csv_file) do %>
-                <%= image_tag 'database.svg', class: 'sidebar-file-icon'%>
-              <% end %>
+      <% current_user.csv_files.each_with_index do |csv_file, index| %>
+      <!-- If current file id is the same as params use sidebar-file-container-current class on div instead, may need to add different classes to child elements too but not sure yet, depends on svgs -->
+          <div class="sidebar-file-container">
+            <div class="sidebar-file-item">
+              <div class="sidebar-file-icon-container">
+                <%= link_to csv_file_path(csv_file) do %>
+                  <%= image_tag 'database.svg', class: 'sidebar-file-icon'%>
+                <% end %>
+              </div>
+              <div class="sidebar-file-name">
+                <%= link_to csv_file.filename, csv_file_path(csv_file), class: 'sidebar-file-name-text' %>
+              </div>
+              <!-- Flip chevron icon on click event to reveal queries container, may use a class, transform rotate or change the icon to chevron-up on click to implement-->
+              <div class="sidebar-file-dropdown-toggle-container">
+                <%= image_tag 'chevron-down.svg', class: 'sidebar-dropdown-toggle-icon'%>
+              </div>
             </div>
-            <div class="sidebar-file-name">
-              <%= link_to csv_file.filename, csv_file_path(csv_file), class: 'sidebar-file-name-text' %>
             </div>
-            <div class="sidebar-file-dropdown-toggle-container">
-              <%= image_tag 'chevron-down.svg', class: 'sidebar-dropdown-toggle-icon'%>
-            </div>
-          </div>
-          </div>
-          <div class="sidebar-queries-container">
-          <% csv_file.queries.each do |query| %>
-            <div class="sidebar-query-item">
-                <div class="sidebar-query-icon-container">
-                  <%= link_to csv_file_query_path(csv_file, query) do %>
-                    <%= image_tag 'sparkles.svg', class: 'sidebar-query-icon'%>
-                  <% end %>
+            <!-- display none or height zero unless event on chevron icon reveals it, it won't have the current class if it's not the current file and will be in the same colour container as the rest of the sidebar -->
+            <!-- Only the current file and its queries shoudl be in the dark container, shown by sidebar-file-container-current -->
+              <div class="sidebar-queries-container">
+              <% csv_file.queries.each do |query| %>
+                <div class="sidebar-query-item">
+                    <div class="sidebar-query-icon-container">
+                      <%= link_to csv_file_query_path(csv_file, query) do %>
+                        <%= image_tag 'sparkles.svg', class: 'sidebar-query-icon'%>
+                      <% end %>
+                    </div>
+                    <div class="sidebar-query-name">
+                    <%= link_to query.query_name, csv_file_query_path(csv_file, query), class: 'sidebar-query-name-text' %>
+                    </div>
+                    <div class="sidebar-query-edit-icon-container">
+                      <%= link_to edit_csv_file_query_path(csv_file, query) do %>
+                        <%= image_tag 'pencil.svg', class: 'sidebar-query-edit-icon'%>
+                      <% end %>
+                    </div>
                 </div>
-                <div class="sidebar-query-name">
-                <%= link_to query.query_name, csv_file_query_path(csv_file, query), class: 'sidebar-query-name-text' %>
-                </div>
-                <div class="sidebar-query-edit-icon-container">
-                  <%= link_to edit_csv_file_query_path(csv_file, query) do %>
-                    <%= image_tag 'pencil.svg', class: 'sidebar-query-edit-icon'%>
-                  <% end %>
-                </div>
-            </div>
-          <% end %>
 
-        </div>
+
+          </div>
+        <% end %>
       <% end %>
     </div>
+
+
   </div>
 </div>
 
