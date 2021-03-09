@@ -544,8 +544,23 @@
 // Footer section
 
 .home-page-footer-section-container {
-
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding-top: 2rem;
+  padding-bottom: 1rem;
 }
+
+.home-page-footer-paragraph {
+  @include text-sm;
+  font-weight: 500;
+  color: $gray-500;
+}
+
+
+
+
 
 // Waves
 
