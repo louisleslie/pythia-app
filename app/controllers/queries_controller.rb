@@ -16,6 +16,7 @@ class QueriesController < ApplicationController
     @display_query = query_results[0] + query_results[2].sub("AND", "WHERE")
     sql_query = query_results.join(" ")
     @results = Order.connection.select_all(sql_query)
+    @query_orders = Order.find_by_sql(sql_query)
   end
 
   def new
