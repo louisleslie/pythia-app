@@ -22,6 +22,20 @@
   color: $gray-900;
 }
 
+.navbar-wordmark-alt {
+  font-weight: 600px;
+  margin-top: auto;
+  margin-bottom: auto;
+  @include text-lg;
+  font-size: 1.75rem;
+  color: $white;
+}
+
+.navbar-lewagon-alt {
+  justify-content: space-between;
+  background: $gray-900;
+}
+
 .navbar-lewagon .navbar-collapse {
   flex-grow: 0;
 }
