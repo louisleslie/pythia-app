@@ -72,13 +72,10 @@
            <% if !@query || JSON.parse(@query.fields).include?('vendor') && JSON.parse(@query.fields).include?('lineitem_quantity')  %>
           <li class="nav-item show-page-views-tab-container">
             <a class="nav-link show-page-views-tab-link" id="line3-chart-tab" data-toggle="tab" href="#line3-chart" role="tab" aria-controls="line3-chart" aria-selected="false">product quantity by vendors</a>
-          <li class="nav-item show-page-views-tab-container">
-            <a class="nav-link show-page-views-tab-link" id="line3-chart-tab" data-toggle="tab" href="#line3-chart" role="tab" aria-controls="line3-chart" aria-selected="false">Bar Chart by something</a>
-          </li>
           <% end %>
           <% if  !@query || JSON.parse(@query.fields).include?('paid_at') && JSON.parse(@query.fields).include?('lineitem_quantity')  %>
           <li class="nav-item show-page-views-tab-container">
-            <a class="nav-link show-page-views-tab-link" id="pie-chart-tab" data-toggle="tab" href="#pie-chart" role="tab" aria-controls="pie-chart" aria-selected="false">Pie Chart by something</a>
+            <a class="nav-link show-page-views-tab-link" id="pie-chart-tab" data-toggle="tab" href="#pie-chart" role="tab" aria-controls="pie-chart" aria-selected="false">Your sales according to payment date</a>
           </li>
           <% end %>
         </ul>
@@ -123,9 +120,11 @@
           </div> 
           <% end %>
 
-
           <% if  !@query || JSON.parse(@query.fields).include?('paid_at') && JSON.parse(@query.fields).include?('lineitem_quantity')  %>
           <div class="tab-pane active show show-page-views-tab-pane" id="pie-chart" role="tabpanel" aria-labelledby="pietab">
+
+            <p>A scatter plot uses dots to represent values for two different numeric variables. The position of each dot on the horizontal and vertical 
+            axis indicates values for an individual data point. Scatter plots are used to observe relationships between variables.</p>
             <%= scatter_chart chart.pluck(:paid_at, :lineitem_quantity), xtitle: "payment time", ytitle: "quantity of product" %>
             <h2>Summary</h2>
             <p>The Pie chart indicates that......</p>  
