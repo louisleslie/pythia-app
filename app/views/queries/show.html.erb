@@ -1,4 +1,4 @@
-
+<% content_for(:html_title) { "Pythia - Query: #{@query.query_name}" } %>
 <div class="show-page-container">
 
   <div class="show-page-sidebar-wrapper">
@@ -12,6 +12,6 @@
     </div>
 
     <div class="show-page-section-border"></div>
-    <%= render :partial => "/partials/view_data", locals: { query: @results, chart: @query_orders  } %>
+    <%= render :partial => "/partials/view_data", locals: { query: @results, chart: @query_orders } %>
   </div>
 </div>

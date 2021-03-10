@@ -1,47 +1,66 @@
 <div class="sidebar-container">
   <div class="sidebar-content-container">
-    <div class="sidebar-wordmark-container display-none">
-      <img src="" alt="" class="sidebar-wordmark-image">
-    </div>
-
     <div class="sidebar-files-container">
       <% current_user.csv_files.each do |csv_file| %>
-        <div class="sidebar-file-container">
+
+        <div class="sidebar-file-container<%= ((params[:csv_file_id] == nil && params[:id].to_i == csv_file.id) || (params[:csv_file_id].to_i == csv_file.id)) ? "-current" : "" %>">
           <div class="sidebar-file-item">
-            <div class="sidebar-file-icon-container">
-              <%= link_to csv_file_path(csv_file) do %>
-                <%= image_tag 'database.svg', class: 'sidebar-file-icon'%>
-              <% end %>
-            </div>
+            <%= link_to csv_file_path(csv_file) do %>
+              <div class="sidebar-file-icon-container">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="sidebar-file-icon">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4m0 5c0 2.21-3.582 4-8 4s-8-1.79-8-4" />
+                </svg>
+              </div>
+            <% end %>
             <div class="sidebar-file-name">
               <%= link_to csv_file.filename, csv_file_path(csv_file), class: 'sidebar-file-name-text' %>
             </div>
             <div class="sidebar-file-dropdown-toggle-container">
-              <%= image_tag 'chevron-down.svg', class: 'sidebar-dropdown-toggle-icon'%>
+              <% if ((params[:csv_file_id] == nil && params[:id].to_i == csv_file.id) || (params[:csv_file_id].to_i == csv_file.id)) %>
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="sidebar-dropdown-toggle-icon">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 15l7-7 7 7" />
+                </svg>
+              <% else %>
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="sidebar-dropdown-toggle-icon">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                </svg>
+              <% end %>
             </div>
           </div>
-          </div>
-          <div class="sidebar-queries-container">
-          <% csv_file.queries.each do |query| %>
-            <div class="sidebar-query-item">
+          <div class="sidebar-queries-container <%= ((params[:csv_file_id] == nil && params[:id].to_i == csv_file.id) || (params[:csv_file_id].to_i == csv_file.id)) ? "" : "hidden" %>">
+            <% csv_file.queries.each do |query| %>
+              <div class="sidebar-query-item">
                 <div class="sidebar-query-icon-container">
                   <%= link_to csv_file_query_path(csv_file, query) do %>
-                    <%= image_tag 'sparkles.svg', class: 'sidebar-query-icon'%>
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="sidebar-query-icon">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" />
+                    </svg>
                   <% end %>
                 </div>
                 <div class="sidebar-query-name">
-                <%= link_to query.query_name, csv_file_query_path(csv_file, query), class: 'sidebar-query-name-text' %>
+                  <%= link_to query.query_name, csv_file_query_path(csv_file, query), class: 'sidebar-query-name-text' %>
                 </div>
                 <div class="sidebar-query-edit-icon-container">
                   <%= link_to edit_csv_file_query_path(csv_file, query) do %>
-                    <%= image_tag 'pencil.svg', class: 'sidebar-query-edit-icon'%>
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="sidebar-query-edit-icon">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
+                    </svg>
                   <% end %>
                 </div>
-            </div>
-          <% end %>
-
+              </div>
+            <% end %>
+          </div>
         </div>
+
+
       <% end %>
+    </div>
+    <div class="sidebar-button-container">
+       <%= link_to new_csv_file_path do %>
+        <button class="button-primary">
+          New File
+        </button>
+       <% end %>
     </div>
   </div>
 </div>

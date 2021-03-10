@@ -181,7 +181,13 @@ form > .button-primary .button-secondary .button-utility .button-primary {
 // tag-item to overlay select checkbox and label
 
 .tag-item {
-  display: inline-block;
+  display: flex;
+  align-items: center;
+  transform: scale(1);
+
+  // &:hover {
+  //   transform: scaleX(1.05);
+  // }
 }
 
 .tag-selector {
@@ -200,8 +206,16 @@ form > .button-primary .button-secondary .button-utility .button-primary {
   border: 1px solid $purple-600;
   margin-right: 0.6rem;
   margin-bottom: 0.4rem;
+  transition: $transition;
+  // transform: scale(1);
+  height: 1.3rem;
+
   &:valid {
-    color: $purple-600 !important; 
+    color: $purple-600 !important;
+  }
+
+  &:hover {
+  // transform: scale(1.05);
   }
 }
 
@@ -212,7 +226,9 @@ form > .button-primary .button-secondary .button-utility .button-primary {
 
 
 .select-tag-item {
-  display: inline-block;
+  display: flex;
+  align-items: center;
+  transform: scale(1);
 }
 
 .select-tag-selector {
@@ -231,14 +247,37 @@ form > .button-primary .button-secondary .button-utility .button-primary {
   border: 1px solid $purple-600;
   margin-right: 0.6rem;
   margin-bottom: 0.4rem;
+  transition: $transition;
+  transform: scale(1);
+  height: 1.3rem;
+
+  &:hover {
+    color: $purple-700;
+    transform: scale(1.05);
+  }
 }
 
 .tag-make-not-green {
-  color: $purple-600 !important; 
+  color: $purple-600 !important;
   &:valid {
-    color: $purple-600 !important; 
+    color: $purple-600 !important;
   }
 }
+
+.form-check-label {
+  color: $purple-600 !important;
+}
+
+.collection_check_boxes {
+  color: $purple-600 !important;
+}
+
+.tag-selector:checked + .collection_check_boxes {
+  color: $white !important;
+}
+
+
+
 
 .select-tag-selector:checked + label {
   background-color: $purple-600;
@@ -252,7 +291,7 @@ form > .button-primary .button-secondary .button-utility .button-primary {
 }
 
 .button-primary {
-  display: infline-flex;
+  display: inline-flex;
   align-items: center;
   padding: 0.5rem 1rem;
   border-width: 1px;
@@ -272,6 +311,14 @@ form > .button-primary .button-secondary .button-utility .button-primary {
     background-color: $purple-700;
     border: 2px solid $purple-700;
   }
+}
+
+.button-primary-icon {
+  color: $white;
+  margin-left: -0.25rem;
+  margin-right: 0.5rem;
+  height: 1.25rem;
+  width: 1.25rem;
 }
 
 .button-secondary {

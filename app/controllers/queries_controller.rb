@@ -14,10 +14,11 @@ class QueriesController < ApplicationController
     @display_query = query_results[0] + query_results[2].sub("AND", "WHERE")
     sql_query = query_results.join(" ")
     @results = Order.connection.select_all(sql_query)
-    @query_orders = Order.find_by_sql(sql_query)
+    @query_orders = Order.with_scope(Order.find_by_sql(sql_query))
+    csv_orders = Order.find_by_sql(sql_query)
     respond_to do |format|
       format.html
-      format.csv { send_data @query_orders.to_csv(JSON.parse(@query.fields).flatten) }
+      format.csv { send_data orders_to_csv(csv_orders, @query.fields), filename: @query.query_name }
     end
   end
 
@@ -146,6 +147,16 @@ class QueriesController < ApplicationController
       "Does Not Match" => "NOT ILIKE"
     }
     comparison_conversion[text_operator]
+  end
+
+  def orders_to_csv(orders, fields)
+    fields = JSON.parse(fields).flatten
+    CSV.generate(headers: true) do |csv|
+      csv << fields
+      orders.each do |order|
+        csv << order.attributes.values_at(*fields)
+      end
+    end
   end
 
 end
