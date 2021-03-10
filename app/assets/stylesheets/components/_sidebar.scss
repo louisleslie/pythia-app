@@ -66,6 +66,10 @@
     .sidebar-dropdown-toggle-icon {
       color: $gray-500;
     }
+
+    .sidebar-file-name-text {
+      color: $gray-600;
+    }
   }
 }
 
@@ -75,6 +79,7 @@
   align-items: center;
   width: 100%;
   border-radius: 0.375rem;
+  padding: 0.25rem 0rem 0.25rem 0.25rem;
   transition: $transition;
 }
 
@@ -104,12 +109,6 @@
   cursor: pointer;
   font-weight: 500;
   transition: $transition;
-
-  &:hover,
-  &:focus {
-    text-decoration: none;
-    color: inherit;
-  }
 }
 
 .sidebar-file-dropdown-toggle-container {
@@ -150,17 +149,18 @@
   >.sidebar-file-item {
     &:hover {
       transform: scale(1.02);
-    }
-  }
+      background-color: $gray-200;
 
-  &:hover {
+      .sidebar-file-name-text {
+        color: $gray-800;
+      }
 
-    .sidebar-file-icon {
+        .sidebar-file-icon {
       color: $gray-600;
     }
-
-  .sidebar-dropdown-toggle-icon {
+    .sidebar-dropdown-toggle-icon {
       color: $gray-600;
+    }
     }
   }
 }
@@ -186,7 +186,7 @@
   display: flex;
   align-items: center;
   width: 100%;
-  padding: 0.5rem 0rem 0.5rem 0.5rem;
+  padding: 0.25rem 0rem 0.25rem 0.25rem;
   border-radius: 0.375rem;
   transition: $transition;
 
@@ -199,8 +199,12 @@
       color: $gray-600;
     }
 
-  .sidebar-query-edit-icon {
-      color: $gray-600;
+    .sidebar-query-name-text {
+      color: $gray-700;
+    }
+
+    .sidebar-query-edit-icon {
+        color: $gray-600;
     }
   }
 }
@@ -232,16 +236,9 @@
   text-decoration: none;
   color: inherit;
   position: relative;
-  transition: $transition;
   cursor: pointer;
   font-weight: 500;
   transition: $transition;
-
-  &:hover,
-  &:focus {
-    color: $gray-700;
-    text-decoration: none;
-  }
 }
 
 
