@@ -2,6 +2,8 @@ require 'json'
 
 class QueriesController < ApplicationController
   before_action :set_query, only: [:show, :edit, :update, :destroy]
+  before_action :get_order_datatypes, only: [:show, :edit, :update, :new ]
+
   def index
     @authorized = false
     csv_file = CsvFile.find(params[:csv_file_id])
@@ -22,20 +24,16 @@ class QueriesController < ApplicationController
   def new
     @query = Query.new
     @query.filters.build
-    @order_data_types = {}
     @filter_comparisons = []
-    Order.columns_hash.map { |k, v| @order_data_types[k] = "#{k}-#{v.sql_type_metadata.type}" }
   end
 
   def create
     @query = Query.new(query_params)
     @query.fields = params[:query][:fields][1..-1].to_s
-    @order_data_types = {}
-    Order.columns_hash.map { |k, v| @order_data_types[k] = "#{k}-#{v.sql_type_metadata.type}" }
     @csv_file = CsvFile.find(params[:csv_file_id])
     @query.csv_file = @csv_file
     if @query.save
-      redirect_to csv_file_queries_path(@csv_file)
+      redirect_to csv_file_query_path(@query)
     else
       flash[:alert] = "Something went wrong."
       render :new
@@ -44,8 +42,6 @@ class QueriesController < ApplicationController
 
   def edit
     @csv_file = @query.csv_file
-    @order_data_types = {}
-    Order.columns_hash.map { |k, v| @order_data_types[k] = "#{k}-#{v.sql_type_metadata.type}" }
     @filter_comparisons = []
     @query.filters.each { |filter| @filter_comparisons << filter.comparison_operator }
     p @filter_comparisons
@@ -58,8 +54,6 @@ class QueriesController < ApplicationController
     @query.update(query_params)
     @query.fields = params[:query][:fields][1..-1].to_s
     @query.save
-    @order_data_types = {}
-    Order.columns_hash.map { |k, v| @order_data_types[k] = "#{k}-#{v.sql_type_metadata.type}" }
     redirect_to csv_file_query_path(@query)
   end
 
@@ -146,4 +140,10 @@ class QueriesController < ApplicationController
     comparison_conversion[text_operator]
   end
 
+  def get_order_datatypes
+    csv_file_order = ["Name",	"Email",	"Financial Status",	"Paid at",	"Fulfillment Status",	"Fulfilled at",	"Accepts Marketing",	"Currency",	"Subtotal",	"Shipping",	"Taxes",	"Total",	"Discount Code",	"Discount Amount",	"Shipping Method",	"Created at",	"Lineitem quantity",	"Lineitem name",	"Lineitem price",	"Lineitem compare at price",	"Lineitem sku",	"Lineitem requires shipping",	"Lineitem taxable",	"Lineitem fulfillment status",	"Billing Name",	"Billing Street",	"Billing Address1",	"Billing Address2",	"Billing Company",	"Billing City",	"Billing Zip",	"Billing Province",	"Billing Country",	"Billing Phone",	"Shipping Name",	"Shipping Street",	"Shipping Address1",	"Shipping Address2",	"Shipping Company",	"Shipping City",	"Shipping Zip",	"Shipping Province",	"Shipping Country",	"Shipping Phone",	"Notes",	"Note Attributes",	"Cancelled at",	"Payment Method",	"Payment Reference",	"Refunded Amount",	"Vendor",	"Id",	"Tags",	"Risk Level",	"Source",	"Lineitem discount",	"Tax 1 Name",	"Tax 1 Value",	"Tax 2 Name",	"Tax 2 Value",	"Tax 3 Name",	"Tax 3 Value",	"Tax 4 Name",	"Tax 4 Value",	"Tax 5 Name",	"Tax 5 Value",	"Phone",	"Receipt Number",	"Duties",	"Billing Province Name",	"Shipping Province Name"]
+    @order_data_types = {}
+    Order.columns_hash.map { |k, v| @order_data_types[k] = "#{k}-#{v.sql_type_metadata.type}" }
+    @order_data_types
+  end
 end
