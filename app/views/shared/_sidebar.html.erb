@@ -44,7 +44,11 @@
       <% end %>
     </div>
     <div class="sidebar-button-container">
-       <%= link_to "New File", new_csv_file_path, class: "button-primary mr-3" %>
+       <%= link_to new_csv_file_path do %>
+        <button class="button-primary">
+          New File
+        </button>
+       <% end %>
     </div>
   </div>
 </div>
