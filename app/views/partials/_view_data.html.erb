@@ -4,15 +4,31 @@
   <% else %>
     <ul class="nav nav-tabs show-page-views-tabs-container" id="myTab" role="tablist">
       <li class="nav-item show-page-views-tab-container">
-        <a class="nav-link active show-page-views-tab-link" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Table</a>
+        <a class="nav-link active show-page-views-tab-link" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="show-page-views-tab-icon">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M3 14h18m-9-4v8m-7 0h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z" />
+          </svg>
+          Table
+      </a>
       </li>
       <li class="nav-item show-page-views-tab-container">
-        <a class="nav-link show-page-views-tab-link" id="chart-tab" data-toggle="tab" href="#chart" role="tab" aria-controls="chart" aria-selected="false">Chart</a>
+        <a class="nav-link show-page-views-tab-link" id="chart-tab" data-toggle="tab" href="#chart" role="tab" aria-controls="chart" aria-selected="false">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="show-page-views-tab-icon">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
+          </svg>
+          Charts
+        </a>
       </li>
       <li class="nav-item show-page-views-tab-container">
-        <a class="nav-link show-page-views-tab-link" id="map-tab" data-toggle="tab" href="#map-container" role="tab" aria-controls="map-container" aria-selected="false">Map</a>
+        <a class="nav-link show-page-views-tab-link" id="map-tab" data-toggle="tab" href="#map-container" role="tab" aria-controls="map-container" aria-selected="false">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="show-page-views-tab-icon">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7" />
+          </svg>
+          Map
+        </a>
       </li>
     </ul>
+
     <div class="tab-content show-page-views-tab-content-container" id="myTabContent">
 
       <div class="tab-pane show active show-page-views-tab-pane" id="home" role="tabpanel" aria-labelledby="home-tab">
@@ -49,7 +65,7 @@
           </li>
           <li class="nav-item show-page-views-tab-container">
             <a class="nav-link show-page-views-tab-link" id="line2-chart-tab" data-toggle="tab" href="#line2-chart" role="tab" aria-controls="line2-chart" aria-selected="false">Line Chart by something</a>
-          </li> 
+          </li>
           <li class="nav-item show-page-views-tab-container">
             <a class="nav-link show-page-views-tab-link" id="line3-chart-tab" data-toggle="tab" href="#line3-chart" role="tab" aria-controls="line3-chart" aria-selected="false">Line Chart by something</a>
           </li>
@@ -67,36 +83,36 @@
             <h2>Summary</h2>
             <p>The chart shows changes of your orders day by day.</p>
             <br>
-          </div> 
-            
+          </div>
+
           <div class="tab-pane show-page-views-tab-pane" id="line2-chart" role="tabpanel" aria-labelledby="line2-chart-tab">
             <h4>introduction:</h4>
-            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Molestiae soluta 
-            eveniet unde blanditiis qui, voluptate maxime animi iure quo praesentium consequuntur 
+            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Molestiae soluta
+            eveniet unde blanditiis qui, voluptate maxime animi iure quo praesentium consequuntur
             consequatur, id, officiis perferendis facilis molestias modi deleniti cumque!</p>
             <%= line_chart chart.group_by_day(:order_created_at).count, xtitle: "Time", ytitle: "Number of Order", colors: ["#b00", "#666"], discrete: true, legend: false %>
             <h2>Summary</h2>
-            <p>The Column chart indicates that......</p> 
+            <p>The Column chart indicates that......</p>
           </div>
 
           <div class="tab-pane show-page-views-tab-pane" id="line3-chart" role="tabpanel" aria-labelledby="line3-chart-tab">
             <h4 style="margin-top:5px;">introduction:</h4>
-            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Molestiae soluta 
-            eveniet unde blanditiis qui, voluptate maxime animi iure quo praesentium consequuntur 
+            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Molestiae soluta
+            eveniet unde blanditiis qui, voluptate maxime animi iure quo praesentium consequuntur
             consequatur, id, officiis perferendis facilis molestias modi deleniti cumque!</p>
             <%= line_chart chart.group_by_day(:order_created_at).count, xtitle: "Time", ytitle: "Number of Order", colors: ["#b00", "#666"],discrete: true, legend: false %>
             <h2>Summary</h2>
             <p>The bar chart indicates that......</p>
-          </div> 
+          </div>
 
           <div class="tab-pane active show show-page-views-tab-pane" id="pie-chart" role="tabpanel" aria-labelledby="pietab">
             <h4>Prices for each item</h4>
             <%= pie_chart chart.group(:lineitem_price).count %>
             <h2>Summary</h2>
-            <p>The Pie chart indicates that......</p>  
-          </div> 
+            <p>The Pie chart indicates that......</p>
+          </div>
 
-        </div> 
+        </div>
       </div>
       <div class="tab-pane show-page-views-tab-pane" id="map-container" role="tabpanel" aria-labelledby="map-tab">
         <div id="query-json-data" class="display-none">
@@ -165,8 +181,8 @@
     // Sort category entry values
     colorScale
       .domain(countries.features.map(colorValue))
-      // .domain(colorScale.domain().sort().reverse()) 
-      // .range(d3.schemeSpectral[colorScale.domain().length]); 
+      // .domain(colorScale.domain().sort().reverse())
+      // .range(d3.schemeSpectral[colorScale.domain().length]);
       .range(["#6EE7B7", "#10B981", "#16A34A", "#047857"]); //["#9CA3AF", "#D1D5DB", "#6B7280", "#4B5563"]);//, "#6B7280", "#4B5563", "#374151", "#1F2937", "#111827"]);
 
       // "#F9FAFB", "#F3F4F6" , "#E5E7EB" ,
