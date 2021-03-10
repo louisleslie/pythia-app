@@ -148,6 +148,16 @@ table {
 .button-after-form {
   margin-top: 0.75rem;
 }
+
+.rotate-0 {
+  transform: rotate(0);
+  transition: $transition;
+}
+
+.rotate-180 {
+  transform: rotate(180deg);
+  transition: $transition;
+}
 // Components
 
 // Form Components
