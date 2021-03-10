@@ -61,13 +61,13 @@
       <div class="tab-pane show-page-views-tab-pane" id="chart" role="tabpanel" aria-labelledby="chart-tab" style="margin-top: 10px;">
         <ul class="nav nav-tabs show-page-views-tabs-container" id="myChartTab" role="tablist">
           <li class="nav-item show-page-views-tab-container">
-            <a class="nav-link active show-page-views-tab-link" id="line-chart-tab" data-toggle="tab" href="#line-chart" role="tab" aria-controls="line-chart" aria-selected="true">Line Chart by something</a>
+            <a class="nav-link active show-page-views-tab-link" id="line-chart-tab" data-toggle="tab" href="#line-chart" role="tab" aria-controls="line-chart" aria-selected="true">Line Chart by creation time</a>
           </li>
           <li class="nav-item show-page-views-tab-container">
-            <a class="nav-link show-page-views-tab-link" id="line2-chart-tab" data-toggle="tab" href="#line2-chart" role="tab" aria-controls="line2-chart" aria-selected="false">Line Chart by something</a>
-          </li>
+            <a class="nav-link show-page-views-tab-link" id="line2-chart-tab" data-toggle="tab" href="#line2-chart" role="tab" aria-controls="line2-chart" aria-selected="false">Pie Chart by product</a>
+          </li> 
           <li class="nav-item show-page-views-tab-container">
-            <a class="nav-link show-page-views-tab-link" id="line3-chart-tab" data-toggle="tab" href="#line3-chart" role="tab" aria-controls="line3-chart" aria-selected="false">Line Chart by something</a>
+            <a class="nav-link show-page-views-tab-link" id="line3-chart-tab" data-toggle="tab" href="#line3-chart" role="tab" aria-controls="line3-chart" aria-selected="false">Bar Chart by something</a>
           </li>
           <li class="nav-item show-page-views-tab-container">
             <a class="nav-link show-page-views-tab-link" id="pie-chart-tab" data-toggle="tab" href="#pie-chart" role="tab" aria-controls="pie-chart" aria-selected="false">Pie Chart by something</a>
@@ -90,7 +90,7 @@
             <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Molestiae soluta
             eveniet unde blanditiis qui, voluptate maxime animi iure quo praesentium consequuntur
             consequatur, id, officiis perferendis facilis molestias modi deleniti cumque!</p>
-            <%= line_chart chart.group_by_day(:order_created_at).count, xtitle: "Time", ytitle: "Number of Order", colors: ["#b00", "#666"], discrete: true, legend: false %>
+            <%= pie_chart chart.group(:lineitem_sku).count %>
             <h2>Summary</h2>
             <p>The Column chart indicates that......</p>
           </div>
@@ -100,7 +100,7 @@
             <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Molestiae soluta
             eveniet unde blanditiis qui, voluptate maxime animi iure quo praesentium consequuntur
             consequatur, id, officiis perferendis facilis molestias modi deleniti cumque!</p>
-            <%= line_chart chart.group_by_day(:order_created_at).count, xtitle: "Time", ytitle: "Number of Order", colors: ["#b00", "#666"],discrete: true, legend: false %>
+            <%= bar_chart chart.group(:vendor).sum(:lineitem_quantity) %>
             <h2>Summary</h2>
             <p>The bar chart indicates that......</p>
           </div>
