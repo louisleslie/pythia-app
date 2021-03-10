@@ -10,7 +10,8 @@
 .sidebar-content-container {
   display:flex;
   flex-direction: column;
-  padding-top: 1.25rem;
+  align-items: stretch;
+  padding-top: 0rem;
   padding-bottom: 1rem;
   overflow-y: auto;
 }
@@ -233,6 +234,14 @@
 }
 
 .hidden {
-display: none;
+  display: none;
   overflow: hidden;
+}
+
+
+.sidebar-button-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 1.5rem;
 }

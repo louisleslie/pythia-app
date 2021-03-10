@@ -1,9 +1,5 @@
 <div class="sidebar-container">
   <div class="sidebar-content-container">
-    <div class="sidebar-wordmark-container display-none">
-      <img src="" alt="" class="sidebar-wordmark-image">
-    </div>
-
     <div class="sidebar-files-container">
       <% current_user.csv_files.each do |csv_file| %>
         <div class="sidebar-file-container<%= ((params[:csv_file_id] == nil && params[:id].to_i == csv_file.id) || (params[:csv_file_id].to_i == csv_file.id)) ? "-current" : "" %>">
@@ -46,6 +42,9 @@
 
         </div>
       <% end %>
+    </div>
+    <div class="sidebar-button-container">
+       <%= link_to "New File", new_csv_file_path, class: "button-primary mr-3" %>
     </div>
   </div>
 </div>
