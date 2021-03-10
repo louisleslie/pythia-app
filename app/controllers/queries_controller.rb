@@ -1,5 +1,7 @@
 class QueriesController < ApplicationController
   before_action :set_query, only: [:show, :edit, :update, :destroy]
+  before_action :get_order_datatypes, only: [:show, :edit, :update, :new ]
+
   def index
     @authorized = false
     csv_file = CsvFile.find(params[:csv_file_id])
@@ -25,20 +27,16 @@ class QueriesController < ApplicationController
   def new
     @query = Query.new
     @query.filters.build
-    @order_data_types = {}
     @filter_comparisons = []
-    Order.columns_hash.map { |k, v| @order_data_types[k] = "#{k}-#{v.sql_type_metadata.type}" }
   end
 
   def create
     @query = Query.new(query_params)
     @query.fields = params[:query][:fields][1..-1].to_s
-    @order_data_types = {}
-    Order.columns_hash.map { |k, v| @order_data_types[k] = "#{k}-#{v.sql_type_metadata.type}" }
     @csv_file = CsvFile.find(params[:csv_file_id])
     @query.csv_file = @csv_file
     if @query.save
-      redirect_to csv_file_queries_path(@csv_file)
+      redirect_to csv_file_query_path(@query)
     else
       flash[:alert] = "Something went wrong."
       render :new
@@ -47,8 +45,6 @@ class QueriesController < ApplicationController
 
   def edit
     @csv_file = @query.csv_file
-    @order_data_types = {}
-    Order.columns_hash.map { |k, v| @order_data_types[k] = "#{k}-#{v.sql_type_metadata.type}" }
     @filter_comparisons = []
     @query.filters.each { |filter| @filter_comparisons << filter.comparison_operator }
     p @filter_comparisons
@@ -61,8 +57,6 @@ class QueriesController < ApplicationController
     @query.update(query_params)
     @query.fields = params[:query][:fields][1..-1].to_s
     @query.save
-    @order_data_types = {}
-    Order.columns_hash.map { |k, v| @order_data_types[k] = "#{k}-#{v.sql_type_metadata.type}" }
     redirect_to csv_file_query_path(@query)
   end
 
@@ -149,6 +143,23 @@ class QueriesController < ApplicationController
     comparison_conversion[text_operator]
   end
 
+  def get_order_datatypes
+    @order_data_types = {}
+    Order.columns_hash.map { |k, v| @order_data_types[k] = "#{k}-#{v.sql_type_metadata.type}" }
+    if params[:id]
+      query_fields = JSON.parse(Query.find(params[:id]).fields).flatten
+      @selected_columns = {}
+      Order.columns_hash.map do |k, v|
+        if query_fields.include?(k)
+          @selected_columns[k] = v.sql_type_metadata.type
+        end
+      end
+    else
+      @selected_columns = {}
+      Order.columns_hash.map { |k, v| @selected_columns[k] = v.sql_type_metadata.type }
+    end
+  end
+
   def orders_to_csv(orders, fields)
     fields = JSON.parse(fields).flatten
     CSV.generate(headers: true) do |csv|
@@ -158,5 +169,6 @@ class QueriesController < ApplicationController
       end
     end
   end
+
 
 end

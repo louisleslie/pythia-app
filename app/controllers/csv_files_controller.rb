@@ -1,5 +1,6 @@
 class CsvFilesController < ApplicationController
   before_action :set_csv_file, only: [:show, :edit, :update, :destroy]
+  before_action :get_order_datatypes, only: :show
 
   def new
     @csv_file = CsvFile.new
@@ -18,6 +19,7 @@ class CsvFilesController < ApplicationController
   end
 
   def show
+    
     @orders = Order.connection.select_all("SELECT * FROM Orders WHERE csv_file_id = #{@csv_file.id}")
   end
 
@@ -69,4 +71,8 @@ class CsvFilesController < ApplicationController
     end
   end
 
+  def get_order_datatypes
+    @order_columns = {}
+    Order.columns_hash.map { |k, v| @order_columns[k] = v.sql_type_metadata.type }
+  end
 end

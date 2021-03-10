@@ -5,6 +5,7 @@ const listenForFieldChanges = () => {
   const comparisonOptions = {
     "datetime": ["Before", "After",	"On", "Is Empty", "Is Not Empty"],
     "string":["Matches",	"Does Not Match",	"Contains",	"Does Not Contain",	"Starts With",	"Ends With",	"is Empty", "Is Not Empty"],
+    "text":["Matches",	"Does Not Match",	"Contains",	"Does Not Contain",	"Starts With",	"Ends With",	"is Empty", "Is Not Empty"],
     "boolean":["Is True", "Is False"],
     "float":["Equals",	"Does Not Equal",	"Greater Than",	"Less Than",	"Greater Than or Equal To",	"Less Than or Equal To",	"Is Empty",	"Is Not Empty"],
     "integer":["Equals",	"Does Not Equal",	"Greater Than",	"Less Than",	"Greater Than or Equal To",	"Less Than or Equal To",	"Is Empty",	"Is Not Empty"]
@@ -13,6 +14,7 @@ const listenForFieldChanges = () => {
   const fieldTypes = {
     "datetime":"datetime-local", 
     "string":"string", 
+    "text":"string",
     "boolean":"checkbox", 
     "float":"number", 
     "integer":"number"
