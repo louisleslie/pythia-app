@@ -18,7 +18,7 @@ class QueriesController < ApplicationController
     csv_orders = Order.find_by_sql(sql_query)
     respond_to do |format|
       format.html
-      format.csv { send_data orders_to_csv(csv_orders, @query.fields), filename: @query.query_name }
+      format.csv { send_data orders_to_csv(csv_orders, @query.fields), filename: "#{@query.query_name}.csv" }
     end
   end
 
