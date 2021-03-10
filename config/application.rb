@@ -1,4 +1,6 @@
 require_relative "boot"
+require "csv"
+require "json"
 
 require "rails/all"
 

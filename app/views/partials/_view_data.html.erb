@@ -57,62 +57,81 @@
         </div>
       </div>
 
-
       <div class="tab-pane show-page-views-tab-pane" id="chart" role="tabpanel" aria-labelledby="chart-tab" style="margin-top: 10px;">
         <ul class="nav nav-tabs show-page-views-tabs-container" id="myChartTab" role="tablist">
+        <% if !@query || JSON.parse(@query.fields).include?('order_created_at') %>
           <li class="nav-item show-page-views-tab-container">
-            <a class="nav-link active show-page-views-tab-link" id="line-chart-tab" data-toggle="tab" href="#line-chart" role="tab" aria-controls="line-chart" aria-selected="true">Line Chart by creation time</a>
+            <a class="nav-link active show-page-views-tab-link" id="line-chart-tab" data-toggle="tab" href="#line-chart" role="tab" aria-controls="line-chart" aria-selected="true">when my orders created ?</a>
           </li>
+          <% end %>
+          <% if !@query || JSON.parse(@query.fields).include?('lineitem_sku') %>
+            <li class="nav-item show-page-views-tab-container">
+              <a class="nav-link show-page-views-tab-link" id="line2-chart-tab" data-toggle="tab" href="#line2-chart" role="tab" aria-controls="line2-chart" aria-selected="false">product name by numbers</a>
+            </li>
+         <% end %>
+           <% if !@query || JSON.parse(@query.fields).include?('vendor') && JSON.parse(@query.fields).include?('lineitem_quantity')  %>
           <li class="nav-item show-page-views-tab-container">
-            <a class="nav-link show-page-views-tab-link" id="line2-chart-tab" data-toggle="tab" href="#line2-chart" role="tab" aria-controls="line2-chart" aria-selected="false">Pie Chart by product</a>
-          </li> 
+            <a class="nav-link show-page-views-tab-link" id="line3-chart-tab" data-toggle="tab" href="#line3-chart" role="tab" aria-controls="line3-chart" aria-selected="false">product quantity by vendors</a>
+          <% end %>
+          <% if  !@query || JSON.parse(@query.fields).include?('paid_at') && JSON.parse(@query.fields).include?('lineitem_quantity')  %>
           <li class="nav-item show-page-views-tab-container">
-            <a class="nav-link show-page-views-tab-link" id="line3-chart-tab" data-toggle="tab" href="#line3-chart" role="tab" aria-controls="line3-chart" aria-selected="false">Bar Chart by something</a>
+            <a class="nav-link show-page-views-tab-link" id="pie-chart-tab" data-toggle="tab" href="#pie-chart" role="tab" aria-controls="pie-chart" aria-selected="false">Your sales according to payment date</a>
           </li>
-          <li class="nav-item show-page-views-tab-container">
-            <a class="nav-link show-page-views-tab-link" id="pie-chart-tab" data-toggle="tab" href="#pie-chart" role="tab" aria-controls="pie-chart" aria-selected="false">Pie Chart by something</a>
-          </li>
+          <% end %>
         </ul>
+
         <div class="tab-content show-page-views-tab-content-container" id="myChartTabContent">
           <% content_for :chartkick do %>
             <%= javascript_pack_tag 'chartkick' %>
           <% end %>
-          <div class="tab-pane active show show-page-views-tab-pane" id="line-chart" role="tabpanel" aria-labelledby="line-chart-tab">
+
+          <% if !@query || JSON.parse(@query.fields).include?('order_created_at') %>
+        <div class="tab-pane active show show-page-views-tab-pane" id="line-chart" role="tabpanel" aria-labelledby="line-chart-tab">
             <h4>introduction</h4>
+            <p>A line graph is commonly used to display change over time as a series of data points connected by straight
+             line segments on two axes. The line graph therefore helps to determine the relationship between two sets of values, 
+             with one data set always being dependent on the other set</p>
             <%= line_chart chart.group_by_day(:order_created_at).count, xtitle: "Time", ytitle: "Number of Order", colors: ["#b00", "#666"], stacked: true , discrete: true, legend: false%>
             <h2>Summary</h2>
-            <p>The chart shows changes of your orders day by day.</p>
+            <p>The chart shows changes of your orders day by day.
+             As it is seen on chart you total sales number has been increased since you started to business.</p>
             <br>
-          </div>
-
-          <div class="tab-pane show-page-views-tab-pane" id="line2-chart" role="tabpanel" aria-labelledby="line2-chart-tab">
-            <h4>introduction:</h4>
-            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Molestiae soluta
-            eveniet unde blanditiis qui, voluptate maxime animi iure quo praesentium consequuntur
-            consequatur, id, officiis perferendis facilis molestias modi deleniti cumque!</p>
-            <%= pie_chart chart.group(:lineitem_sku).count %>
-            <h2>Summary</h2>
-            <p>The Column chart indicates that......</p>
-          </div>
-
+          </div> 
+          <% end %>
+          <% if !@query || JSON.parse(@query.fields).include?('lineitem_sku') %>
+             <div class="tab-pane show-page-views-tab-pane" id="line2-chart" role="tabpanel" aria-labelledby="line2-chart-tab">
+                <h4>introduction:</h4>
+                <p>Pie charts are generally used to show percentage or proportional
+                data and usually the percentage represented by each category is provided next to the corresponding slice of pie.</p>
+                <%= pie_chart chart.group(:lineitem_sku).count %>
+                <h2>Summary</h2>
+                <p>The Column chart indicates that......</p> 
+              </div>
+          <% end %>
+          
+          <% if !@query || JSON.parse(@query.fields).include?('vendor') && JSON.parse(@query.fields).include?('lineitem_quantity') %>
           <div class="tab-pane show-page-views-tab-pane" id="line3-chart" role="tabpanel" aria-labelledby="line3-chart-tab">
             <h4 style="margin-top:5px;">introduction:</h4>
-            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Molestiae soluta
-            eveniet unde blanditiis qui, voluptate maxime animi iure quo praesentium consequuntur
-            consequatur, id, officiis perferendis facilis molestias modi deleniti cumque!</p>
+            <p>A bar chart is used when you want to show a distribution of data points or perform a comparison of metric values across different subgroups of your data. 
+            From a bar chart, we can see which groups are highest or most common, and how other groups compare against the others</p>
             <%= bar_chart chart.group(:vendor).sum(:lineitem_quantity) %>
             <h2>Summary</h2>
             <p>The bar chart indicates that......</p>
-          </div>
+          </div> 
+          <% end %>
 
+          <% if  !@query || JSON.parse(@query.fields).include?('paid_at') && JSON.parse(@query.fields).include?('lineitem_quantity')  %>
           <div class="tab-pane active show show-page-views-tab-pane" id="pie-chart" role="tabpanel" aria-labelledby="pietab">
-            <h4>Prices for each item</h4>
-            <%= pie_chart chart.group(:lineitem_price).count %>
-            <h2>Summary</h2>
-            <p>The Pie chart indicates that......</p>
-          </div>
 
-        </div>
+            <p>A scatter plot uses dots to represent values for two different numeric variables. The position of each dot on the horizontal and vertical 
+            axis indicates values for an individual data point. Scatter plots are used to observe relationships between variables.</p>
+            <%= scatter_chart chart.pluck(:paid_at, :lineitem_quantity), xtitle: "payment time", ytitle: "quantity of product" %>
+            <h2>Summary</h2>
+            <p>The Pie chart indicates that......</p>  
+          </div> 
+          <% end %>
+        </div> 
+
       </div>
       <div class="tab-pane show-page-views-tab-pane" id="map-container" role="tabpanel" aria-labelledby="map-tab">
         <div id="query-json-data" class="display-none">

@@ -21,7 +21,7 @@
     <meta name="twitter:description" content="<%= meta_description %>">
     <meta name="twitter:creator" content="<%= DEFAULT_META["twitter_account"] %>">
     <meta name="twitter:image:src" content="<%= meta_image %>">
-    
+
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
@@ -29,8 +29,11 @@
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
 
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
-    
+
     <%= yield(:chartkick) %>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/5.6.0/d3.min.js" integrity="sha512-Gdjw6rdB8Tefa1RazvbG8hecjW7qSjnmcRnPPj40lnNnsX5Ci9pijAciBieg9XcQIFm1w/PICAzzsE6POaDyiw==" crossorigin="anonymous"></script>
+
   </head>
 
   <body>
