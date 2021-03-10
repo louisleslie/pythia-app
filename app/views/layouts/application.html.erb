@@ -1,7 +1,9 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>PythiaApp</title>
+    <%= favicon_link_tag asset_path('logo.svg') %>
+    <title><%= content_for?(:html_title) ? yield(:html_title) : "Pythia - Ask your data what you want to know" %></title>
+
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="description" content="<%= meta_description %>">
     <!-- Facebook Open Graph data -->
@@ -26,7 +28,7 @@
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
 
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
-    <%= favicon_link_tag asset_path('logo.svg') %>
+    
     <%= yield(:chartkick) %>
   </head>
 
