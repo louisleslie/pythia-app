@@ -1,5 +1,3 @@
-require 'json'
-
 class QueriesController < ApplicationController
   before_action :set_query, only: [:show, :edit, :update, :destroy]
   def index
@@ -17,6 +15,10 @@ class QueriesController < ApplicationController
     sql_query = query_results.join(" ")
     @results = Order.connection.select_all(sql_query)
     @query_orders = Order.find_by_sql(sql_query)
+    respond_to do |format|
+      format.html
+      format.csv { send_data @query_orders.to_csv(JSON.parse(@query.fields).flatten) }
+    end
   end
 
   def new
