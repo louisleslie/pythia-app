@@ -629,10 +629,10 @@
 
 .section-fade-in {
   opacity: 0.0;
-  transition: opacity 1.5s;
-  transform: translateY(150px) rotate(0deg) translateZ(0);
+  transition: opacity 0.8s;
+  transform: translateY(100px) rotate(0deg) translateZ(0);
   transition-delay: .3s;
-  transition: 1.5s;
+  transition: 0.8s;
 }
 
 .inView {
