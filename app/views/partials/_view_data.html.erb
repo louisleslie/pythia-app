@@ -59,24 +59,33 @@
 
       <div class="tab-pane show-page-views-tab-pane" id="chart" role="tabpanel" aria-labelledby="chart-tab" style="margin-top: 10px;">
         <ul class="nav nav-tabs show-page-views-tabs-container" id="myChartTab" role="tablist">
-        <% if !@query || JSON.parse(@query.fields).include?('order_created_at') %>
-          <li class="nav-item show-page-views-tab-container">
-            <a class="nav-link active show-page-views-tab-link" id="line-chart-tab" data-toggle="tab" href="#line-chart" role="tab" aria-controls="line-chart" aria-selected="true">when my orders created ?</a>
-          </li>
+          <% no_charts = true %>
+          <% if !@query || JSON.parse(@query.fields).include?('order_created_at') %>
+            <% no_charts = false %>
+            <li class="nav-item show-page-views-tab-container">
+              <a class="nav-link active show-page-views-tab-link" id="line-chart-tab" data-toggle="tab" href="#line-chart" role="tab" aria-controls="line-chart" aria-selected="true">when my orders created ?</a>
+            </li>
           <% end %>
           <% if !@query || JSON.parse(@query.fields).include?('lineitem_sku') %>
+            <% no_charts = false %>
             <li class="nav-item show-page-views-tab-container">
               <a class="nav-link show-page-views-tab-link" id="line2-chart-tab" data-toggle="tab" href="#line2-chart" role="tab" aria-controls="line2-chart" aria-selected="false">product name by numbers</a>
             </li>
-         <% end %>
-           <% if !@query || JSON.parse(@query.fields).include?('vendor') && JSON.parse(@query.fields).include?('lineitem_quantity')  %>
-          <li class="nav-item show-page-views-tab-container">
-            <a class="nav-link show-page-views-tab-link" id="line3-chart-tab" data-toggle="tab" href="#line3-chart" role="tab" aria-controls="line3-chart" aria-selected="false">product quantity by vendors</a>
+          <% end %>
+          <% if !@query || JSON.parse(@query.fields).include?('vendor') && JSON.parse(@query.fields).include?('lineitem_quantity')  %>
+            <% no_charts = false %>
+            <li class="nav-item show-page-views-tab-container">
+              <a class="nav-link show-page-views-tab-link" id="line3-chart-tab" data-toggle="tab" href="#line3-chart" role="tab" aria-controls="line3-chart" aria-selected="false">product quantity by vendors</a>
+            </li>
           <% end %>
           <% if  !@query || JSON.parse(@query.fields).include?('paid_at') && JSON.parse(@query.fields).include?('lineitem_quantity')  %>
-          <li class="nav-item show-page-views-tab-container">
-            <a class="nav-link show-page-views-tab-link" id="pie-chart-tab" data-toggle="tab" href="#pie-chart" role="tab" aria-controls="pie-chart" aria-selected="false">Your sales according to payment date</a>
-          </li>
+            <% no_charts = false %>
+            <li class="nav-item show-page-views-tab-container">
+              <a class="nav-link show-page-views-tab-link" id="pie-chart-tab" data-toggle="tab" href="#pie-chart" role="tab" aria-controls="pie-chart" aria-selected="false">Your sales according to payment date</a>
+            </li>
+          <% end %>
+          <% if no_charts == true %>
+            <p>We are not able to show any chart according to your query.</p>
           <% end %>
         </ul>
 
@@ -98,6 +107,7 @@
             <br>
           </div> 
           <% end %>
+
           <% if !@query || JSON.parse(@query.fields).include?('lineitem_sku') %>
              <div class="tab-pane show-page-views-tab-pane" id="line2-chart" role="tabpanel" aria-labelledby="line2-chart-tab">
                 <h4>introduction:</h4>
@@ -121,7 +131,7 @@
           <% end %>
 
           <% if  !@query || JSON.parse(@query.fields).include?('paid_at') && JSON.parse(@query.fields).include?('lineitem_quantity')  %>
-          <div class="tab-pane active show show-page-views-tab-pane" id="pie-chart" role="tabpanel" aria-labelledby="pietab">
+          <div class="tab-pane show-page-views-tab-pane" id="pie-chart" role="tabpanel" aria-labelledby="pie-chart-tab">
 
             <p>A scatter plot uses dots to represent values for two different numeric variables. The position of each dot on the horizontal and vertical 
             axis indicates values for an individual data point. Scatter plots are used to observe relationships between variables.</p>
