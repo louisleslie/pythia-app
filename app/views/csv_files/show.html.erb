@@ -6,5 +6,6 @@
   <div class="show-page-content-container">
     <h1><%= @csv_file.filename %></h1>
     <%= render :partial => "/partials/view_data", locals: { query: @orders, chart: @csv_file.orders } %>
+    <%# <% raise %>
   </div>
 </div>
