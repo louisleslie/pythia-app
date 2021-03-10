@@ -29,9 +29,14 @@
       </table>
     </div>
     <% else %>
-      <div>You have no queries</div>
+      <div>
+        <p>You have no queries</p>
+        <%= link_to "New Query", new_csv_file_query_path, class: "button-primary" %>
+      </div>
     <% end %>
   <% else %>
-    <div>You don't have access to this file.</div>
+    <div>
+      <p>You don't have access to this file</p>
+    </div>
   <% end %>
 </div>
