@@ -2,7 +2,7 @@
 <html>
   <head>
     <%= favicon_link_tag asset_path('logo.svg') %>
-    <title>Pythia - </title>
+    <title><%= content_for?(:html_title) ? yield(:html_title) : "Pythia - Ask your data what you want to know" %></title>
 
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="description" content="<%= meta_description %>">
