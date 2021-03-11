@@ -5,6 +5,12 @@
       <button class="button-primary">Edit Query</button>
     <% end %>
   <% else %>
+  <div id="query-json-data" class="display-none">
+    <p><%= query.to_json %></p>
+  </div>
+  <div id="query-json-column-data-types" class="display-none">
+    <p><%= @selected_columns ? @selected_columns.to_json : @order_columns.to_json %></p>
+  </div>
   <div class="show-page-views-menu-container">
     <ul class="nav nav-tabs show-page-views-tabs-container" id="myTab" role="tablist">
       <li class="nav-item show-page-views-tab-container">
