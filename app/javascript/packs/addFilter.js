@@ -45,8 +45,16 @@ const listenForFieldChanges = () => {
   }));
 }
 
-const addDivToQueryFieldsInput = () => {
-  const createButton = document.querySelector("#add-filter");
+const validateBeforeSubmit = () => {
+  const submitButton = document.querySelector("#query-submit-button");
+  console.log(submitButton)
+  submitButton.addEventListener("click", (event) => {
+    event.preventDefault();
+    console.log(event.target.form);
+    // if event.target.form.
+    alert("hello, something is here");
+    return false;
+  });
 }
 
 const insertRemoveFilter = (Fieldset, newId) => {
@@ -103,4 +111,4 @@ const addFilter = () => {
   });
 }
 
-export { addFilter, listenForFieldChanges, addDivToQueryFieldsInput }
+export { addFilter, listenForFieldChanges, validateBeforeSubmit }
