@@ -314,6 +314,19 @@ tr:nth-child(even) {
   margin-top: 0.5rem;
 }
 
+.show-page-map-svg {
+
+}
+
+.show-page-map-form-container {
+  display: flex;
+  align-items: center;
+  border: 1px solid red;
+  height: 5rem;
+  width: 5rem;
+
+}
+
 .country {
   // fill: $gray-900;
   stroke: $gray-200;
