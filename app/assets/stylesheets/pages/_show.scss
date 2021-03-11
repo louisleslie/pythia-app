@@ -211,7 +211,7 @@
 }
 
 .show-page-views-tab-pane {
-  padding: 0rem 1rem;
+  padding: 1rem 1rem;
   overflow: scroll;
   height: 600px;
 }
@@ -229,7 +229,8 @@
   align-items: center;
   width: min-content;
   border-radius: 0.375rem;
-  padding-top: 0.5rem;
+  border: 1px solid $gray-200;
+  overflow: hidden;
 }
 
 .show-page-table {
@@ -238,8 +239,6 @@
   white-space: nowrap;
   width: 100%;
   border-collapse: collapse;
-  border: 1px solid $gray-200;
-  border-radius: 0.375rem;
 }
 
 .show-page-table-header-section {
