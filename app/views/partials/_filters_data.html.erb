@@ -11,7 +11,7 @@
       </ul>
       <% if user_signed_in? && @query.csv_file.user == current_user %>
         <div class="show-page-filters-buttons-container">
-
+          <%= link_to 'Download Query as CSV', csv_file_query_path(id: @query.id, format: :csv), class: "button-utility mr-3" %>
           <%= link_to "Edit", edit_csv_file_query_path(@query) , class: "button-utility mr-3"  %>
           <%= link_to "Delete", csv_file_query_path(@query), class: "button-utility", method: :delete, data: { confirm: "Deleting this query cannot be undone. Are you sure you want to delete?" } %>
 

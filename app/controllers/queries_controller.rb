@@ -36,7 +36,7 @@ class QueriesController < ApplicationController
     @csv_file = CsvFile.find(params[:csv_file_id])
     @query.csv_file = @csv_file
     if @query.save
-      redirect_to csv_file_query_path(@query)
+      redirect_to csv_file_query_path(@csv_file, @query)
     else
       flash[:alert] = "Something went wrong."
       render :new
@@ -57,7 +57,7 @@ class QueriesController < ApplicationController
     @query.update(query_params)
     @query.fields = params[:query][:fields][1..-1].to_s
     @query.save
-    redirect_to csv_file_query_path(@query)
+    redirect_to csv_file_query_path(@csv_file, @query)
   end
 
   def destroy
