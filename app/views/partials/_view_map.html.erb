@@ -1,10 +1,4 @@
 
-<div id="query-json-data" class="display-none">
-  <p><%= query.to_json %></p>
-</div>
-<div id="query-json-column-data-types" class="display-none">
-  <p><%= @selected_columns ? @selected_columns.to_json : @order_columns.to_json %></p>
-</div>
 <% if @selected_columns %>
   <% if @selected_columns.values.include?(:integer) == false && @selected_columns.values.include?(:float) == false && @selected_columns %>
     <div class="show-page-map-container">
