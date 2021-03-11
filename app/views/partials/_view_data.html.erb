@@ -32,9 +32,15 @@
         </a>
       </li>
     </ul>
-    <div class="show-page-views-buttons-container">
-      <button class="button-utility">Example Button</button>
-    </div>
+    <% if @query %>
+      <div class="show-page-views-buttons-container">
+        <%= link_to 'Download Query as CSV', csv_file_query_path(id: @query.id, format: :csv), class: "button-utility mr-3" %>
+      </div>
+    <% else %>
+      <div class="show-page-views-buttons-container">
+        <%= link_to 'Download CSV', csv_file_path(id: @csv_file.id, format: :csv), class: "button-utility mr-3" %>
+      </div>
+    <% end %>
   </div>
 
 

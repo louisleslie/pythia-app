@@ -19,8 +19,11 @@ class CsvFilesController < ApplicationController
   end
 
   def show
-    
     @orders = Order.connection.select_all("SELECT * FROM Orders WHERE csv_file_id = #{@csv_file.id}")
+    respond_to do |format|
+      format.html
+      format.csv { send_data orders_to_csv(@csv_file.orders, @order_columns.keys), filename: "#{@csv_file.filename}.csv" }
+    end
   end
 
   def destroy
@@ -74,5 +77,15 @@ class CsvFilesController < ApplicationController
   def get_order_datatypes
     @order_columns = {}
     Order.columns_hash.map { |k, v| @order_columns[k] = v.sql_type_metadata.type }
+  end
+
+  def orders_to_csv(orders, fields)
+    fields = fields[5..-1]
+    CSV.generate(headers: true) do |csv|
+      csv << fields
+      orders.each do |order|
+        csv << order.attributes.values_at(*fields)
+      end
+    end
   end
 end
