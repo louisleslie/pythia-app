@@ -63,14 +63,14 @@
 }
 
 .show-page-filters-tab-pane {
-  padding: 0rem 1rem;
+  padding: 1rem;
   overflow: scroll;
   height: 200;
 }
 
 .show-page-filters-sql-container {
   border-radius: 0.375rem;
-  padding: 0.75rem 1rem 0.25rem;
+  padding: 0.75rem 1rem 0.75rem;
   background-color: $gray-800;
   overflow: none;
   margin-top: 0.5rem;
@@ -78,11 +78,12 @@
 }
 
 .show-page-sql-query {
-  color: white;
   @include text-sm;
   font-weight: 500;
   font-family: "Courier New";
-  color: $purple-100;
+  color: $gray-100;
+  margin: 0;
+  padding: 0;
 }
 
 .show-page-filter-pills-container {
