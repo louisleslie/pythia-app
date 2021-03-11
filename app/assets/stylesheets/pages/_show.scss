@@ -27,7 +27,44 @@
   border-top: 1px solid $gray-200;
 }
 
+// Resets
 
+.nav-tabs {
+  border: none;
+}
+
+.nav-tabs .nav-link {
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  border-bottom: none;
+}
+
+.nav-tabs .nav-link:hover, .nav-tabs .nav-link:focus {
+  border: none;
+}
+
+.nav-tabs .nav-link.active, .nav-tabs .nav-item.show .nav-link {
+  background-color: $white;
+  color: $purple-700;
+  border-bottom: 1px solid $purple-700;
+
+  > .show-page-views-tab-icon {
+    color: $purple-600;
+  }
+
+  &:hover {
+    color: $purple-800;
+
+    > .show-page-views-tab-icon {
+      color: $purple-700;
+    }
+  }
+}
+
+.nav-item {
+
+}
 
 
 // Filters Partial
@@ -115,43 +152,6 @@
 
 // Views Partial
 
-.nav-tabs {
-  border: none;
-}
-
-.nav-tabs .nav-link {
-  border-top: none;
-  border-left: none;
-  border-right: none;
-  border-bottom: none;
-}
-
-.nav-tabs .nav-link:hover, .nav-tabs .nav-link:focus {
-  border: none;
-}
-
-.nav-tabs .nav-link.active, .nav-tabs .nav-item.show .nav-link {
-  background-color: $white;
-  color: $purple-700;
-  border-bottom: 1px solid $purple-700;
-
-  > .show-page-views-tab-icon {
-    color: $purple-600;
-  }
-
-  &:hover {
-    color: $purple-800;
-
-    > .show-page-views-tab-icon {
-      color: $purple-700;
-    }
-  }
-}
-
-.nav-item {
-
-}
-
 .show-page-views-container {
   padding: 0rem;
 }
@@ -203,7 +203,7 @@
 
   &:hover {
 
-    transform: scale(1.025);
+    // transform: scale(1.025);
     color: $gray-600;
 
     .show-page-views-tab-icon {
