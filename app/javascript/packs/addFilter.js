@@ -51,9 +51,13 @@ const validateBeforeSubmit = () => {
   submitButton.addEventListener("click", (event) => {
     event.preventDefault();
     console.log(event.target.form);
-    // if event.target.form.
-    alert("hello, something is here");
-    return false;
+    console.log(event.target.form.querySelector("#query_query_name").value);
+    if (event.target.form.querySelector("#query_query_name").value == "") {
+      alert("Please give your query a name");
+      return false;
+    } else {
+      event.target.form.submit();
+    }
   });
 }
 
