@@ -19,7 +19,7 @@
             <% end %>
           <% end %>
         </select>
-        <button type="submit">Submit</button>
+        <button type="submit" class="button-primary" style = "padding: 3px;">Submit</button>
     </form>
     <% if @selected_columns %>
       <%= render 'partials/charts', column:'order_created_at', hidden: false, chart: chart %>

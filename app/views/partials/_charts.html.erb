@@ -3,12 +3,94 @@
     <div class="chart<%= " hidden" if hidden %>" id="<%= column %>">
         <%= line_chart chart.group_by_day(:order_created_at).count, xtitle: "Time", ytitle: "Number of Order", colors: ["#b00", "#666"], stacked: true , discrete: true, legend: false, download: true%>
     </div>
+<% elsif column == 'paid_at' %>
+    <div class="chart<%= " hidden" if hidden %>" id="<%= column %>">
+        <%= line_chart chart.group_by_day(:paid_at).count, xtitle: "Time", ytitle: "payment received", colors: ["#b00", "#666"], stacked: true , discrete: true, legend: false, download: true%>
+    </div>
+<% elsif column == 'updated_at' %>
+    <div class="chart<%= " hidden" if hidden %>" id="<%= column %>">
+        <%= line_chart chart.group_by_day(:updated_at).count, xtitle: "Time", ytitle: "order updated", colors: ["#b00", "#666"], stacked: true , discrete: true, legend: false, download: true%>
+    </div>
+<% elsif column == 'cancelled_at' %>
+    <div class="chart<%= " hidden" if hidden %>" id="<%= column %>">
+        <%= line_chart chart.group_by_day(:cancelled_at).count, xtitle: "Time", ytitle: "order cancelled", colors: ["#b00", "#666"], stacked: true , discrete: true, legend: false, download: true%>
+    </div>
 <% elsif column == "total"  %>
     <div class="chart<%= " hidden" if hidden %>" id="<%= column %>">
         <%= bar_chart chart.group_by_day(:order_created_at).sum(:total), download: true %>
     </div>
-<% elsif column == 'email' %>
+<% elsif column == "discount_amount"  %>
+    <div class="chart<%= " hidden" if hidden %>" id="<%= column %>">
+        <%= bar_chart chart.group_by_day(:order_created_at).sum(:discount_amount), download: true %>
+    </div>
+<% elsif column == "subtotal"  %>
+    <div class="chart<%= " hidden" if hidden %>" id="<%= column %>">
+        <%= bar_chart chart.group_by_day(:order_created_at).sum(:subtotal), download: true %>
+    </div>
+<% elsif column == "shipping"  %>
+    <div class="chart<%= " hidden" if hidden %>" id="<%= column %>">
+        <%= bar_chart chart.group_by_day(:order_created_at).sum(:shipping), download: true %>
+    </div>
+<% elsif column == "taxes"  %>
+    <div class="chart<%= " hidden" if hidden %>" id="<%= column %>">
+        <%= bar_chart chart.group_by_day(:order_created_at).sum(:taxes), download: true %>
+    </div>
+<% elsif column == "refunded_amount"  %>
+    <div class="chart<%= " hidden" if hidden %>" id="<%= column %>">
+        <%= bar_chart chart.group_by_day(:order_created_at).sum(:refunded_amount), download: true %>
+    </div>
+<% elsif column == "lineitem_discount"  %>
+    <div class="chart<%= " hidden" if hidden %>" id="<%= column %>">
+        <%= bar_chart chart.group_by_day(:order_created_at).sum(:lineitem_discount), download: true %>
+    </div>
+<% elsif column == "lineitem_price"  %>
+    <div class="chart<%= " hidden" if hidden %>" id="<%= column %>">
+        <%= bar_chart chart.group_by_day(:order_created_at).sum(:lineitem_price), download: true %>
+    </div>
+<% elsif column == "lineitem_compare_at_price"  %>
+    <div class="chart<%= " hidden" if hidden %>" id="<%= column %>">
+        <%= bar_chart chart.group_by_day(:order_created_at).sum(:lineitem_compare_at_price), download: true %>
+    </div>
+<% elsif column == 'name' %>
     <div class="chart<%= " hidden" if hidden %>" id="<%= column %>">
         <%= bar_chart chart.group_by_day(:order_created_at).sum(:total), download: true %>
     </div>
+<% elsif column == 'shipping_method' %>
+    <div class="chart<%= " hidden" if hidden %> mt-3" id="<%= column %>">
+        <%= pie_chart chart.group(:shipping_method).count, download: true %>
+    </div>
+<% elsif column == 'billing_country' %>
+<div class="chart<%= " hidden" if hidden %> mt-3" id="<%= column %>">
+    <%= pie_chart chart.group(:billing_country).count, download: true %>
+</div>
+<% elsif column == 'billing_province' %>
+<div class="chart<%= " hidden" if hidden %> mt-3" id="<%= column %>">
+    <%= pie_chart chart.group(:billing_province).count, download: true %>
+</div>
+<% elsif column == 'billing_company' %>
+<div class="chart<%= " hidden" if hidden %> mt-3" id="<%= column %>">
+    <%= pie_chart chart.group(:billing_company).count, download: true %>
+</div>
+<% elsif column == 'billing_city' %>
+<div class="chart<%= " hidden" if hidden %> mt-3" id="<%= column %>">
+    <%= pie_chart chart.group(:billing_city).count, download: true %>
+</div>
+<% elsif column == 'billing_province' %>
+<div class="chart<%= " hidden" if hidden %> mt-3" id="<%= column %>">
+    <%= pie_chart chart.group(:shipping_country).count, download: true %>
+</div>
+<% elsif column == 'shipping_company' %>
+<div class="chart<%= " hidden" if hidden %> mt-3" id="<%= column %>">
+    <%= pie_chart chart.group(:shipping_company).count, download: true %>
+</div>
+<% elsif column == 'payment_method' %>
+<div class="chart<%= " hidden" if hidden %> mt-3" id="<%= column %>">
+    <%= pie_chart chart.group(:payment_method).count, download: true %>
+</div>
+<% elsif column == 'shipping_name' %>
+<div  class="chart<%= " hidden" if hidden %> mt-3" id="<%= column %>">
+    <%= pie_chart chart.group(:shipping_name).count, download: true %>
+</div>
+
+
 <% end %>
