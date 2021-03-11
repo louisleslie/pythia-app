@@ -58,7 +58,7 @@
   &:hover {
     color: $gray-600;
     background-color: $gray-50;
-    transform: scale(1.025);
+    // transform: scale(1.025);
 
     .sidebar-file-icon {
       color: $gray-500;
@@ -149,7 +149,7 @@
 
   >.sidebar-file-item {
     &:hover {
-      transform: scale(1.02);
+      // transform: scale(1.02);
       background-color: $gray-200;
 
       .sidebar-file-name-text {
@@ -194,7 +194,7 @@
   &:hover {
     color: $gray-700;
     background-color: $gray-200;
-    transform: scale(1.02);
+    // transform: scale(1.02);
 
     .sidebar-query-icon {
       color: $gray-600;
@@ -272,7 +272,7 @@
   &:hover {
     color: $gray-700;
     background-color: $gray-200;
-    transform: scale(1.02);
+    // transform: scale(1.02);
 
     .sidebar-query-icon {
       color: $gray-600;
