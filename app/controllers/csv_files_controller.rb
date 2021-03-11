@@ -81,6 +81,8 @@ class CsvFilesController < ApplicationController
 
   def orders_to_csv(orders, fields)
     fields = fields[5..-1]
+    fields.delete("created_at")
+    fields.delete("updated_at")
     CSV.generate(headers: true) do |csv|
       csv << fields
       orders.each do |order|
