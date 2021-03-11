@@ -10,7 +10,7 @@
             Filters
           </a>
         </li>
-        <li class="nav-item show-page-views-tab-container">
+        <li class="nav-item show-page-views-tab-link">
           <a class="nav-link show-page-views-tab-link" id="profile-tab" data-toggle="tab" href="#SQL" role="tab" aria-controls="profile" aria-selected="false">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="show-page-views-tab-icon">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
@@ -31,7 +31,7 @@
         <div class="tab-pane active show-page-filters-tab-pane" id="filters" role="tabpanel" aria-labelledby="profile-tab">
           <div class="show-page-filter-pills-container">
             <% @query.filters.each_with_index do |filter, index| %>
-            <div class="show-page-filter-pill mr-2"><%= filter.verb %> <%= filter.column_name %> <%= filter.comparison_operator %> <%= filter.value %></div>
+            <div class="show-page-filter-pill mr-2"><%= filter.verb %> <%= filter.column_name %> <%= filter.comparison_operator.downcase %> <%= filter.value %></div>
           <% end %>
           </div>
         </div>
