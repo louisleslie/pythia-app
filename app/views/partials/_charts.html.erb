@@ -7,6 +7,11 @@
     <div class="chart<%= " hidden" if hidden %>" id="<%= column %>">
         <%= line_chart chart.group_by_day(:paid_at).count, xtitle: "Time", ytitle: "payment received", colors: ["#b00", "#666"], stacked: true , discrete: true, legend: false, download: true%>
     </div>
+<% elsif column == 'fulfilled_at' %>
+    <div class="chart<%= " hidden" if hidden %>" id="<%= column %>">
+        <%= line_chart chart.group_by_day(:fulfilled_at).count, xtitle: "Time", ytitle: "payment received", colors: ["#b00", "#666"], stacked: true , discrete: true, legend: false, download: true%>
+    </div>
+
 <% elsif column == 'updated_at' %>
     <div class="chart<%= " hidden" if hidden %>" id="<%= column %>">
         <%= line_chart chart.group_by_day(:updated_at).count, xtitle: "Time", ytitle: "order updated", colors: ["#b00", "#666"], stacked: true , discrete: true, legend: false, download: true%>
@@ -91,6 +96,37 @@
 <div  class="chart<%= " hidden" if hidden %> mt-3" id="<%= column %>">
     <%= pie_chart chart.group(:shipping_name).count, download: true %>
 </div>
-
+<% elsif column == 'lineitem_sku' %>
+<div  class="chart<%= " hidden" if hidden %> mt-3" id="<%= column %>">
+    <%= pie_chart chart.group(:lineitem_sku).count, download: true %>
+</div>
+<% elsif column == 'billing_zip' %>
+<div  class="chart<%= " hidden" if hidden %> mt-3" id="<%= column %>">
+    <%= pie_chart chart.group(:billing_zip).count, download: true %>
+</div>
+<% elsif column == 'lineitem_name' %>
+<div  class="chart<%= " hidden" if hidden %> mt-3" id="<%= column %>">
+    <%= pie_chart chart.group(:lineitem_name).count, download: true %>
+</div>
+<% elsif column == 'currency' %>
+<div  class="chart<%= " hidden" if hidden %> mt-3" id="<%= column %>">
+    <%= pie_chart chart.group(:currency).count, download: true %>
+</div>
+<% elsif column == 'fulfillment_status' %>
+<div  class="chart<%= " hidden" if hidden %> mt-3" id="<%= column %>">
+    <%= pie_chart chart.group(:fulfillment_status).count, download: true %>
+</div>
+<% elsif column == 'lineitem_taxable' %>
+<div  class="chart<%= " hidden" if hidden %> mt-3" id="<%= column %>">
+    <%= pie_chart chart.group(:lineitem_taxable).count, download: true %>
+</div>
+<% elsif column == 'accepts_marketing' %>
+<div  class="chart<%= " hidden" if hidden %> mt-3" id="<%= column %>">
+    <%= pie_chart chart.group(:accepts_marketing).count, download: true %>
+</div>
+<% elsif column == 'shipping_zip' %>
+<div  class="chart<%= " hidden" if hidden %> mt-3" id="<%= column %>">
+    <%= pie_chart chart.group(:shipping_zip).count, download: true %>
+</div>
 
 <% end %>
