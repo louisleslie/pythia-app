@@ -1,0 +1,97 @@
+
+<div id="query-json-data" class="display-none">
+  <p><%= query.to_json %></p>
+</div>
+<div id="query-json-column-data-types" class="display-none">
+  <p><%= @selected_columns ? @selected_columns.to_json : @order_columns.to_json %></p>
+</div>
+<% if @selected_columns %>
+  <% if @selected_columns.values.include?(:integer) == false && @selected_columns.values.include?(:float) == false && @selected_columns %>
+    <div class="show-page-map-container">
+      <h5>There are no numerical columns in this query that can be added to a map</h5>
+      <%= link_to edit_csv_file_query_path(query) do %>
+        <button class="button-primary">Edit Query</button>
+      <% end %>
+    </div>
+  <% else %>
+    <!-- Don't touch this please, map projections are made for 960x500 aspect ratio -->
+    <div class="show-page-map-container">
+      <svg width="960" height="500" id="map"></svg>
+    </div>
+  <% end %>
+<% else %>
+  <div class="show-page-map-container">
+    <svg width="960" height="500" id="map"></svg>
+  </div>
+<% end %>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/topojson/3.0.2/topojson.min.js" integrity="sha512-4UKI/XKm3xrvJ6pZS5oTRvIQGIzZFoXR71rRBb1y2N+PbwAsKa5tPl2J6WvbEvwN3TxQCm8hMzsl/pO+82iRlg==" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/5.6.0/d3.min.js" integrity="sha512-Gdjw6rdB8Tefa1RazvbG8hecjW7qSjnmcRnPPj40lnNnsX5Ci9pijAciBieg9XcQIFm1w/PICAzzsE6POaDyiw==" crossorigin="anonymous"></script>
+
+<script>
+
+
+  const svg = d3.select('#map');
+
+  const width = +svg.attr('width');
+  const height = +svg.attr('height');
+
+  const projection = d3.geoNaturalEarth1();
+  const pathGenerator = d3.geoPath().projection(projection);
+
+  const g = svg.append('g');
+
+  svg.call(d3.zoom().on('zoom', () => {
+    g.attr('transform', d3.event.transform);
+  }));
+
+  Promise.all([
+    // d3.tsv('https://unpkg.com/world-atlas@1.1.4/world/50m.tsv'),
+    JSON.parse(document.querySelector("#query-json-data").innerText), //this is json but is being referred to as tsvData here for now.
+    d3.json('https://unpkg.com/world-atlas@1.1.4/world/50m.json')
+  ]).then(([tsvData, topoJSONdata]) => {
+    console.log(tsvData); //checking it has been parsed correctly
+    const rowById = tsvData.reduce((accumulator, d) => {
+      //accumulator[d.iso_n3] = d; // Alex's original code
+      accumulator[d.billing_country] = d;
+      return accumulator;
+    }, {});
+
+    const countryIsos = {"826":"UK", "840":"US", "124":"Canada", "250":"France", "276":"Germany", "380":"Italy", "724":"Spain", "356":"India", "710":"South Africa", "036":"Australia"};
+    // const countryName = {};
+    // tsvData.forEach(d => {
+    //   countryName[d.iso_n3] = d.name;
+    // });
+
+    const countries = topojson.feature(topoJSONdata, topoJSONdata.objects.countries);
+    console.log(countries)
+    countries.features.forEach(d => {
+      // console.log(d.name);
+      Object.assign(d.properties, rowById[countryIsos[d.id]]);
+    });
+
+    const colorScale = d3.scaleQuantile();
+
+    // const colorValue = d => d.properties.economy;
+    const colorValue = d => d.properties.subtotal;
+
+    // Get rid of duplicate category entries
+    // Sort category entry values
+    colorScale
+      .domain(countries.features.map(colorValue))
+      // .domain(colorScale.domain().sort().reverse())
+      // .range(d3.schemeSpectral[colorScale.domain().length]);
+      .range(["#6EE7B7", "#10B981", "#16A34A", "#047857"]); //["#9CA3AF", "#D1D5DB", "#6B7280", "#4B5563"]);//, "#6B7280", "#4B5563", "#374151", "#1F2937", "#111827"]);
+
+      // "#F9FAFB", "#F3F4F6" , "#E5E7EB" ,
+    g.selectAll('path').data(countries.features)
+      .enter().append('path')
+        .attr('class', 'country')
+        .attr('d', pathGenerator)
+        .attr('fill', d => colorScale(colorValue(d)))
+      .append('title')
+        .text(d => d.properties.billing_country + ': ' + colorValue(d));
+  });
+
+</script>
+

@@ -136,7 +136,7 @@ users.each do |user|
     when 65..67 then country = "Spain"
     when 68..69 then country = "India"
     when 70..73 then country = "South Africa"
-    when 74..79 then county = "Australia"
+    when 74..79 then country = "Australia"
     else
       country = "UK"
     end
