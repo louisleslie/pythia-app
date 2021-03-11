@@ -45,8 +45,20 @@ const listenForFieldChanges = () => {
   }));
 }
 
-const addDivToQueryFieldsInput = () => {
-  const createButton = document.querySelector("#add-filter");
+const validateBeforeSubmit = () => {
+  const submitButton = document.querySelector("#query-submit-button");
+  console.log(submitButton)
+  submitButton.addEventListener("click", (event) => {
+    event.preventDefault();
+    console.log(event.target.form);
+    console.log(event.target.form.querySelector("#query_query_name").value);
+    if (event.target.form.querySelector("#query_query_name").value == "") {
+      alert("Please give your query a name");
+      return false;
+    } else {
+      event.target.form.submit();
+    }
+  });
 }
 
 const insertRemoveFilter = (Fieldset, newId) => {
@@ -103,4 +115,4 @@ const addFilter = () => {
   });
 }
 
-export { addFilter, listenForFieldChanges, addDivToQueryFieldsInput }
+export { addFilter, listenForFieldChanges, validateBeforeSubmit }

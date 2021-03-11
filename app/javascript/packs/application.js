@@ -24,7 +24,7 @@ import * as d3 from "d3";
 
 // Internal imports, e.g:
 // import { initSelect2 } from '../components/init_select2';
-import { addFilter, listenForFieldChanges } from './addFilter';
+import { addFilter, listenForFieldChanges, validateBeforeSubmit } from './addFilter';
 import "./chartkick"
 
 document.addEventListener('turbolinks:load', () => {
@@ -33,6 +33,7 @@ document.addEventListener('turbolinks:load', () => {
   if (document.querySelector("#fieldset-container")) {
     addFilter();
     listenForFieldChanges();
+    validateBeforeSubmit();
   }
 
 });
