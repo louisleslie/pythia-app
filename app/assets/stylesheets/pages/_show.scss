@@ -42,7 +42,7 @@
 .show-page-filters-buttons-container {
   display: flex;
   align-items: center;
-    margin-left: auto;
+  margin-left: auto;
 }
 
 .show-page-filters-tabs-container {
@@ -154,6 +154,16 @@
 
 .show-page-views-container {
   padding: 0rem;
+}
+
+.show-page-views-menu-container {
+  display: flex;
+}
+
+.show-page-views-buttons-container {
+  display: flex;
+  align-items: center;
+  margin-left: auto;
 }
 
 .show-page-views-tabs-border-container {

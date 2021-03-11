@@ -2,6 +2,7 @@
   <% if query.count == 0 %>
     <h2><%= "Sorry, no results could be found for this query." %></h2>
   <% else %>
+  <div class="show-page-views-menu-container">
     <ul class="nav nav-tabs show-page-views-tabs-container" id="myTab" role="tablist">
       <li class="nav-item show-page-views-tab-container">
         <a class="nav-link active show-page-views-tab-link" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">
@@ -28,6 +29,14 @@
         </a>
       </li>
     </ul>
+    <div class="show-page-views-buttons-container">
+      <button class="button-utility">Example Button</button>
+    </div>
+  </div>
+
+
+
+
 
     <div class="tab-content show-page-views-tab-content-container" id="myTabContent">
 
