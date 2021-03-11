@@ -21,7 +21,6 @@
       </ul>
       <% if user_signed_in? && @query.csv_file.user == current_user %>
         <div class="show-page-filters-buttons-container">
-          <%= link_to 'Download Query as CSV', csv_file_query_path(id: @query.id, format: :csv), class: "button-utility mr-3" %>
           <%= link_to "Edit", edit_csv_file_query_path(@query) , class: "button-utility mr-3"  %>
           <%= link_to "Delete", csv_file_query_path(@query), class: "button-utility", method: :delete, data: { confirm: "Deleting this query cannot be undone. Are you sure you want to delete?" } %>
         </div>
@@ -31,7 +30,7 @@
         <div class="tab-pane active show-page-filters-tab-pane" id="filters" role="tabpanel" aria-labelledby="profile-tab">
           <div class="show-page-filter-pills-container">
             <% @query.filters.each_with_index do |filter, index| %>
-            <div class="show-page-filter-pill mr-2"><%= filter.verb %> <%= filter.column_name %> <%= filter.comparison_operator.downcase %> <%= filter.value %></div>
+            <div class="show-page-filter-pill mr-2"><%= filter.verb %> <%= filter.column_name.split("-")[0].gsub!("_", " ").downcase %> <%= filter.comparison_operator.downcase %> <%= filter.value %></div>
           <% end %>
           </div>
         </div>
