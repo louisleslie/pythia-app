@@ -11,9 +11,9 @@
     <!-- Don't touch this please, map projections are made for 960x500 aspect ratio -->
     <div class="show-page-map-container">
             <div class="show-page-map-form-container">
-              <form>
-                <label>Column thing</label>
-                <select id="mapColumnNameSelector">
+              <form class="show-page-map-form">
+                <label class="show-page-map-form-label">Column:</label>
+                <select id="mapColumnNameSelector" class="show-page-map-form-input">
                   <% if @selected_columns %>
                     <% @selected_columns.each do |k, v| %>
                       <% if v == :integer || v == :float %>
@@ -28,7 +28,7 @@
                     <% end %>
                   <% end %>
                 </select>
-                <button type="submit">Submit</button>
+                <button type="submit" class="show-page-map-form-button">Submit</button>
               </form>
             </div>
       <svg width="960" height="500" id="map" class="show-page-map-svg"></></svg>
@@ -37,8 +37,8 @@
 <% else %>
   <div class="show-page-map-container">
       <div class="show-page-map-form-container">
-              <form>
-                <label>Column thing</label>
+              <form class="show-page-map-form">
+                <label>Column:</label>
                 <select id="mapColumnNameSelector">
                   <% if @selected_columns %>
                     <% @selected_columns.each do |k, v| %>
@@ -157,9 +157,8 @@
         // .domain(colorScale.domain().sort().reverse())
         // .range(d3.schemeSpectral[colorScale.domain().length]);
         .domain([0, columnMaximum])
-        .range(["#F9FAFB", "#111827"]);
+        .range(["#D1D5DB", "#111827"]);
 
-        // "#F9FAFB", "#F3F4F6" , "#E5E7EB" , "#9CA3AF", "#D1D5DB", "#6B7280", "#4B5563", "#374151", "#1F2937", "#111827"
       g.selectAll('path').data(countries.features)
         .enter().append('path')
           .attr('class', 'country')
