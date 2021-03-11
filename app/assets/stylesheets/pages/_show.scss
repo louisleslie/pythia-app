@@ -319,22 +319,55 @@ tr:nth-child(even) {
 }
 
 .show-page-map-form-container {
-  display: flex;
-  align-items: center;
-  border: 1px solid red;
-  height: 5rem;
-  width: 5rem;
-
-}
-
-.country {
-  // fill: $gray-900;
-  stroke: $gray-200;
-  stroke-width: 0.1px;
+  @include text-sm;
+  font-weight: 500;
+  border-radius: 0.375rem;
+  color: $gray-700;
+  background-color: $gray-100;
+  padding: 0.5rem;
+  width: max-content;
   transition: $transition;
 
   &:hover {
-    fill: $gray-300;
+    color: $gray-700;
+    background-color: $gray-200
+  }
+}
+
+.show-page-map-form {
+  display: flex;
+  align-items: center;
+  width: max-content;
+}
+
+.show-page-map-form-label {
+  margin-bottom: 0rem;
+}
+
+.show-page-map-form-input {
+  margin-left: 0.5rem;
+  padding: 0.25rem;
+
+  a:focus {
+    outline: none;
+  }
+
+}
+
+.show-page-map-form-button {
+  display: none;
+}
+
+
+.country {
+  // fill: $gray-900;
+  stroke: $white;
+  stroke-width: 0.1px;
+  transition: all .125s ease-in-out;
+
+  &:hover {
+    fill: $purple-500;
+    stroke: $purple-500;
   }
 }
 
