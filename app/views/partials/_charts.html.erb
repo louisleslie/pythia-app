@@ -1,0 +1,14 @@
+
+<% if column == "order_created_at" %>
+    <div class="chart<%= " hidden" if hidden %>" id="<%= column %>">
+        <%= line_chart chart.group_by_day(:order_created_at).count, xtitle: "Time", ytitle: "Number of Order", colors: ["#b00", "#666"], stacked: true , discrete: true, legend: false, download: true%>
+    </div>
+<% elsif column == "total"  %>
+    <div class="chart<%= " hidden" if hidden %>" id="<%= column %>">
+        <%= bar_chart chart.group_by_day(:order_created_at).sum(:total), download: true %>
+    </div>
+<% elsif column == 'email' %>
+    <div class="chart<%= " hidden" if hidden %>" id="<%= column %>">
+        <%= bar_chart chart.group_by_day(:order_created_at).sum(:total), download: true %>
+    </div>
+<% end %>
