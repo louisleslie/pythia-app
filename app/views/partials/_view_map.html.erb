@@ -38,8 +38,8 @@
   <div class="show-page-map-container">
       <div class="show-page-map-form-container">
               <form class="show-page-map-form">
-                <label>Column:</label>
-                <select id="mapColumnNameSelector">
+                <label class="show-page-map-form-label">Column:</label>
+                <select id="mapColumnNameSelector" class="show-page-map-form-input">
                   <% if @selected_columns %>
                     <% @selected_columns.each do |k, v| %>
                       <% if v == :integer || v == :float %>
@@ -54,7 +54,7 @@
                     <% end %>
                   <% end %>
                 </select>
-                <button type="submit">Submit</button>
+                <button type="submit" class="show-page-map-form-button">Submit</button>
               </form>
             </div>
     <svg width="960" height="500" id="map" class="show-page-map-svg"></svg>
