@@ -8,9 +8,6 @@
       <%= f.submit class: "button-primary button-bottom", id: "query-submit-button" %>
     <% end %>
   <% elsif controller_name == 'queries' && action_name == 'edit' %>
-    <div id="filter-data" class="hidden">
-      <%= @query.filters.to_json %>
-    </div>
     <%= simple_form_for @query, url: csv_file_query_path do |f| %>
       <%= f.input :query_name %>
       <div onclick="toggle(this);" class="select-tag-item"><input type="checkbox" class="select-tag-selector"/><label>Select all</label><br /></div>
