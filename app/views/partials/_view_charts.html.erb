@@ -6,9 +6,9 @@
     <% end %>
 
  
-    <form id="chart-form" class="mb-2">
-      <label for="fields">Choose a fields:</label>
-      <select name="fields" id="fields">
+    <div class="show-page-map-form-container">
+      <label for="fields">Column:</label>
+      <select name="fields" id="chart-form">
         <% if @selected_columns %>
             <% @selected_columns.keys.each do |k| %>
               <option value="<%= k %>"><%= k %></option>
@@ -19,8 +19,7 @@
             <% end %>
           <% end %>
         </select>
-        <button type="submit" class="button-primary" style = "padding: 3px;">Submit</button>
-    </form>
+    </div>
     <% if @selected_columns %>
       <%= render 'partials/charts', column:'order_created_at', hidden: false, chart: chart %>
       <% @selected_columns.keys[1..-1].each do |column| %>
@@ -36,14 +35,21 @@
 
   </div>
 <script>
-  document.getElementById('chart-form').addEventListener('submit', (e) => {
-    e.preventDefault()
-    const value = document.getElementById('fields').value
+  chartForm = document.getElementById('chart-form');
+  document.querySelectorAll('.chart').forEach((e) => {
+    console.log(e);
+    console.log(e.querySelector(".chartjs-size-monitor"));
+    // e.classList.add('hidden');
+  })
+
+  document.getElementById('chart-form').addEventListener('change', (event) => {
+    event.preventDefault();
+    const value = event.target.value;
     const charts = document.querySelectorAll('.chart').forEach((e) => {
-      console.log(e)
-      e.classList.add('hidden')
+      console.log(e);
+      e.classList.add('hidden');
     })
-    document.getElementById(value).classList.remove('hidden')
+    document.getElementById(value).classList.remove('hidden');
   })
 </script>
 
