@@ -97,6 +97,7 @@ const addFilter = () => {
   document.querySelectorAll(`[id="0"]`).forEach(Fieldset => {
     insertRemoveFilter(Fieldset);
   });
+  const Fieldset = document.querySelector(`[id="0"]`);
   console.log(Fieldset);
   const FieldsetText = Fieldset.outerHTML;
   createButton.addEventListener("click", (event) => {
