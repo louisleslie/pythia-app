@@ -1,21 +1,25 @@
-
-<% if controller_name == 'queries' && action_name == 'new' %>
-  <%= simple_form_for @query, url: csv_file_queries_path do |f| %>
-    <%= f.input :query_name %>
-    <div onclick="toggle(this);" class="select-tag-item"><input type="checkbox" class="select-tag-selector" checked="true"/><label>Select all</label><br /></div>
-    <%= f.input :fields, collection: @order_data_types.keys, input_html: { multiple: true }, as: :check_boxes, checked: @order_data_types.keys, input_html: { class: "tag-selector" }, item_wrapper_class: 'tag-item' %>
-    <%= render :partial => "/filters/filter_form", locals: { :f => f, :query => @query, :filter_comparisons => @filter_comparisons, :order_data_types => @order_data_types } %>
-    <%= f.submit class: "button-primary button-bottom", id: "query-submit-button" %>
+<div id="query-form">
+  <% if controller_name == 'queries' && action_name == 'new' %>
+    <%= simple_form_for @query, url: csv_file_queries_path do |f| %>
+      <%= f.input :query_name %>
+      <div onclick="toggle(this);" class="select-tag-item"><input type="checkbox" class="select-tag-selector" checked="true"/><label>Select all</label><br /></div>
+      <%= f.input :fields, collection: @order_data_types.keys, input_html: { multiple: true }, as: :check_boxes, checked: @order_data_types.keys, input_html: { class: "tag-selector" }, item_wrapper_class: 'tag-item' %>
+      <%= render :partial => "/filters/filter_form", locals: { :f => f, :query => @query, :filter_comparisons => @filter_comparisons, :order_data_types => @order_data_types } %>
+      <%= f.submit class: "button-primary button-bottom", id: "query-submit-button" %>
+    <% end %>
+  <% elsif controller_name == 'queries' && action_name == 'edit' %>
+    <div id="filter-data" class="hidden">
+      <%= @query.filters.to_json %>
+    </div>
+    <%= simple_form_for @query, url: csv_file_query_path do |f| %>
+      <%= f.input :query_name %>
+      <div onclick="toggle(this);" class="select-tag-item"><input type="checkbox" class="select-tag-selector"/><label>Select all</label><br /></div>
+      <%= f.input :fields, collection: @order_data_types.keys, input_html: { multiple: true }, checked: @checked_fields, as: :check_boxes, input_html: { class: "tag-selector" }, item_wrapper_class: 'tag-item tag-make-not-green', id: "make-not-green"  %>
+      <%= render :partial => "/filters/filter_form", locals: { :f => f, :query => @query, :filter_comparisons => @filter_comparisons, :order_data_types => @order_data_types } %>
+      <%= f.submit class: "button-primary button-bottom", id: "query-submit-button"%>
+    <% end %>
   <% end %>
-<% elsif controller_name == 'queries' && action_name == 'edit' %>
-  <%= simple_form_for @query, url: csv_file_query_path do |f| %>
-    <%= f.input :query_name %>
-    <div onclick="toggle(this);" class="select-tag-item"><input type="checkbox" class="select-tag-selector"/><label>Select all</label><br /></div>
-    <%= f.input :fields, collection: @order_data_types.keys, input_html: { multiple: true }, checked: @checked_fields, as: :check_boxes, input_html: { class: "tag-selector" }, item_wrapper_class: 'tag-item tag-make-not-green', id: "make-not-green"  %>
-    <%= render :partial => "/filters/filter_form", locals: { :f => f, :query => @query, :filter_comparisons => @filter_comparisons, :order_data_types => @order_data_types } %>
-    <%= f.submit class: "button-primary button-bottom", id: "query-submit-button"%>
-  <% end %>
-<% end %>
+</div>
 
 <script>
   function toggle(source) {
