@@ -86,7 +86,7 @@ const assignSelectedColumn = (selectedColumn) => {
       // .domain(colorScale.domain().sort().reverse())
       // .range(d3.schemeSpectral[colorScale.domain().length]);
       .domain([0, columnMaximum])
-      .range(["#F9FAFB", "#111827"]);
+      .range(["#E5E7EB", "#111827"]);
 
       // "#F9FAFB", "#F3F4F6" , "#E5E7EB" , "#9CA3AF", "#D1D5DB", "#6B7280", "#4B5563", "#374151", "#1F2937", "#111827"
     g.selectAll('path').data(countries.features)
@@ -101,7 +101,7 @@ const assignSelectedColumn = (selectedColumn) => {
 
 const listenForMapSelection = () => {
 
-  
+
 
   const columnSelector = document.querySelector("#mapColumnNameSelector");
 
