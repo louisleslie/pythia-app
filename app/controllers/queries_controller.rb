@@ -48,7 +48,7 @@ class QueriesController < ApplicationController
     @filter_comparisons = [""]
     @query.filters.each { |filter| @filter_comparisons << filter.comparison_operator }
     p @filter_comparisons
-    @checked_fields = JSON.parse(@query.fields)[1..-1]
+    @checked_fields = JSON.parse(@query.fields)[0..-1]
   end
 
   def update
