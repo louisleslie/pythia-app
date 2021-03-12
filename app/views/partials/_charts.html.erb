@@ -144,5 +144,8 @@
 <div  class="chart<%= " hidden" if hidden %> mt-3" id="<%= column %>">
     <%= pie_chart chart.group(:shipping_zip).count, download: true %>
 </div>
-
+<% elsif column == 'lineitem_fulfillment_status' %>
+<div  class="chart<%= " hidden" if hidden %> mt-3" id="<%= column %>">
+    <%= pie_chart chart.group(:lineitem_fulfillment_status).count, download: true %>
+</div>
 <% end %>
