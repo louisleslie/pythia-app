@@ -96,6 +96,10 @@
 <div class="chart<%= " hidden" if hidden %> mt-3" id="<%= column %>">
     <%= pie_chart chart.group(:shipping_city).count, download: true %>
 </div>
+<% elsif column == 'order_id' %>
+<div class="chart<%= " hidden" if hidden %> mt-3" id="<%= column %>">
+    <%= pie_chart chart.group(:order_id).count, download: true %>
+</div>
 <% elsif column == 'billing_street' %>
 <div class="chart<%= " hidden" if hidden %> mt-3" id="<%= column %>">
     <%= pie_chart chart.group(:billing_street).count, download: true %>
