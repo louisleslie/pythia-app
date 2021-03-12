@@ -148,4 +148,16 @@
 <div  class="chart<%= " hidden" if hidden %> mt-3" id="<%= column %>">
     <%= pie_chart chart.group(:lineitem_fulfillment_status).count, download: true %>
 </div>
+<% elsif column == 'tags' %>
+<div  class="chart<%= " hidden" if hidden %> mt-3" id="<%= column %>">
+    <%= pie_chart chart.group(:tags).count, download: true %>
+</div>
+<% elsif column == 'name' %>
+<div  class="chart<%= " hidden" if hidden %> mt-3" id="<%= column %>">
+    <%= pie_chart chart.group(:name).count, download: true %>
+</div>
+<% elsif column == 'email' %>
+<div  class="chart<%= " hidden" if hidden %> mt-3" id="<%= column %>">
+    <%= pie_chart chart.group(:email).count, download: true %>
+</div>
 <% end %>
