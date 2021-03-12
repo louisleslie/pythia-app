@@ -1,33 +1,39 @@
-
-<% if controller_name == 'queries' && action_name == 'new' %>
-  <%= simple_form_for @query, url: csv_file_queries_path do |f| %>
-    <%= f.input :query_name %>
-    <div onclick="toggle(this);" class="select-tag-item"><input type="checkbox" class="select-tag-selector" checked="true"/><label>Select all</label><br /></div>
-    <%= f.input :fields, collection: @order_data_types.keys, input_html: { multiple: true }, as: :check_boxes, checked: @order_data_types.keys, input_html: { class: "tag-selector" }, item_wrapper_class: 'tag-item' %>
-    <%= render :partial => "/filters/filter_form", locals: { :f => f, :query => @query, :filter_comparisons => @filter_comparisons, :order_data_types => @order_data_types } %>
-    <%= f.submit class: "button-primary button-bottom", id: "query-submit-button" %>
+<div id="query-form">
+  <% if controller_name == 'queries' && action_name == 'new' %>
+    <%= simple_form_for @query, url: csv_file_queries_path do |f| %>
+      <%= f.input :query_name %>
+      <div onclick="toggle(this);" class="select-tag-item"><input type="checkbox" class="select-tag-selector" checked="true"/><label>Unselect all</label><br /></div>
+      <%= f.input :fields, collection: @order_data_types.keys, input_html: { multiple: true }, as: :check_boxes, checked: @order_data_types.keys, input_html: { class: "tag-selector" }, item_wrapper_class: 'tag-item', label: "Choose your columns" %>
+      <%= render :partial => "/filters/filter_form", locals: { :f => f, :query => @query, :filter_comparisons => @filter_comparisons, :order_data_types => @order_data_types } %>
+      <%= f.submit class: "button-primary button-bottom", id: "query-submit-button" %>
+    <% end %>
+  <% elsif controller_name == 'queries' && action_name == 'edit' %>
+    <%= simple_form_for @query, url: csv_file_query_path do |f| %>
+      <%= f.input :query_name %>
+      <div onclick="toggle(this);" class="select-tag-item"><input type="checkbox" class="select-tag-selector" checked="true"/><label>Unselect all</label><br /></div>
+      <%= f.input :fields, collection: @order_data_types.keys, input_html: { multiple: true }, checked: @checked_fields, as: :check_boxes, input_html: { class: "tag-selector" }, item_wrapper_class: 'tag-item tag-make-not-green', id: "make-not-green", label: "Choose your columns"  %>
+      <%= render :partial => "/filters/filter_form", locals: { :f => f, :query => @query, :filter_comparisons => @filter_comparisons, :order_data_types => @order_data_types } %>
+      <%= f.submit class: "button-primary button-bottom", id: "query-submit-button"%>
+    <% end %>
   <% end %>
-<% elsif controller_name == 'queries' && action_name == 'edit' %>
-  <%= simple_form_for @query, url: csv_file_query_path do |f| %>
-    <%= f.input :query_name %>
-    <div onclick="toggle(this);" class="select-tag-item"><input type="checkbox" class="select-tag-selector"/><label>Select all</label><br /></div>
-    <%= f.input :fields, collection: @order_data_types.keys, input_html: { multiple: true }, checked: @checked_fields, as: :check_boxes, input_html: { class: "tag-selector" }, item_wrapper_class: 'tag-item tag-make-not-green', id: "make-not-green"  %>
-    <%= render :partial => "/filters/filter_form", locals: { :f => f, :query => @query, :filter_comparisons => @filter_comparisons, :order_data_types => @order_data_types } %>
-    <%= f.submit class: "button-primary button-bottom", id: "query-submit-button"%>
-  <% end %>
-<% end %>
+</div>
 
 <script>
   function toggle(source) {
-    console.log("checkbox clicked!");
-    console.log(source.querySelector('input').checked);
-    source.querySelector('input').checked = !source.querySelector('input').checked;
-    console.log(source.querySelector('input').checked);
+    const checkValue = source.querySelector('input').checked;
+    if (checkValue) {
+      source.querySelector('label').innerText = "Select all";
+      source.querySelector('input').checked = false;
+      setValue = false;
+    } else {
+      source.querySelector('label').innerText = "Unselect all";
+      source.querySelector('input').checked = true;
+      setValue = true;
+    }
     var checkboxes = document.querySelectorAll('.query_fields > div > input');
-    console.log(checkboxes);
     for (var i = 0; i < checkboxes.length; i++) {
-        if (checkboxes[i].checked != source.querySelector('input').checked) {
-            checkboxes[i].checked = source.querySelector('input').checked;
+        if (checkboxes[i].checked != setValue) {
+            checkboxes[i].checked = setValue;
         }
     }
   }

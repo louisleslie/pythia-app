@@ -5,7 +5,7 @@
       <h1 class="home-page-header-section-header">A better way to
         <span class="home-page-header-section-header-highlight">explore your data</span>
       </h1>
-      <p class="home-page-header-section-paragraph">Anim aute id magna aliqua ad ad non deserunt sunt. Qui irure qui Lorem cupidatat commodo. Elit sunt amet fugiat veniam occaecat fugiat.</p>
+      <p class="home-page-header-section-paragraph">Upload a CSV to learn everything you wanted to know about the performance of your ecommerce site. Dig into your sales, orders, shipping data and more.</p>
       <div class="home-page-header-section-buttons-container">
         <%= link_to "Get started", new_csv_file_path, class: "home-page-header-section-button" %>
       </div>
@@ -31,72 +31,61 @@
 
   <div class="home-page-demo-section-container section-fade-in">
     <div class="home-page-demo-section-supertext-container">
-      <h2 class="home-page-demo-section-supertext">Demo</h2>
+      <h2 class="home-page-demo-section-supertext">Welcome</h2>
     </div>
     <div class="home-page-demo-section-header-container">
       <p class="home-page-demo-section-header">No analyst? No problem.</p>
     </div>
     <div class="home-page-demo-section-paragraph-container">
-      <p class="home-page-demo-section-paragraph">Phasellus lorem quam molestie id quisque diam aenean nulla in. Accumsan in quis quis nunc, ullamcorper malesuada. Eleifend condimentum id viverra nulla.</p>
+      <p class="home-page-demo-section-paragraph">You don't need to be an Excel ninja, learn SQL or spend on overpriced consultants to analyse your data. You can do it yourself through our simple, intuitive query tools.</p>
     </div>
-    <div class="home-page-demo-section-demo-container">
+    <div class="home-page-demo-section-image-container">
+      <%= image_tag 'ui-image.png', class: 'home-page-demo-section-image'%>
     </div>
   </div>
 
   <div class="home-page-features-section-container section-fade-in">
     <div class="home-page-feature-section-container">
       <div class="home-page-feature-section-content-container">
-        <h2 class="home-page-feature-section-supertext">Lorem ipsum</h2>
-        <p class="home-page-feature-section-header">All the features</p>
-        <p class="home-page-feature-section-paragraph">Semper curabitur ullamcorper posuere nunc sed. Ornare iaculis bibendum malesuada faucibus lacinia porttitor. Pulvinar laoreet sagittis viverra duis. In venenatis sem arcu pretium pharetra at. Lectus viverra dui tellus ornare pharetra.</p>
+        <h2 class="home-page-feature-section-supertext">Queries</h2>
+        <p class="home-page-feature-section-header">Get to know your data</p>
+        <p class="home-page-feature-section-paragraph">Where do people spend the most? Where are refunds coming from? Refine your data with our query tools to surface actionable insights.</p>
         <div class="home-page-feature-section-button-container">
           <%= link_to "Get started", new_csv_file_path, class: "button-primary" %>
         </div>
       </div>
       <div class="home-page-feature-section-image-container">
-        <img
-          class="home-page-feature-section-image"
-          src=""
-          alt=""
-        />
+        <%= image_tag 'query-image.png', class: 'home-page-feature-section-image'%>
       </div>
     </div>
 
 
     <div class="home-page-feature-section-container-alt section-fade-in">
       <div class="home-page-feature-section-content-container-alt">
-        <h2 class="home-page-feature-section-supertext">Dolor sit amet</h2>
-        <p class="home-page-feature-section-header">So many features</p>
-        <p class="home-page-feature-section-paragraph">Semper curabitur ullamcorper posuere nunc sed. Ornare iaculis bibendum malesuada faucibus lacinia porttitor. Pulvinar laoreet sagittis viverra duis. In venenatis sem arcu pretium pharetra at. Lectus viverra dui tellus ornare pharetra.</p>
+        <h2 class="home-page-feature-section-supertext">Charts</h2>
+        <p class="home-page-feature-section-header">Simple, one-click visualisations</p>
+        <p class="home-page-feature-section-paragraph">Pythia dynamically generates graphics for the data you've chosen to investigate. Export clean, beautifully-designed visualisations to use in reports and slide decks.</p>
         <div class="home-page-feature-section-button-container">
           <%= link_to "Get started", new_csv_file_path, class: "button-primary" %>
         </div>
       </div>
       <div class="home-page-feature-section-image-container-alt">
-        <img
-          class="home-page-feature-section-image-alt"
-          src=""
-          alt=""
-        />
+        <%= image_tag 'chart-image.png', class: 'home-page-feature-section-image'%>
       </div>
     </div>
 
 
     <div class="home-page-feature-section-container section-fade-in">
       <div class="home-page-feature-section-content-container">
-        <h2 class="home-page-feature-section-supertext">Lorem ipsum</h2>
-        <p class="home-page-feature-section-header">Yet more features</p>
-        <p class="home-page-feature-section-paragraph">Semper curabitur ullamcorper posuere nunc sed. Ornare iaculis bibendum malesuada faucibus lacinia porttitor. Pulvinar laoreet sagittis viverra duis. In venenatis sem arcu pretium pharetra at. Lectus viverra dui tellus ornare pharetra.</p>
+        <h2 class="home-page-feature-section-supertext">Maps</h2>
+        <p class="home-page-feature-section-header">Follow your data across the world</p>
+        <p class="home-page-feature-section-paragraph">Sales spike in the US? Increased refunds from Italy? Quickly surface trends from our map view and create queries to home in on underlying insights.</p>
         <div class="home-page-feature-section-button-container">
           <%= link_to "Get started", new_csv_file_path, class: "button-primary" %>
         </div>
       </div>
       <div class="home-page-feature-section-image-container">
-        <img
-          class="home-page-feature-section-image"
-          src=""
-          alt=""
-        />
+        <%= image_tag 'map-image.png', class: 'home-page-feature-section-image'%>
       </div>
     </div>
   </div>
@@ -111,7 +100,7 @@
           <div class="home-page-testimonial-section-image-container">
             <img
               class="home-page-testimonial-section-image"
-              src=""
+              src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=668&q=80"
               alt=""
             />
           </div>
@@ -124,11 +113,11 @@
               <svg class="home-page-testimonial-section-blockquote-quote-icon" fill="currentColor" viewBox="0 0 32 32" aria-hidden="true">
                 <path d="M9.352 4C4.456 7.456 1 13.12 1 19.36c0 5.088 3.072 8.064 6.624 8.064 3.36 0 5.856-2.688 5.856-5.856 0-3.168-2.208-5.472-5.088-5.472-.576 0-1.344.096-1.536.192.48-3.264 3.552-7.104 6.624-9.024L9.352 4zm16.512 0c-4.8 3.456-8.256 9.12-8.256 15.36 0 5.088 3.072 8.064 6.624 8.064 3.264 0 5.856-2.688 5.856-5.856 0-3.168-2.304-5.472-5.184-5.472-.576 0-1.248.096-1.44.192.48-3.264 3.456-7.104 6.528-9.024L25.864 4z"></path>
               </svg>
-              <p class="home-page-testimonial-section-paragraph">Semper curabitur ullamcorper posuere nunc sed. Ornare iaculis bibendum malesuada faucibus lacinia porttitor. Pulvinar laoreet sagittis viverra duis. In venenatis sem arcu pretium pharetra at. Lectus viverra dui tellus ornare pharetra..</p>
+              <p class="home-page-testimonial-section-paragraph">Pythia has completely replaced my native ecommerce analytics. It's simple, elegant and lets me easily share new discoveries with my team.</p>
             </div>
             <footer class="home-page-testimonial-section-blockquote-footer">
-              <p class="home-page-testimonial-section-blockquote-footer-text">Firstname Lastname</p>
-              <p class="home-page-testimonial-section-blockquote-footer-subtext">Position, Company</p>
+              <p class="home-page-testimonial-section-blockquote-footer-text">Jane Doe</p>
+              <p class="home-page-testimonial-section-blockquote-footer-subtext">ACME Corp.</p>
             </footer>
           </blockquote>
         </div>
@@ -144,7 +133,6 @@
 </main>
 
 <script>
-
   let elementsArray = document.querySelectorAll(".section-fade-in");
   console.log(elementsArray);
   window.addEventListener('scroll', fadeIn );
@@ -159,9 +147,7 @@
         }
     }
   }
-fadeIn();
-
-
+  fadeIn();
 </script>
 
 

@@ -1,14 +1,15 @@
 
 
-  <div class="tab-content show-page-views-tab-content-container mt-3" id="myChartTabContent">
+  <div class="tab-content show-page-views-tab-content-container" id="myChartTabContent">
     <% content_for :chartkick do %>
       <%= javascript_pack_tag 'chartkick' %>
     <% end %>
 
- 
-    <form id="chart-form" class="mb-2">
-      <label for="fields">Choose a fields:</label>
-      <select name="fields" id="fields">
+
+    <div class="show-page-map-form-container mb-2">
+      <form class="show-page-map-form">
+      <label for="fields" class="show-page-map-form-label">Column:</label>
+      <select name="fields" id="chart-form" class="show-page-map-form-input">
         <% if @selected_columns %>
             <% @selected_columns.keys.each do |k| %>
               <option value="<%= k %>"><%= k %></option>
@@ -19,8 +20,8 @@
             <% end %>
           <% end %>
         </select>
-        <button type="submit" class="button-primary" style = "padding: 3px;">Submit</button>
-    </form>
+      </form>
+    </div>
     <% if @selected_columns %>
       <%= render 'partials/charts', column:'order_created_at', hidden: false, chart: chart %>
       <% @selected_columns.keys[1..-1].each do |column| %>
@@ -32,16 +33,25 @@
         <%= render "partials/charts", column: column, hidden: true, chart: chart %>
       <% end %>
     <% end %>
-    
+    <!-- Non commit to test for break -->
+        <!-- Non commit to test for break -->
+
 
   </div>
 <script>
-  document.getElementById('chart-form').addEventListener('submit', (e) => {
-    e.preventDefault()
-    const value = document.getElementById('fields').value
+  chartForm = document.getElementById('chart-form');
+  document.querySelectorAll('.chart').forEach((e) => {
+    console.log(e);
+    console.log(e.querySelector(".chartjs-size-monitor"));
+    // e.classList.add('hidden');
+  })
+
+  document.getElementById('chart-form').addEventListener('change', (event) => {
+    event.preventDefault();
+    const value = event.target.value;
     const charts = document.querySelectorAll('.chart').forEach((e) => {
-      console.log(e)
-      e.classList.add('hidden')
+      console.log(e);
+      e.classList.add('hidden');
     })
     document.getElementById(value).classList.remove('hidden')
   }) 

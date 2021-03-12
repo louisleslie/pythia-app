@@ -88,6 +88,21 @@
 }
 
 
+.upload-form-demo-link-container  {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: 0.5rem;
+  @include text-xs;
+  color: $gray-500;
+}
+
+.upload-form-demo-link a {
+
+}
+
+
 // Upload Loading Modal
 
 .upload-form-loading-modal-container {
@@ -135,6 +150,7 @@
   height: 8rem;
   width: 8rem;
 }
+
 
 // Loading Animation
 
