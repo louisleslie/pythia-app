@@ -1,89 +1,49 @@
-<ul class="nav nav-tabs show-page-views-tabs-container-secondary" id="myChartTab" role="tablist">
-  <% no_charts = true %>
-  <% if !@query || JSON.parse(@query.fields).include?('order_created_at') %>
-    <% no_charts = false %>
-    <li class="nav-item show-page-views-tab-container">
-      <a class="nav-link active show-page-views-tab-link" id="line-chart-tab" data-toggle="tab" href="#line-chart" role="tab" aria-controls="line-chart" aria-selected="true">orders <strong>vs</strong> date</a>
-    </li>
-  <% end %>
-  <% if !@query || JSON.parse(@query.fields).include?('lineitem_sku') %>
-    <% no_charts = false %>
-    <li class="nav-item show-page-views-tab-container">
-      <a class="nav-link show-page-views-tab-link" id="line2-chart-tab" data-toggle="tab" href="#line2-chart" role="tab" aria-controls="line2-chart" aria-selected="false">product name <strong>vs</strong> numbers</a>
-    </li>
-  <% end %>
-  <% if !@query || JSON.parse(@query.fields).include?('vendor') && JSON.parse(@query.fields).include?('lineitem_quantity')  %>
-    <% no_charts = false %>
-    <li class="nav-item show-page-views-tab-container">
-      <a class="nav-link show-page-views-tab-link" id="line3-chart-tab" data-toggle="tab" href="#line3-chart" role="tab" aria-controls="line3-chart" aria-selected="false">product quantity <strong>vs</strong> vendors</a>
-    </li>
-  <% end %>
-  <% if  !@query || JSON.parse(@query.fields).include?('paid_at') && JSON.parse(@query.fields).include?('lineitem_quantity')  %>
-    <% no_charts = false %>
-    <li class="nav-item show-page-views-tab-container">
-      <a class="nav-link show-page-views-tab-link" id="pie-chart-tab" data-toggle="tab" href="#pie-chart" role="tab" aria-controls="pie-chart" aria-selected="false">sales <strong>vs</strong> payment date</a>
-    </li>
-  <% end %>
-</ul>
-<% if no_charts == true %>
-  <div>
-  <h5>There are no numerical columns in this query that can be added to a chart</h5>
-  <%= link_to edit_csv_file_query_path(@query.id) do %>
-    <button class="button-primary">Edit Query</button>
-  <% end %>
-  </div>
-<% else %>
+
 
   <div class="tab-content show-page-views-tab-content-container mt-3" id="myChartTabContent">
     <% content_for :chartkick do %>
       <%= javascript_pack_tag 'chartkick' %>
     <% end %>
 
-    <% if !@query || JSON.parse(@query.fields).include?('order_created_at') %>
-      <div class="tab-pane active show show-page-views-tab-pane" id="line-chart" role="tabpanel" aria-labelledby="line-chart-tab">
-        <%= line_chart chart.group_by_day(:order_created_at).count, xtitle: "Time", ytitle: "Number of Order", colors: ["#b00", "#666"], stacked: true , discrete: true, legend: false%>
-        <h3>Summary</h3>
-        <p>A line graph is commonly used to display change over time as a series of data points connected by straight
-        line segments on two axes. The line graph therefore helps to determine the relationship between two sets of values,
-        with one data set always being dependent on the other set.</p>
-        <%# <h2>Summary</h2>
-        <p>The chart shows changes of your orders day by day.
-        As it is seen on chart you total sales number has been increased since you started to business.</p> %>
-        <br>
-      </div>
+ 
+    <form id="chart-form" class="mb-2">
+      <label for="fields">Choose a fields:</label>
+      <select name="fields" id="fields">
+        <% if @selected_columns %>
+            <% @selected_columns.keys.each do |k| %>
+              <option value="<%= k %>"><%= k %></option>
+            <% end %>
+          <% else %>
+            <% @order_columns.keys.each do |k| %>
+              <option value="<%= k %>"><%= k %></option>
+            <% end %>
+          <% end %>
+        </select>
+        <button type="submit" class="button-primary" style = "padding: 3px;">Submit</button>
+    </form>
+    <% if @selected_columns %>
+      <%= render 'partials/charts', column:'order_created_at', hidden: false, chart: chart %>
+      <% @selected_columns.keys[1..-1].each do |column| %>
+        <%= render "partials/charts", column: column, hidden: true, chart: chart %>
+      <% end %>
+    <% else %>
+      <%= render 'partials/charts', column:'order_created_at', hidden: false, chart: chart %>
+      <% @order_columns.keys[1..-1].each do |column| %>
+        <%= render "partials/charts", column: column, hidden: true, chart: chart %>
+      <% end %>
     <% end %>
+    
 
-    <% if !@query || JSON.parse(@query.fields).include?('lineitem_sku') %>
-      <div class="tab-pane show-page-views-tab-pane" id="line2-chart" role="tabpanel" aria-labelledby="line2-chart-tab">
-        <%= pie_chart chart.group(:lineitem_sku).count %>
-        <h3>Summary</h3>
-        <p>Pie charts are generally used to show percentage or proportional
-          data and usually the percentage represented by each category is provided next to the corresponding slice of pie.</p>
-        <%# <h2>Summary</h2>
-        <p>The Column chart indicates that......</p> %>
-      </div>
-    <% end %>
-
-    <% if !@query || JSON.parse(@query.fields).include?('vendor') && JSON.parse(@query.fields).include?('lineitem_quantity') %>
-      <div class="tab-pane show-page-views-tab-pane" id="line3-chart" role="tabpanel" aria-labelledby="line3-chart-tab">
-        <%= bar_chart chart.group(:vendor).sum(:lineitem_quantity) %>
-        <h3>Summary</h3>
-        <p>A bar chart is used when you want to show a distribution of data points or perform a comparison of metric values across different subgroups of your data.
-        From a bar chart, we can see which groups are highest or most common, and how other groups compare against the others</p>
-        <%# <h2>Summary</h2>
-        <p>The bar chart indicates that......</p> %>
-      </div>
-    <% end %>
-
-    <% if  !@query || JSON.parse(@query.fields).include?('paid_at') && JSON.parse(@query.fields).include?('lineitem_quantity')  %>
-      <div class="tab-pane show-page-views-tab-pane" id="pie-chart" role="tabpanel" aria-labelledby="pie-chart-tab">
-        <%= scatter_chart chart.pluck(:paid_at, :lineitem_quantity), xtitle: "payment time", ytitle: "quantity of product" %>
-        <h3>Summary</h3>
-        <p>A scatter plot uses dots to represent values for two different numeric variables. The position of each dot on the horizontal and vertical
-        axis indicates values for an individual data point. Scatter plots are used to observe relationships between variables.</p>
-        <%# <h2>Summary</h2>
-        <p>The Pie chart indicates that......</p> %>
-      </div>
-    <% end %>
   </div>
-<% end %>
+<script>
+  document.getElementById('chart-form').addEventListener('submit', (e) => {
+    e.preventDefault()
+    const value = document.getElementById('fields').value
+    const charts = document.querySelectorAll('.chart').forEach((e) => {
+      console.log(e)
+      e.classList.add('hidden')
+    })
+    document.getElementById(value).classList.remove('hidden')
+  })
+</script>
+
