@@ -1,5 +1,5 @@
 meta_product_name: "Pythia"
 meta_title: "Pythia - Make analysing your CSVs as easy as 123"
 meta_description: "Create queries for your CSV data and view the results as downloadable charts, map views, or tables using Pythia."
-meta_image: "logo.svg" # should exist in `app/assets/images/`
+meta_image: "og-image.png" # should exist in `app/assets/images/`
 twitter_account: "@product_twitter_account"   # required for Twitter Cards
