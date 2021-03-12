@@ -96,6 +96,7 @@ const addFilter = () => {
   const createButton = document.querySelector("#add-filter");
   const Fieldset = document.querySelector('[id="0"]')
   console.log(Fieldset);
+  
   insertRemoveFilter(Fieldset);
   const FieldsetText = Fieldset.outerHTML;
   createButton.addEventListener("click", (event) => {
@@ -110,6 +111,16 @@ const addFilter = () => {
       "beforeend", newFieldset
     );
     const newField = document.querySelector(`[id="${newId}"`);
+    newField.querySelector("input").value = ""
+    console.log(newField.querySelector("input"));
+    newField.querySelectorAll("select").forEach(selected => {
+      console.log(selected.id);
+      if (selected.id == `query_filters_attributes_${newId}_verb`) {
+      } else {
+        selected.selectedIndex = -1;
+      }
+    })
+    console.log(newField.querySelectorAll("select"));
     insertRemoveFilter(newField, newId);
     listenForFieldChanges();
   });
