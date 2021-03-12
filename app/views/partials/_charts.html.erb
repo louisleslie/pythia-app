@@ -40,6 +40,10 @@
     <div class="chart<%= " hidden" if hidden %>" id="<%= column %>">
         <%= bar_chart chart.group_by_day(:order_created_at).sum(:taxes), download: true %>
     </div>
+<% elsif column == "lineitem_quantity"  %>
+    <div class="chart<%= " hidden" if hidden %>" id="<%= column %>">
+        <%= bar_chart chart.group_by_day(:order_created_at).sum(:lineitem_quantity), download: true %>
+    </div>
 <% elsif column == "refunded_amount"  %>
     <div class="chart<%= " hidden" if hidden %>" id="<%= column %>">
         <%= bar_chart chart.group_by_day(:order_created_at).sum(:refunded_amount), download: true %>
