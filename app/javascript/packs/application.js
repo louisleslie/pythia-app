@@ -26,6 +26,7 @@ import * as d3 from "d3";
 // import { initSelect2 } from '../components/init_select2';
 import { addFilter, listenForFieldChanges, validateBeforeSubmit } from './addFilter';
 import "./chartkick"
+import { listenForMapSelection } from './D3MapFunction';
 
 document.addEventListener('turbolinks:load', () => {
   // Call your functions here, e.g:
@@ -34,6 +35,9 @@ document.addEventListener('turbolinks:load', () => {
     addFilter();
     listenForFieldChanges();
     validateBeforeSubmit();
+  }
+  if (document.querySelector("#map")) {
+    listenForMapSelection();
   }
 
 });
