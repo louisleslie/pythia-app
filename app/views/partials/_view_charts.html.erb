@@ -41,7 +41,7 @@
 
     <% if !@query || JSON.parse(@query.fields).include?('order_created_at') %>
       <div class="tab-pane active show show-page-views-tab-pane" id="line-chart" role="tabpanel" aria-labelledby="line-chart-tab">
-        <%= line_chart chart.group_by_day(:order_created_at).count, xtitle: "Time", ytitle: "Number of Order", colors: ["#b00", "#666"], stacked: true , discrete: true, legend: false%>
+        <%= line_chart chart.group_by_day(:order_created_at).count, xtitle: "Time", ytitle: "Number of Order", colors: ["#7C3AED", "#6B7280"], stacked: true , discrete: true, legend: false%>
         <h3>Summary</h3>
         <p>A line graph is commonly used to display change over time as a series of data points connected by straight
         line segments on two axes. The line graph therefore helps to determine the relationship between two sets of values,
@@ -55,7 +55,7 @@
 
     <% if !@query || JSON.parse(@query.fields).include?('lineitem_sku') %>
       <div class="tab-pane show-page-views-tab-pane" id="line2-chart" role="tabpanel" aria-labelledby="line2-chart-tab">
-        <%= pie_chart chart.group(:lineitem_sku).count %>
+        <%= pie_chart chart.group(:lineitem_sku).count, colors: ["#C4B5FD", "#A78BFA", "#8B5CF6", "#7C3AED", "#6D28D9", "#5B21B6", "#4C1D95",] %>
         <h3>Summary</h3>
         <p>Pie charts are generally used to show percentage or proportional
           data and usually the percentage represented by each category is provided next to the corresponding slice of pie.</p>
@@ -66,7 +66,7 @@
 
     <% if !@query || JSON.parse(@query.fields).include?('vendor') && JSON.parse(@query.fields).include?('lineitem_quantity') %>
       <div class="tab-pane show-page-views-tab-pane" id="line3-chart" role="tabpanel" aria-labelledby="line3-chart-tab">
-        <%= bar_chart chart.group(:vendor).sum(:lineitem_quantity) %>
+        <%= bar_chart chart.group(:vendor).sum(:lineitem_quantity), colors: ["#7C3AED", "#6B7280"] %>
         <h3>Summary</h3>
         <p>A bar chart is used when you want to show a distribution of data points or perform a comparison of metric values across different subgroups of your data.
         From a bar chart, we can see which groups are highest or most common, and how other groups compare against the others</p>
@@ -77,7 +77,7 @@
 
     <% if  !@query || JSON.parse(@query.fields).include?('paid_at') && JSON.parse(@query.fields).include?('lineitem_quantity')  %>
       <div class="tab-pane show-page-views-tab-pane" id="pie-chart" role="tabpanel" aria-labelledby="pie-chart-tab">
-        <%= scatter_chart chart.pluck(:paid_at, :lineitem_quantity), xtitle: "payment time", ytitle: "quantity of product" %>
+        <%= scatter_chart chart.pluck(:paid_at, :lineitem_quantity), xtitle: "payment time", ytitle: "quantity of product", colors: ["#7C3AED", "#6B7280"] %>
         <h3>Summary</h3>
         <p>A scatter plot uses dots to represent values for two different numeric variables. The position of each dot on the horizontal and vertical
         axis indicates values for an individual data point. Scatter plots are used to observe relationships between variables.</p>
