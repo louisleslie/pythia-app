@@ -94,10 +94,10 @@ const insertRemoveFilter = (Fieldset, newId) => {
 
 const addFilter = () => {
   const createButton = document.querySelector("#add-filter");
-  const Fieldset = document.querySelector('[id="0"]')
+  document.querySelectorAll(`[id="0"]`).forEach(Fieldset => {
+    insertRemoveFilter(Fieldset);
+  });
   console.log(Fieldset);
-  
-  insertRemoveFilter(Fieldset);
   const FieldsetText = Fieldset.outerHTML;
   createButton.addEventListener("click", (event) => {
     event.preventDefault();
@@ -110,7 +110,7 @@ const addFilter = () => {
     document.querySelector("#fieldset-container").insertAdjacentHTML(
       "beforeend", newFieldset
     );
-    const newField = document.querySelector(`[id="${newId}"`);
+    const newField = document.querySelector(`[id="${newId}"]`);
     newField.querySelector("input").value = ""
     console.log(newField.querySelector("input"));
     newField.querySelectorAll("select").forEach(selected => {

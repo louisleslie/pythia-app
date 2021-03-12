@@ -5,7 +5,6 @@
       <%= filter_f.input :verb, collection: ['Where'], default: "Where" %>
       <%= filter_f.input :column_name, collection: order_data_types  %>
       <%= filter_f.input :comparison_operator, collection: ["", "Before", "After",	"On", "Is Empty", "Is Not Empty", "Matches",	"Does Not Match",	"Contains",	"Does Not Contain",	"Starts With",	"Ends With",	"is Empty", "Is Not Empty", "Is True", "Is False", "Equals",	"Does Not Equal",	"Greater Than",	"Less Than",	"Greater Than or Equal To",	"Less Than or Equal To",	"Is Empty",	"Is Not Empty"], selected: filter_f.object.comparison_operator %>
-      
       <%= filter_f.input :value %>
     </fieldset>
   </div>
